@@ -9,6 +9,7 @@ import BleedingEditView from './bleeding'
 import TemperatureEditView from './temperature'
 import { formatDateForViewHeader } from '../labels/format'
 import styles from '../styles/index'
+import MucusEditView from './mucus'
 
 const getCycleDayNumber = cycleDayModule()
 
@@ -42,7 +43,8 @@ export default class Day extends Component {
           {
             { dayView: <DayView cycleDay={this.cycleDay} showView={this.showView} />,
               bleedingEditView: <BleedingEditView cycleDay={this.cycleDay} showView={this.showView}/>,
-              temperatureEditView: <TemperatureEditView cycleDay={this.cycleDay} showView={this.showView}/>
+              temperatureEditView: <TemperatureEditView cycleDay={this.cycleDay} showView={this.showView}/>,
+              mucusEditView: <MucusEditView cycleDay={this.cycleDay} showView={this.showView}/>
             }[this.state.visibleComponent]
           }
         </View >

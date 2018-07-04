@@ -5,7 +5,10 @@ import {
   Text
 } from 'react-native'
 import styles from '../styles/index'
-import { bleeding as labels} from '../labels/labels'
+import {
+  bleeding as labels,
+  mucusFeeling as feelingLabels
+} from '../labels/labels'
 import cycleDayModule from '../lib/get-cycle-day-number'
 import { bleedingDaysSortedByDate } from '../db'
 
@@ -53,6 +56,15 @@ export default class DayView extends Component {
       temperatureLabel = 'edit'
     }
 
+    const mucusFeelingValue = this.cycleDay.mucus && this.cycleDay.mucus.value
+    let mucusFeelingLabel
+    if (typeof mucusFeelingValue === 'number') {
+      mucusFeelingLabel = `${feelingLabels[mucusFeelingValue]}`
+      if (this.cycleDay.mucus.exclude) mucusFeelingLabel = "( " + mucusFeelingLabel + " )"
+    } else {
+      mucusFeelingLabel = 'edit'
+    }
+
     return (
       <View style={ styles.symptomEditListedSymptomView }>
         <View style={ styles.itemsInRowSeparatedView }>
@@ -74,6 +86,17 @@ export default class DayView extends Component {
             <Button
               onPress={() => this.showView('temperatureEditView')}
               title={temperatureLabel}>
+            </Button>
+          </View>
+        </View>
+        <View style={ styles.itemsInRowSeparatedView }>
+          <View style={{flex: 1}}>
+            <Text style={styles.symptomDayView}>Mucus</Text>
+          </View>
+          <View style={ styles.singleButtonView }>
+            <Button
+              onPress={() => this.showView('mucusEditView')}
+              title={mucusFeelingLabel}>
             </Button>
           </View>
         </View>
