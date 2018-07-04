@@ -19,18 +19,21 @@ export default class Mucus extends Component {
     this.cycleDay = props.cycleDay
     this.showView = props.showView
 
-    this.currentFeelingValue = this.cycleDay.mucus && this.cycleDay.mucus.feeling
-    if (typeof this.currentFeelingValue !== 'number') {
-      this.currentFeelingValue = -1
+    let currentFeelingValue = this.cycleDay.mucus && this.cycleDay.mucus.feeling
+    if (typeof currentFeelingValue !== 'number') {
+      currentFeelingValue = -1
+    }
+    let currentTextureValue = this.cycleDay.mucus && this.cycleDay.mucus.texture
+    if (typeof currentTextureValue !== 'number') {
+      currentTextureValue = -1
     }
 
-    this.currentTextureValue = this.cycleDay.mucus && this.cycleDay.mucus.texture
-    if (typeof this.currentTextureValue !== 'number') {
-      this.currentTextureValue = -1
-    }
     this.state = {
+      currentFeelingValue,
+      currentTextureValue,
       exclude: this.cycleDay.mucus ? this.cycleDay.mucus.exclude : false
     }
+
   }
 
   render() {
@@ -61,12 +64,12 @@ export default class Mucus extends Component {
             <View style={{flex: 1}}>
               <RadioForm
                 radio_props={mucusFeelingRadioProps}
-                initial={this.currentFeelingValue}
+                initial={this.state.currentFeelingValue}
                 formHorizontal={true}
                 labelHorizontal={false}
                 labelStyle={styles.radioButton}
                 onPress={(itemValue) => {
-                  this.currentFeelingValue = itemValue
+                  this.setState({currentFeelingValue: itemValue})
                 }}
               />
             </View>
@@ -78,12 +81,12 @@ export default class Mucus extends Component {
             <View style={{flex: 1}}>
               <RadioForm
                 radio_props={mucusTextureRadioProps}
-                initial={this.currentTextureValue}
+                initial={this.state.currentTextureValue}
                 formHorizontal={true}
                 labelHorizontal={false}
                 labelStyle={styles.radioButton}
                 onPress={(itemValue) => {
-                  this.currentTextureValue = itemValue
+                  this.setState({currentTextureValue: itemValue})
                 }}
               />
             </View>
@@ -132,14 +135,14 @@ export default class Mucus extends Component {
             <Button
               onPress={() => {
                 saveMucus(this.cycleDay, {
-                  feeling: this.currentFeelingValue,
-                  texture: this.currentTextureValue,
+                  feeling: this.state.currentFeelingValue,
+                  texture: this.state.currentTextureValue,
                   exclude: this.state.exclude
                 })
                 this.showView('dayView')
               }}
               // FIXME: find out how disabled works when 2 values need to be checked
-              // disabled={ this.currentFeelingValue === -1 && this.currentTextureValue === -1 }
+              disabled={ this.state.currentFeelingValue === -1 || this.state.currentTextureValue === -1 }
               title="Save">
             </Button>
           </View>
