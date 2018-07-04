@@ -7,7 +7,8 @@ import {
 import styles from '../styles/index'
 import {
   bleeding as labels,
-  mucusFeeling as feelingLabels
+  mucusFeeling as feelingLabels,
+  mucusTexture as textureLabels,
 } from '../labels/labels'
 import cycleDayModule from '../lib/get-cycle-day-number'
 import { bleedingDaysSortedByDate } from '../db'
@@ -56,13 +57,14 @@ export default class DayView extends Component {
       temperatureLabel = 'edit'
     }
 
-    const mucusFeelingValue = this.cycleDay.mucus && this.cycleDay.mucus.value
-    let mucusFeelingLabel
-    if (typeof mucusFeelingValue === 'number') {
-      mucusFeelingLabel = `${feelingLabels[mucusFeelingValue]}`
-      if (this.cycleDay.mucus.exclude) mucusFeelingLabel = "( " + mucusFeelingLabel + " )"
+    const mucusFeelingValue = this.cycleDay.mucus && this.cycleDay.mucus.feeling
+    const mucusTextureValue = this.cycleDay.mucus && this.cycleDay.mucus.texture
+    let mucusLabel
+    if (typeof mucusFeelingValue === 'number' && typeof mucusTextureValue === 'number') {
+      mucusLabel = `${feelingLabels[mucusFeelingValue]} + ${textureLabels[mucusTextureValue]}`
+      if (this.cycleDay.mucus.exclude) mucusLabel = "( " + mucusLabel + " )"
     } else {
-      mucusFeelingLabel = 'edit'
+      mucusLabel = 'edit'
     }
 
     return (
@@ -96,7 +98,7 @@ export default class DayView extends Component {
           <View style={ styles.singleButtonView }>
             <Button
               onPress={() => this.showView('mucusEditView')}
-              title={mucusFeelingLabel}>
+              title={mucusLabel}>
             </Button>
           </View>
         </View>
