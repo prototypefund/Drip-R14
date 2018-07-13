@@ -8,7 +8,7 @@ import {
 import RadioForm from 'react-native-simple-radio-button'
 import styles from '../styles/index'
 import { saveBleeding } from '../db'
-import { bleeding as labels } from '../labels/labels'
+import { bleeding as bleedingLabels } from '../labels/labels'
 
 export default class Bleeding extends Component {
   constructor(props) {
@@ -27,10 +27,10 @@ export default class Bleeding extends Component {
 
   render() {
     const bleedingRadioProps = [
-      {label: labels[0], value: 0 },
-      {label: labels[1], value: 1 },
-      {label: labels[2], value: 2 },
-      {label: labels[3], value: 3 },
+      {label: bleedingLabels[0], value: 0 },
+      {label: bleedingLabels[1], value: 1 },
+      {label: bleedingLabels[2], value: 2 },
+      {label: bleedingLabels[3], value: 3 },
     ]
     return (
       <View style={ styles.symptomEditView }>
