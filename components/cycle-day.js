@@ -7,6 +7,7 @@ import cycleDayModule from '../lib/get-cycle-day-number'
 import DayView from './cycle-day-overview'
 import BleedingEditView from './bleeding'
 import TemperatureEditView from './temperature'
+import CervixEditView from './cervix'
 import { formatDateForViewHeader } from '../labels/format'
 import styles from '../styles/index'
 import MucusEditView from './mucus'
@@ -44,7 +45,8 @@ export default class Day extends Component {
             { dayView: <DayView cycleDay={this.cycleDay} showView={this.showView} />,
               bleedingEditView: <BleedingEditView cycleDay={this.cycleDay} showView={this.showView}/>,
               temperatureEditView: <TemperatureEditView cycleDay={this.cycleDay} showView={this.showView}/>,
-              mucusEditView: <MucusEditView cycleDay={this.cycleDay} showView={this.showView}/>
+              mucusEditView: <MucusEditView cycleDay={this.cycleDay} showView={this.showView}/>,
+              cervixEditView: <CervixEditView cycleDay={this.cycleDay} showView={this.showView} />
             }[this.state.visibleComponent]
           }
         </View >

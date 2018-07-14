@@ -28,6 +28,16 @@ const MucusSchema = {
   }
 }
 
+const CervixSchema = {
+  name: 'Cervix',
+  properties: {
+    position: 'int',
+    consistency: 'int',
+    computedNfp: 'int',
+    exclude: 'bool'
+  }
+}
+
 const CycleDaySchema = {
   name: 'CycleDay',
   primaryKey: 'date',
@@ -44,6 +54,10 @@ const CycleDaySchema = {
     mucus: {
       type: 'Mucus',
       optional: true
+    },
+    cervix: {
+      type: 'Cervix',
+      optional: true
     }
   }
 }
@@ -53,7 +67,8 @@ const db = new Realm({
     CycleDaySchema,
     TemperatureSchema,
     BleedingSchema,
-    MucusSchema
+    MucusSchema,
+    CervixSchema
   ],
   // we only want this in dev mode
   deleteRealmIfMigrationNeeded: true
@@ -79,6 +94,12 @@ function saveBleeding(cycleDay, bleeding) {
 function saveMucus(cycleDay, mucus) {
   db.write(() => {
     cycleDay.mucus = mucus
+  })
+}
+
+function saveCervix(cycleDay, cervix) {
+  db.write(() => {
+    cycleDay.cervix = cervix
   })
 }
 
@@ -118,6 +139,7 @@ export {
   saveTemperature,
   saveBleeding,
   saveMucus,
+  saveCervix,
   getOrCreateCycleDay,
   bleedingDaysSortedByDate,
   temperatureDaysSortedByDate,
