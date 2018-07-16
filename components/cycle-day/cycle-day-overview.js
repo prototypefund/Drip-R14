@@ -4,7 +4,7 @@ import {
   Button,
   Text
 } from 'react-native'
-import styles from '../styles/index'
+import styles from '../../styles'
 import {
   bleeding as bleedingLabels,
   mucusFeeling as feelingLabels,
@@ -12,9 +12,9 @@ import {
   mucusNFP as computeSensiplanMucusLabels,
   cervixPosition as positionLabels,
   cervixConsistency as consistencyLabels
-} from '../labels/labels'
-import cycleDayModule from '../lib/get-cycle-day-number'
-import { bleedingDaysSortedByDate } from '../db'
+} from './labels/labels'
+import cycleDayModule from '../../lib/get-cycle-day-number'
+import { bleedingDaysSortedByDate } from '../../db'
 
 const getCycleDayNumber = cycleDayModule()
 
@@ -84,45 +84,37 @@ export default class DayView extends Component {
     }
 
     return (
-      <View style={ styles.symptomEditListedSymptomView }>
-        <View style={ styles.itemsInRowSeparatedView }>
-          <View style={{flex: 1}}>
-            <Text style={styles.symptomDayView}>Bleeding</Text>
-          </View>
-          <View style={ styles.singleButtonView }>
+      <View style={styles.symptomEditView}>
+        <View style={styles.symptomViewRowInline}>
+          <Text style={styles.symptomDayView}>Bleeding</Text>
+          <View style={styles.symptomEditButton}>
             <Button
               onPress={() => this.showView('bleedingEditView')}
               title={bleedingLabel}>
             </Button>
           </View>
         </View>
-        <View style={ styles.itemsInRowSeparatedView}>
-          <View style={{flex: 1}}>
-            <Text style={styles.symptomDayView}>Temperature</Text>
-          </View>
-          <View style={ styles.singleButtonView }>
+        <View style={styles.symptomViewRowInline}>
+          <Text style={styles.symptomDayView}>Temperature</Text>
+          <View style={styles.symptomEditButton}>
             <Button
               onPress={() => this.showView('temperatureEditView')}
               title={temperatureLabel}>
             </Button>
           </View>
         </View>
-        <View style={ styles.itemsInRowSeparatedView }>
-          <View style={{flex: 1}}>
-            <Text style={styles.symptomDayView}>Mucus</Text>
-          </View>
-          <View style={ styles.singleButtonView }>
+        <View style={ styles.symptomViewRowInline }>
+          <Text style={styles.symptomDayView}>Mucus</Text>
+          <View style={ styles.symptomEditButton }>
             <Button
               onPress={() => this.showView('mucusEditView')}
               title={mucusLabel}>
             </Button>
           </View>
         </View>
-        <View style={ styles.itemsInRowSeparatedView }>
-          <View style={{flex: 1}}>
-            <Text style={styles.symptomDayView}>Cervix</Text>
-          </View>
-          <View style={ styles.singleButtonView }>
+        <View style={ styles.symptomViewRowInline }>
+          <Text style={styles.symptomDayView}>Cervix</Text>
+          <View style={ styles.symptomEditButton }>
             <Button
               onPress={() => this.showView('cervixEditView')}
               title={cervixLabel}>

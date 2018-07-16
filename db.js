@@ -77,31 +77,13 @@ const db = new Realm({
 const bleedingDaysSortedByDate = db.objects('CycleDay').filtered('bleeding != null').sorted('date', true)
 const temperatureDaysSortedByDate = db.objects('CycleDay').filtered('temperature != null').sorted('date', true)
 
-function saveTemperature(cycleDay, temperature) {
+function saveSymptom(symptom, cycleDay, val) {
   db.write(() => {
-    cycleDay.temperature = temperature
+    cycleDay[symptom] = val
   })
 }
 
 const cycleDaysSortedByDate = db.objects('CycleDay').sorted('date', true)
-
-function saveBleeding(cycleDay, bleeding) {
-  db.write(() => {
-    cycleDay.bleeding = bleeding
-  })
-}
-
-function saveMucus(cycleDay, mucus) {
-  db.write(() => {
-    cycleDay.mucus = mucus
-  })
-}
-
-function saveCervix(cycleDay, cervix) {
-  db.write(() => {
-    cycleDay.cervix = cervix
-  })
-}
 
 function getOrCreateCycleDay(localDate) {
   let result = db.objectForPrimaryKey('CycleDay', localDate)
@@ -136,10 +118,7 @@ function getPreviousTemperature(cycleDay) {
 }
 
 export {
-  saveTemperature,
-  saveBleeding,
-  saveMucus,
-  saveCervix,
+  saveSymptom,
   getOrCreateCycleDay,
   bleedingDaysSortedByDate,
   temperatureDaysSortedByDate,
