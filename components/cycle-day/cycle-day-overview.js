@@ -51,12 +51,13 @@ export default class DayView extends Component {
     } else {
       bleedingLabel = 'edit'
     }
-
     const temperatureValue = this.cycleDay.temperature && this.cycleDay.temperature.value
     let temperatureLabel
     if (typeof temperatureValue === 'number') {
-      temperatureLabel = `${temperatureValue} °C`
-      if (this.cycleDay.temperature.exclude) temperatureLabel = "( " + temperatureLabel + " )"
+      temperatureLabel = `${temperatureValue} °C - ${this.cycleDay.temperature.time}`
+      if (this.cycleDay.temperature.exclude) {
+        temperatureLabel = "( " + temperatureLabel + " )"
+      }
     } else {
       temperatureLabel = 'edit'
     }
