@@ -35,9 +35,9 @@ const MucusSchema = {
 const CervixSchema = {
   name: 'Cervix',
   properties: {
-    position: 'int',
-    consistency: 'int',
-    computedNfp: 'int',
+    opening: 'int',
+    firmness: 'int',
+    position: {type: 'int', optional: true },
     exclude: 'bool'
   }
 }

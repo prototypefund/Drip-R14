@@ -10,8 +10,9 @@ import {
   mucusFeeling as feelingLabels,
   mucusTexture as textureLabels,
   mucusNFP as computeSensiplanMucusLabels,
-  cervixPosition as positionLabels,
-  cervixConsistency as consistencyLabels
+  cervixOpening as openingLabels,
+  cervixFirmness as firmnessLabels,
+  cervixPosition as positionLabels
 } from './labels/labels'
 import cycleDayModule from '../../lib/get-cycle-day-number'
 import { bleedingDaysSortedByDate } from '../../db'
