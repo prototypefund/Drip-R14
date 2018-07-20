@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text
+  Text,
+  ScrollView
 } from 'react-native'
 import cycleDayModule from '../../lib/get-cycle-day-number'
 import DayView from './cycle-day-overview'
@@ -34,7 +35,7 @@ export default class Day extends Component {
   render() {
     const cycleDayNumber = getCycleDayNumber(this.cycleDay.date)
     return (
-      <View>
+      <ScrollView>
         <View style={ styles.cycleDayDateView }>
           <Text style={styles.dateHeader}>
             {formatDateForViewHeader(this.cycleDay.date)}
@@ -53,7 +54,7 @@ export default class Day extends Component {
             }[this.state.visibleComponent]
           }
         </View >
-      </View >
+      </ScrollView >
     )
   }
 }
