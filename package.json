@@ -49,6 +49,11 @@
     "eslint-plugin-react": "^7.8.2",
     "mocha": "^5.2.0"
   },
+  "rnpm": {
+    "assets": [
+      "assets/fonts"
+    ]
+  },
   "description": "A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle or for fertility awareness!",
   "main": "index.js",
   "directories": {

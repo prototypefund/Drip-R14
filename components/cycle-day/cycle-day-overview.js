@@ -9,10 +9,11 @@ import { LocalDate } from 'js-joda'
 import Header from '../header'
 import { getOrCreateCycleDay } from '../../db'
 import cycleModule from '../../lib/cycle'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import styles, { iconStyles } from '../../styles'
 import * as labels from './labels/labels'
 import { AppText } from '../app-text'
+import {createIconSetFromIcoMoon as createCustomIconSet} from 'react-native-vector-icons'
+import icoMoonConfig from '../../selection.json'
 
 const bleedingLabels = labels.bleeding
 const feelingLabels = labels.mucus.feeling.categories
@@ -23,6 +24,7 @@ const positionLabels = labels.cervix.position.categories
 const intensityLabels = labels.intensity
 const sexLabels = labels.sex
 const painLabels = labels.pain.categories
+const CustomIcon = createCustomIconSet(icoMoonConfig)
 
 export default class CycleDayOverView extends Component {
   constructor(props) {
@@ -217,7 +219,6 @@ function getLabel(symptomName, symptom) {
   return label.slice(0, 42) + '...'
 }
 
-
 class SymptomBox extends Component {
   render() {
     const d = this.props.data
@@ -235,8 +236,8 @@ class SymptomBox extends Component {
         disabled={this.props.disabled}
       >
         <View style={[styles.symptomBox, boxActive, disabledStyle]}>
-          <Icon
-            name='thermometer'
+          <CustomIcon
+            name={this.props.title}
             {...iconStyle}
           />
           <AppText style={[textActive, disabledStyle]}>

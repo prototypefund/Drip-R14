@@ -66,6 +66,7 @@
 		A16B351C3F3644CF95F104D2 /* builtin_modules in Resources */ = {isa = PBXBuildFile; fileRef = 36F1B55D0DEE47AA9AF4BBDD /* builtin_modules */; };
 		45794BEC42E34672A759220F /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C745A8EE95400C96FD5CF7 /* libRNSVG.a */; };
 		3E63FB3C405F4AF39969C7E3 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4FC2FD95A84EFCBB59195F /* libRNSVG-tvOS.a */; };
+		D7D6B73E422E46DBA2EC4564 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC84B2D8732641E48B9ED073 /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +408,7 @@
 		DEB488BF9A9642508320FB42 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		93C745A8EE95400C96FD5CF7 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		AD4FC2FD95A84EFCBB59195F /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		BC84B2D8732641E48B9ED073 /* icomoon.ttf */ = {isa = PBXFileReference; name = "icomoon.ttf"; path = "../assets/fonts/icomoon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -712,6 +714,7 @@
 				4902D5DCD46748BD8DC403FD /* Octicons.ttf */,
 				E954835D62BD45F0A5FFC523 /* SimpleLineIcons.ttf */,
 				B6F5078F7DEC470782757471 /* Zocial.ttf */,
+				BC84B2D8732641E48B9ED073 /* icomoon.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -747,9 +750,9 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				2B572382D4504B8FB4B9D251 /* Embed Frameworks */,
-				7DDFD19623084447885928A6 /* Build NodeJS Mobile Native Modules */,
-				554E2494DF2646B083F4BD1D /* Sign NodeJS Mobile Native Modules */,
-				8F5D6E75B7D344BD80BC6EC0 /* Remove NodeJS Mobile Framework Simulator Strips */,
+				7336A975018E40C9AAB20758 /* Build NodeJS Mobile Native Modules */,
+				987BFE1032224A09BDE2F64F /* Sign NodeJS Mobile Native Modules */,
+				708CDE2873DF482B9101B3EC /* Remove NodeJS Mobile Framework Simulator Strips */,
 			);
 			buildRules = (
 			);
@@ -1183,6 +1186,7 @@
 				A1410AC4C98A49B2820D9E45 /* Zocial.ttf in Resources */,
 				E4584E55EEC24302A3E84A23 /* nodejs-project in Resources */,
 				A16B351C3F3644CF95F104D2 /* builtin_modules in Resources */,
+				D7D6B73E422E46DBA2EC4564 /* icomoon.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,7 +1236,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		7DDFD19623084447885928A6 /* Build NodeJS Mobile Native Modules */ = {
+		7336A975018E40C9AAB20758 /* Build NodeJS Mobile Native Modules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1300,7 +1304,7 @@ fi
 popd
 ";
 		};
-		554E2494DF2646B083F4BD1D /* Sign NodeJS Mobile Native Modules */ = {
+		987BFE1032224A09BDE2F64F /* Sign NodeJS Mobile Native Modules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1360,7 +1364,7 @@ find \"$CODESIGNING_FOLDER_PATH/nodejs-project/\" -path \"*/*.framework/*\" -del
 find \"$CODESIGNING_FOLDER_PATH/nodejs-project/\" -name \"*.framework\" -type d -delete
 ";
 		};
-		8F5D6E75B7D344BD80BC6EC0 /* Remove NodeJS Mobile Framework Simulator Strips */ = {
+		708CDE2873DF482B9101B3EC /* Remove NodeJS Mobile Framework Simulator Strips */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
