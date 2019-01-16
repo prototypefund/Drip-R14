@@ -32,7 +32,7 @@
     "react": "^16.6.3",
     "react-native": "^0.57.8",
     "react-native-calendars": "^1.19.3",
-    "react-native-document-picker": "^2.1.0",
+    "react-native-document-picker": "^2.2.0",
     "react-native-fs": "^2.13.3",
     "react-native-hyperlink": "0.0.14",
     "react-native-modal-datetime-picker-nevo": "^4.11.0",
