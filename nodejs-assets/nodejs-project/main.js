@@ -3,7 +3,7 @@
 const rnBridge = require('rn-bridge')
 const crypto = require('crypto')
 
-rnBridge.channel.on('request-SHA512', (msg) => {
+rnBridge.channel.on('request-SHA512', msg => {
   msg = JSON.parse(msg)
   const hash = crypto.createHash('sha512')
   hash.update(msg.message)

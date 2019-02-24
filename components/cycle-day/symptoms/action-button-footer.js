@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import {
-  View, TouchableOpacity, Text, Alert, ToastAndroid
-} from 'react-native'
+import { Alert, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { saveSymptom } from '../../../db'
-import styles, {iconStyles} from '../../../styles'
-import {sharedDialogs as labels} from '../../../i18n/en/cycle-day'
 
+import { saveSymptom } from '../../../db'
+import { sharedDialogs as labels } from '../../../i18n/en/cycle-day'
+import styles, { iconStyles } from '../../../styles'
 
 export default class ActionButtonFooter extends Component {
   render() {
@@ -17,40 +15,39 @@ export default class ActionButtonFooter extends Component {
       saveAction,
       saveDisabled,
       navigate,
-      autoShowDayView = true}
-      = this.props
-    const navigateToOverView = () => navigate('CycleDay', {date})
+      autoShowDayView = true
+    } = this.props
+    const navigateToOverView = () => navigate('CycleDay', { date })
     const buttons = [
       {
         title: labels.delete,
         action: () => {
-          Alert.alert(
-            labels.areYouSureTitle,
-            labels.areYouSureToDelete,
-            [{
+          Alert.alert(labels.areYouSureTitle, labels.areYouSureToDelete, [
+            {
               text: labels.cancel,
               style: 'cancel'
-            }, {
+            },
+            {
               text: labels.reallyDeleteData,
               onPress: () => {
                 saveSymptom(symptom, date)
                 navigateToOverView()
               }
-            }]
-          )
+            }
+          ])
         },
         disabledCondition: !currentSymptomValue,
         icon: 'delete-outline'
-      }, {
+      },
+      {
         title: labels.save,
         action: () => {
-          if(saveDisabled) {
+          if (saveDisabled) {
             ToastAndroid.show(labels.disabledInfo, ToastAndroid.LONG)
           } else {
             saveAction()
             if (autoShowDayView) navigateToOverView()
           }
-
         },
         disabledCondition: saveDisabled,
         icon: 'content-save-outline'
@@ -63,14 +60,15 @@ export default class ActionButtonFooter extends Component {
           if (disabledCondition) {
             textStyle.push(styles.menuTextInActive)
           }
-          const iconStyle = disabledCondition ?
-            Object.assign(
-              {},
-              iconStyles.menuIcon,
-              iconStyles.menuIconInactive
-            )
-            :
-            iconStyles.menuIcon
+
+          const iconStyle = disabledCondition
+            ? Object.assign(
+                {},
+                iconStyles.menuIcon,
+                iconStyles.menuIconInactive
+              )
+            : iconStyles.menuIcon
+
           return (
             <TouchableOpacity
               onPress={action}
@@ -78,11 +76,8 @@ export default class ActionButtonFooter extends Component {
               key={i.toString()}
             >
               <Icon name={icon} {...iconStyle} />
-              <Text style={textStyle}>
-                {title.toLowerCase()}
-              </Text>
+              <Text style={textStyle}>{title.toLowerCase()}</Text>
             </TouchableOpacity>
-
           )
         })}
       </View>

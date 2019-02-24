@@ -1,14 +1,15 @@
 import React from 'react'
-import { ScrollView, View, BackHandler } from 'react-native'
-import AppText from './app-text'
+import { BackHandler, ScrollView, View } from 'react-native'
+
 import { shared } from '../i18n/en/labels'
 import settingsLabels from '../i18n/en/settings'
-import styles,{secondaryColor} from '../styles'
-import Button from './button'
 import { saveLicenseFlag } from '../local-storage'
+import styles, { secondaryColor } from '../styles'
+import AppText from './app-text'
+import Button from './button'
 
 const labels = settingsLabels.license
-export default function License({setLicense}) {
+export default function License({ setLicense }) {
   return (
     <ScrollView style={styles.licensePage}>
       <AppText style={styles.framedSegmentTitle}>{labels.title}</AppText>

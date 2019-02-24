@@ -1,7 +1,8 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import AppText from './app-text'
+
 import styles from '../styles'
+import AppText from './app-text'
 
 export default function Button(props) {
   return (
@@ -10,11 +11,10 @@ export default function Button(props) {
       style={[
         styles.button,
         props.style,
-        {backgroundColor: props.backgroundColor}
-      ]}>
-      <AppText style={styles.homeButtonText}>
-        {props.children}
-      </AppText>
+        { backgroundColor: props.backgroundColor }
+      ]}
+    >
+      <AppText style={styles.homeButtonText}>{props.children}</AppText>
     </TouchableOpacity>
   )
 }

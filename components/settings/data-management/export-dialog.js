@@ -1,11 +1,11 @@
+import RNFS from 'react-native-fs'
 import Share from 'react-native-share'
 
 import { getCycleDaysSortedByDate } from '../../../db'
+import settings from '../../../i18n/en/settings'
 import getDataAsCsvDataUri from '../../../lib/import-export/export-to-csv'
 import alertError from '../shared/alert-error'
-import settings from '../../../i18n/en/settings'
 import { EXPORT_FILE_NAME } from './constants'
-import RNFS from 'react-native-fs'
 
 export default async function exportData() {
   let data
@@ -35,10 +35,8 @@ export default async function exportData() {
       type: 'text/csv',
       showAppsToView: true
     })
-
   } catch (err) {
     console.error(err)
     return alertError(labels.errors.problemSharing)
   }
 }
-

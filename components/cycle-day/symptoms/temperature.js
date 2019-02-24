@@ -1,23 +1,23 @@
+import { ChronoUnit, LocalTime } from 'js-joda'
 import React, { Component } from 'react'
 import {
-  View,
-  TextInput,
-  Switch,
-  Keyboard,
   Alert,
-  ScrollView
+  Keyboard,
+  ScrollView,
+  Switch,
+  TextInput,
+  View
 } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker-nevo'
-import padWithZeros from '../../helpers/pad-time-with-zeros'
 
-import { getPreviousTemperature, saveSymptom } from '../../../db'
-import styles from '../../../styles'
-import { LocalTime, ChronoUnit } from 'js-joda'
-import { temperature as labels } from '../../../i18n/en/cycle-day'
-import { scaleObservable } from '../../../local-storage'
-import { shared as sharedLabels } from '../../../i18n/en/labels'
-import ActionButtonFooter from './action-button-footer'
 import config from '../../../config'
+import { getPreviousTemperature, saveSymptom } from '../../../db'
+import { temperature as labels } from '../../../i18n/en/cycle-day'
+import { shared as sharedLabels } from '../../../i18n/en/labels'
+import { scaleObservable } from '../../../local-storage'
+import styles from '../../../styles'
+import padWithZeros from '../../helpers/pad-time-with-zeros'
+import ActionButtonFooter from './action-button-footer'
 import SymptomSection from './symptom-section'
 
 const minutes = ChronoUnit.MINUTES
@@ -33,7 +33,11 @@ export default class Temp extends Component {
 
     this.state = {
       exclude: temp ? temp.exclude : false,
-      time: temp ? temp.time : LocalTime.now().truncatedTo(minutes).toString(),
+      time: temp
+        ? temp.time
+        : LocalTime.now()
+            .truncatedTo(minutes)
+            .toString(),
       isTimePickerVisible: false,
       outOfRange: null,
       note: temp ? temp.note : null
@@ -61,7 +65,7 @@ export default class Temp extends Component {
       note: this.state.note
     }
     saveSymptom('temperature', this.props.date, dataToSave)
-    this.props.navigate('CycleDay', {date: this.props.date})
+    this.props.navigate('CycleDay', { date: this.props.date })
   }
 
   checkRangeAndSave = () => {
@@ -80,20 +84,14 @@ export default class Temp extends Component {
     }
 
     if (warningMsg) {
-      Alert.alert(
-        sharedLabels.warning,
-        warningMsg,
-        [
-          { text: sharedLabels.cancel },
-          { text: sharedLabels.save, onPress: this.saveTemperature}
-        ]
-      )
+      Alert.alert(sharedLabels.warning, warningMsg, [
+        { text: sharedLabels.cancel },
+        { text: sharedLabels.save, onPress: this.saveTemperature }
+      ])
     } else {
       this.saveTemperature()
     }
-
   }
-
 
   render() {
     return (
@@ -107,14 +105,11 @@ export default class Temp extends Component {
             >
               <TempInput
                 value={this.state.temperature}
-                setState={(val) => this.setState(val)}
+                setState={val => this.setState(val)}
                 isSuggestion={this.state.isSuggestion}
               />
             </SymptomSection>
-            <SymptomSection
-              header={labels.time}
-              inline={true}
-            >
+            <SymptomSection header={labels.time} inline={true}>
               <TextInput
                 style={styles.temperatureTextInput}
                 onFocus={() => {
@@ -144,7 +139,7 @@ export default class Temp extends Component {
                 autoFocus={this.state.focusTextArea}
                 placeholder={sharedLabels.enter}
                 value={this.state.note}
-                onChangeText={(val) => {
+                onChangeText={val => {
                   this.setState({ note: val })
                 }}
               />
@@ -155,7 +150,7 @@ export default class Temp extends Component {
               inline={true}
             >
               <Switch
-                onValueChange={(val) => {
+                onValueChange={val => {
                   this.setState({ exclude: val })
                 }}
                 value={this.state.exclude}
@@ -164,7 +159,7 @@ export default class Temp extends Component {
           </View>
         </ScrollView>
         <ActionButtonFooter
-          symptom='temperature'
+          symptom="temperature"
           date={this.props.date}
           currentSymptomValue={this.temperature}
           saveAction={() => this.checkRangeAndSave()}
@@ -190,11 +185,11 @@ class TempInput extends Component {
     return (
       <TextInput
         style={style}
-        onChangeText={(val) => {
+        onChangeText={val => {
           if (isNaN(Number(val))) return
           this.props.setState({ temperature: val, isSuggestion: false })
         }}
-        keyboardType='numeric'
+        keyboardType="numeric"
         value={this.props.value}
         onBlur={this.checkRange}
         autoFocus={true}

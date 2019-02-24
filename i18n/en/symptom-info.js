@@ -2,7 +2,9 @@ import links from './links'
 
 export const generalInfo = {
   chartNfp: `On the chart, you can track fertility signs. When both a valid temperature shift and a mucus or cervix shift have been detected, an orange line will be displayed on the chart. This indicates the end of the peri-ovulatory and the beginning of the post-ovulatory phase.`,
-  curiousNfp: `If you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit our ${links.wiki.url}.`,
+  curiousNfp: `If you are curious to learn more about the sympto-thermal method that is used for fertility tracking within the app, you can visit our ${
+    links.wiki.url
+  }.`,
   cycleRelation: `It may be influenced by or have an impact on your menstrual cycles and its hormonal changes.`,
   excludeExplainer: `You can exclude these values, so they won't be taken into account for any fertility calculation.`,
   nfpTfyReminder: `Drip makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: "Does this make sense?" Remember, you don't need an app to understand your cycle! However, drip wants to support you and make period tracking easier, more transparent and secure.
@@ -31,9 +33,9 @@ When - on a daily/regular basis - you track:
 3. and menstrual bleeding
 the app helps you identify in which phase of your cycle you are.
 
-${generalInfo.nfpTfyReminder}`,
+${generalInfo.nfpTfyReminder}`
   },
-  cervix:  {
+  cervix: {
     title: `Tracking your cervix`,
     text: `The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.
 
@@ -54,7 +56,7 @@ ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
   },
-  desire:  {
+  desire: {
     title: 'Tracking sexual desire',
     text: `The app allows you to track sexual desire independently from sexual activity.
 
@@ -64,7 +66,7 @@ ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
   },
-  mood:  {
+  mood: {
     title: 'Tracking mood',
     text: `The app allows you to track your mood.
 
@@ -74,7 +76,7 @@ ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
   },
-  mucus:  {
+  mucus: {
     title: 'Tracking cervical mucus',
     text: `Cervical mucus can help determine in which phase of the menstrual cycle you are.
 
@@ -103,7 +105,7 @@ ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
   },
-  note:  {
+  note: {
     title: 'Notes',
     text: `Note allows you to track any extra information you want to save. It is the only category that can store information for a date in the future. This can be helpful for reminding you of an appointment.
 
@@ -111,7 +113,7 @@ ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
   },
-  pain:  {
+  pain: {
     title: 'Tracking pain',
     text: `The app allows you to keep track of different kinds of pain you experience.
 
@@ -121,7 +123,7 @@ ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
   },
-  sex:  {
+  sex: {
     title: 'Tracking sex and contraceptives',
     text: `The app allows you to track sex independently from sexual desire. You can differentiate between masturbation and sex with a partner/partners. Here you can also track your contraceptive method(s). Only sexual activity will be shown in the "chart" section, lighter purple indicating solo sex and darker purple partner sex. Did you know that having an orgasm can help release cramps?
 
@@ -129,7 +131,7 @@ ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
   },
-  temperature:  {
+  temperature: {
     title: 'Tracking body basal temperature',
     text: `One of the body signs you need to track for knowing your fertility status is your body basal temperature. The body temperature changes over the course of a menstrual cycle, it rises after ovulation.
 
@@ -153,5 +155,5 @@ ${generalInfo.chartNfp}
 ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
-  },
+  }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import {
-  View,
-  TouchableOpacity,
-} from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
+
 import styles from '../../styles'
 import AppText from '../app-text'
 

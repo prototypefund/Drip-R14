@@ -1,7 +1,8 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import styles, { iconStyles } from '../../styles'
 import Icon from 'react-native-vector-icons/Entypo'
+
+import styles, { iconStyles } from '../../styles'
 
 export default function NavigationArrow(props) {
   const iconName = {
@@ -18,14 +19,8 @@ export default function NavigationArrow(props) {
     }
   }
   return (
-    <TouchableOpacity
-      style={styles.navigationArrow}
-      onPress={pressHandler}
-    >
-      <Icon
-        name={iconName}
-        {...iconStyles.navigationArrow}
-      />
+    <TouchableOpacity style={styles.navigationArrow} onPress={pressHandler}>
+      <Icon name={iconName} {...iconStyles.navigationArrow} />
     </TouchableOpacity>
   )
 }

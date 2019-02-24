@@ -1,9 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
+
 import config from '../../config'
-import styles from './styles'
 import { scaleObservable, unitObservable } from '../../local-storage'
 import AppText from '../app-text'
+import styles from './styles'
 
 export function makeYAxisLabels(columnHeight) {
   const units = unitObservable.value
@@ -12,23 +13,22 @@ export function makeYAxisLabels(columnHeight) {
 
   return getTickPositions(columnHeight).map((y, i) => {
     const tick = scaleMax - i * units
-    const tickLabel = tick * 10 % 10 ? tick.toString() : tick.toString() + '.0'
+    const tickLabel =
+      (tick * 10) % 10 ? tick.toString() : tick.toString() + '.0'
     let showTick
     let tickBold
     if (units === 0.1) {
-      showTick =  (tick * 10 % 2) ? false : true
-      tickBold = tick * 10 % 5 ? {} : {fontWeight: 'bold', fontSize: 11}
+      showTick = (tick * 10) % 2 ? false : true
+      tickBold = (tick * 10) % 5 ? {} : { fontWeight: 'bold', fontSize: 11 }
     } else {
-      showTick =  (tick * 10 % 5) ? false : true
-      tickBold = tick * 10 % 10 ? {} : {fontWeight: 'bold', fontSize: 11}
+      showTick = (tick * 10) % 5 ? false : true
+      tickBold = (tick * 10) % 10 ? {} : { fontWeight: 'bold', fontSize: 11 }
     }
     // this eyeballing is sadly necessary because RN does not
     // support percentage values for transforms, which we'd need
     // to reliably place the label vertically centered to the grid
     return (
-      <AppText
-        style={[style, {top: y - 8}, tickBold]}
-        key={i}>
+      <AppText style={[style, { top: y - 8 }, tickBold]} key={i}>
         {showTick && tickLabel}
       </AppText>
     )

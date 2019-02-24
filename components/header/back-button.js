@@ -1,12 +1,9 @@
 import React from 'react'
-import {
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import Icon from 'react-native-vector-icons/Entypo'
+
 import styles, { iconStyles } from '../../styles'
 import NavigationArrow from './navigation-arrow'
-import Icon from 'react-native-vector-icons/Entypo'
 
 export default function BackButtonHeader(props) {
   return (
@@ -15,17 +12,12 @@ export default function BackButtonHeader(props) {
         style={styles.accentCircle}
         left={props.middle - styles.accentCircle.width / 2}
       />
-      <NavigationArrow direction='left' {...props}/>
+      <NavigationArrow direction="left" {...props} />
       <View>
-        <Text style={styles.headerText}>
-          {props.title}
-        </Text>
+        <Text style={styles.headerText}>{props.title}</Text>
       </View>
       <TouchableOpacity style={styles.hiddenIcon}>
-        <Icon
-          name={'chevron-thin-right'}
-          {...iconStyles.hiddenIcon}
-        />
+        <Icon name={'chevron-thin-right'} {...iconStyles.hiddenIcon} />
       </TouchableOpacity>
     </View>
   )

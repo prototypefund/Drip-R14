@@ -6,7 +6,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -16,35 +17,21 @@
     },
     "ecmaVersion": 2018
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react", "prettier"],
   "rules": {
     "quotemark": false,
     "ordered-imports": false,
     "no-var-requires": false,
-    "indent": [
-      "error",
-      2
-    ],
     "no-console": 0,
     "eofline": false,
     "no-unused-variable": true,
     "no-unused-expression": true,
     "only-arrow-functions": false,
     "space-before-function-paren": 0,
-    "trailing-comma": [
-      true,
-      "never"
-    ],
+    "trailing-comma": [true, "never"],
     "object-literal-sort-keys": false,
-    "semi": [
-      "warn",
-      "never"
-    ],
-    "space-infix-ops": [
-      "warn"
-    ],
+    "semi": ["warn", "never"],
+    "space-infix-ops": ["warn"],
     "no-var": "error",
     "prefer-const": "error",
     "no-trailing-spaces": "error",

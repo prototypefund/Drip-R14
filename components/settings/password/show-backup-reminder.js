@@ -1,4 +1,5 @@
 import { Alert } from 'react-native'
+
 import { shared } from '../../../i18n/en/labels'
 import labels from '../../../i18n/en/settings'
 
@@ -12,15 +13,14 @@ export default function showBackUpReminder(okHandler, isDelete) {
     message = labels.passwordSettings.backupReminder
   }
 
-  Alert.alert(
-    title,
-    message,
-    [{
+  Alert.alert(title, message, [
+    {
       text: shared.cancel,
       style: 'cancel'
-    }, {
+    },
+    {
       text: shared.ok,
       onPress: okHandler
-    }]
-  )
+    }
+  ])
 }

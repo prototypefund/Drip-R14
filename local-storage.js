@@ -1,5 +1,6 @@
-import { AsyncStorage } from 'react-native'
 import Observable from 'obv'
+import { AsyncStorage } from 'react-native'
+
 import config from './config'
 
 export const scaleObservable = Observable()
@@ -10,7 +11,7 @@ setObvWithInitValue('tempScale', scaleObservable, {
 
 export const unitObservable = Observable()
 unitObservable.set(config.temperatureScale.units)
-scaleObservable((scale) => {
+scaleObservable(scale => {
   const scaleRange = scale.max - scale.min
   if (scaleRange <= 3) {
     unitObservable.set(0.1)
@@ -59,7 +60,6 @@ export async function saveEncryptionFlag(bool) {
   await AsyncStorage.setItem('hasEncryption', JSON.stringify(bool))
   hasEncryptionObservable.set(bool)
 }
-
 
 export async function getLicenseFlag() {
   return AsyncStorage.getItem('agreedToLicense')

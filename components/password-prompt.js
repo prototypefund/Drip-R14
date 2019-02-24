@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { View, TextInput, TouchableOpacity, Alert, Image } from 'react-native'
 import nodejs from 'nodejs-mobile-react-native'
-import { saveEncryptionFlag } from '../local-storage'
-import AppText from './app-text'
-import styles from '../styles'
+import React, { Component } from 'react'
+import { Alert, Image, TextInput, TouchableOpacity, View } from 'react-native'
+
+import { deleteDbAndOpenNew, openDb, requestHash } from '../db'
 import { passwordPrompt as labels, shared } from '../i18n/en/labels'
-import { requestHash, deleteDbAndOpenNew, openDb } from '../db'
+import { saveEncryptionFlag } from '../local-storage'
+import styles from '../styles'
+import AppText from './app-text'
 
 export default class PasswordPrompt extends Component {
   constructor(props) {
@@ -14,11 +15,7 @@ export default class PasswordPrompt extends Component {
       password: null
     }
 
-    nodejs.channel.addListener(
-      'check-pw',
-      this.passHashToDb,
-      this
-    )
+    nodejs.channel.addListener('check-pw', this.passHashToDb, this)
 
     this.tryToOpenDb()
   }
@@ -37,47 +34,43 @@ export default class PasswordPrompt extends Component {
   passHashToDb = async hash => {
     const connected = await openDb(hash)
     if (!connected) {
-      Alert.alert(
-        shared.incorrectPassword,
-        shared.incorrectPasswordMessage,
-        [{
+      Alert.alert(shared.incorrectPassword, shared.incorrectPasswordMessage, [
+        {
           text: shared.tryAgain,
           onPress: () => this.setState({ password: null })
-        }]
-      )
+        }
+      ])
       return
     }
     this.props.showApp()
   }
 
   confirmDeletion = async () => {
-    Alert.alert(
-      labels.deleteDatabaseTitle,
-      labels.deleteDatabaseExplainer,
-      [{
+    Alert.alert(labels.deleteDatabaseTitle, labels.deleteDatabaseExplainer, [
+      {
         text: shared.cancel,
         style: 'cancel'
-      }, {
+      },
+      {
         text: labels.deleteData,
         onPress: () => {
-          Alert.alert(
-            labels.areYouSureTitle,
-            labels.areYouSure,
-            [{
+          Alert.alert(labels.areYouSureTitle, labels.areYouSure, [
+            {
               text: shared.cancel,
               style: 'cancel'
-            }, {
+            },
+            {
               text: labels.reallyDeleteData,
               onPress: async () => {
                 await deleteDbAndOpenNew()
                 await saveEncryptionFlag(false)
                 this.props.showApp()
               }
-            }]
-          )
+            }
+          ])
         }
-      }]
-    )
+      }
+    ])
   }
 
   componentWillUnmount() {
@@ -87,7 +80,7 @@ export default class PasswordPrompt extends Component {
   render() {
     return (
       <View flex={1}>
-        {this.state.showPasswordPrompt &&
+        {this.state.showPasswordPrompt && (
           <View style={styles.passwordPromptPage}>
             <Image
               source={require('../assets/drip_small.png')}
@@ -110,15 +103,13 @@ export default class PasswordPrompt extends Component {
                 {labels.title}
               </AppText>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={this.confirmDeletion}
-            >
+            <TouchableOpacity onPress={this.confirmDeletion}>
               <AppText style={styles.passwordPromptForgotPasswordText}>
                 {labels.forgotPassword}
               </AppText>
             </TouchableOpacity>
           </View>
-        }
+        )}
       </View>
     )
   }

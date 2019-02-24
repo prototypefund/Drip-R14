@@ -1,7 +1,8 @@
 import React from 'react'
 import Hyperlink from 'react-native-hyperlink'
-import styles from '../styles'
+
 import links from '../i18n/en/links'
+import styles from '../styles'
 
 export default function Link(props) {
   return (

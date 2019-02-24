@@ -1,9 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-
+import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import AppText from '../../app-text'
+
 import styles from '../../../styles'
+import AppText from '../../app-text'
 
 const SettingsButton = ({ children, style, secondary, ...props }) => {
   return (
@@ -14,13 +14,15 @@ const SettingsButton = ({ children, style, secondary, ...props }) => {
         props.disabled ? styles.settingsButtonDisabled : null,
         style
       ]}
-      { ...props }
+      {...props}
     >
-      <AppText style={
-        secondary ?
-          styles.settingsButtonSecondaryText :
-          styles.settingsButtonText
-      }>
+      <AppText
+        style={
+          secondary
+            ? styles.settingsButtonSecondaryText
+            : styles.settingsButtonText
+        }
+      >
         {children}
       </AppText>
     </TouchableOpacity>

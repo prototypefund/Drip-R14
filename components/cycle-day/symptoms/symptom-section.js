@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+
 import AppText, { SymptomSectionHeader } from '../../app-text'
 
 export default class SymptomSection extends Component {
@@ -9,7 +10,7 @@ export default class SymptomSection extends Component {
     if (!p.explainer && p.inline) {
       placeHeadingInline = {
         flexDirection: 'row',
-        alignItems: "center"
+        alignItems: 'center'
       }
     }
     return (

@@ -17,5 +17,5 @@ export default {
   moreAboutNfp: {
     url: 'https://gitlab.com/bloodyhealth/drip/wikis/nfp/intro',
     text: 'More'
-  },
+  }
 }

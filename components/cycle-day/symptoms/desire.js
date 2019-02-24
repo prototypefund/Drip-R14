@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import {
-  View,
-  ScrollView
-} from 'react-native'
-import styles from '../../../styles'
+import { ScrollView, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
-import { intensity, desire } from '../../../i18n/en/cycle-day'
-import ActionButtonFooter from './action-button-footer'
+import { desire, intensity } from '../../../i18n/en/cycle-day'
+import styles from '../../../styles'
 import SelectTabGroup from '../select-tab-group'
+import ActionButtonFooter from './action-button-footer'
 import SymptomSection from './symptom-section'
 
 export default class Desire extends Component {
@@ -29,10 +27,7 @@ export default class Desire extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.page}>
-          <SymptomSection
-            header={desire.header}
-            explainer={desire.explainer}
-          >
+          <SymptomSection header={desire.header} explainer={desire.explainer}>
             <SelectTabGroup
               buttons={desireRadioProps}
               active={this.state.currentValue}
@@ -41,11 +36,13 @@ export default class Desire extends Component {
           </SymptomSection>
         </ScrollView>
         <ActionButtonFooter
-          symptom='desire'
+          symptom="desire"
           date={this.props.date}
           currentSymptomValue={this.desire}
           saveAction={() => {
-            saveSymptom('desire', this.props.date, { value: this.state.currentValue })
+            saveSymptom('desire', this.props.date, {
+              value: this.state.currentValue
+            })
           }}
           saveDisabled={typeof this.state.currentValue != 'number'}
           navigate={this.props.navigate}

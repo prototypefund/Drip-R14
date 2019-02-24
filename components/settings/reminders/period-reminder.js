@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Switch
-} from 'react-native'
-import AppText from '../../app-text'
+import { Switch, View } from 'react-native'
+
+import labels from '../../../i18n/en/settings'
 import {
   periodReminderObservable,
   savePeriodReminder
 } from '../../../local-storage'
-import labels from '../../../i18n/en/settings'
+import AppText from '../../app-text'
 
 export default class PeriodReminderPicker extends Component {
   constructor(props) {
@@ -26,7 +24,7 @@ export default class PeriodReminderPicker extends Component {
           value={this.state.enabled}
           onValueChange={switchOn => {
             this.setState({ enabled: switchOn })
-            savePeriodReminder({enabled: switchOn})
+            savePeriodReminder({ enabled: switchOn })
           }}
         />
       </View>

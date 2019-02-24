@@ -37,7 +37,7 @@ const CervixSchema = {
   properties: {
     opening: 'int',
     firmness: 'int',
-    position: {type: 'int', optional: true },
+    position: { type: 'int', optional: true },
     exclude: 'bool'
   }
 }

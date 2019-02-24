@@ -1,37 +1,46 @@
 import { Alert } from 'react-native'
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
+import {
+  DocumentPicker,
+  DocumentPickerUtil
+} from 'react-native-document-picker'
 import rnfs from 'react-native-fs'
-import importCsv from '../../../lib/import-export/import-from-csv'
+
 import { shared as sharedLabels } from '../../../i18n/en/labels'
 import labels from '../../../i18n/en/settings'
+import importCsv from '../../../lib/import-export/import-from-csv'
 import alertError from '../shared/alert-error'
 
 export default function openImportDialogAndImport() {
-  Alert.alert(
-    labels.import.title,
-    labels.import.message,
-    [{
+  Alert.alert(labels.import.title, labels.import.message, [
+    {
       text: labels.import.replaceOption,
       onPress: () => getFileContentAndImport({ deleteExisting: false })
-    }, {
+    },
+    {
       text: labels.import.deleteOption,
       onPress: () => getFileContentAndImport({ deleteExisting: true })
-    }, {
-      text: sharedLabels.cancel, style: 'cancel', onPress: () => { }
-    }]
-  )
+    },
+    {
+      text: sharedLabels.cancel,
+      style: 'cancel',
+      onPress: () => {}
+    }
+  ])
 }
 
 async function getFileContentAndImport({ deleteExisting }) {
   let fileInfo
   try {
     fileInfo = await new Promise((resolve, reject) => {
-      DocumentPicker.show({
-        filetype: [DocumentPickerUtil.allFiles()],
-      }, (err, res) => {
-        if (err) return reject(err)
-        resolve(res)
-      })
+      DocumentPicker.show(
+        {
+          filetype: [DocumentPickerUtil.allFiles()]
+        },
+        (err, res) => {
+          if (err) return reject(err)
+          resolve(res)
+        }
+      )
     })
   } catch (err) {
     // because cancelling also triggers an error, we do nothing here
@@ -48,7 +57,7 @@ async function getFileContentAndImport({ deleteExisting }) {
   try {
     await importCsv(fileContent, deleteExisting)
     Alert.alert(sharedLabels.successTitle, labels.import.success.message)
-  } catch(err) {
+  } catch (err) {
     importError(err.message)
   }
 }

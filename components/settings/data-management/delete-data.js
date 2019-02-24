@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import RNFS from 'react-native-fs'
 import { Alert, ToastAndroid } from 'react-native'
+import RNFS from 'react-native-fs'
 
 import { clearDb, isDbEmpty } from '../../../db'
-import { hasEncryptionObservable } from '../../../local-storage'
-import SettingsButton from '../shared/settings-button'
-import ConfirmWithPassword from '../shared/confirm-with-password'
-import alertError from '../shared/alert-error'
-
-import settings from '../../../i18n/en/settings'
 import { shared as sharedLabels } from '../../../i18n/en/labels'
+import settings from '../../../i18n/en/settings'
+import { hasEncryptionObservable } from '../../../local-storage'
+import alertError from '../shared/alert-error'
+import ConfirmWithPassword from '../shared/confirm-with-password'
+import SettingsButton from '../shared/settings-button'
 import { EXPORT_FILE_NAME } from './constants'
 
 const exportedFilePath = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
@@ -33,21 +32,20 @@ export default class DeleteData extends Component {
 
   alertBeforeDeletion = async () => {
     const { question, message, confirmation, errors } = settings.deleteSegment
-    if (isDbEmpty() && !await RNFS.exists(exportedFilePath)) {
+    if (isDbEmpty() && !(await RNFS.exists(exportedFilePath))) {
       alertError(errors.noData)
     } else {
-      Alert.alert(
-        question,
-        message,
-        [{
+      Alert.alert(question, message, [
+        {
           text: confirmation,
           onPress: this.onAlertConfirmation
-        }, {
+        },
+        {
           text: sharedLabels.cancel,
           style: 'cancel',
           onPress: this.cancelConfirmationWithPassword
-        }]
-      )
+        }
+      ])
     }
   }
 

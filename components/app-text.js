@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text } from 'react-native'
-import styles from "../styles"
+
+import styles from '../styles'
 import Link from './link'
 
 export default function AppText(props) {
@@ -19,10 +20,9 @@ export default function AppText(props) {
 }
 
 export function ActionHint(props) {
-  if(props.isVisible) {
+  if (props.isVisible) {
     return (
-      <AppText
-        style={[styles.actionHint, props.style]}>
+      <AppText style={[styles.actionHint, props.style]}>
         {props.children}
       </AppText>
     )
@@ -32,9 +32,5 @@ export function ActionHint(props) {
 }
 
 export function SymptomSectionHeader(props) {
-  return (
-    <AppText style={styles.symptomViewHeading}>
-      {props.children}
-    </AppText>
-  )
+  return <AppText style={styles.symptomViewHeading}>{props.children}</AppText>
 }

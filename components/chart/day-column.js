@@ -1,15 +1,19 @@
-import React, { Component } from 'react'
-import {
-  Text, View, TouchableOpacity
-} from 'react-native'
-import { Surface, Group as G, Path, Shape } from 'react-native/Libraries/ART/ReactNativeART'
 import { LocalDate } from 'js-joda'
 import moment from 'moment'
-import styles from './styles'
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import {
+  Group as G,
+  Path,
+  Shape,
+  Surface
+} from 'react-native/Libraries/ART/ReactNativeART'
+
 import config from '../../config'
-import cycleModule from '../../lib/cycle'
 import { getCycleDay } from '../../db'
+import cycleModule from '../../lib/cycle'
 import DotAndLine from './dot-and-line'
+import styles from './styles'
 import { normalizeToScale } from './y-axis'
 
 const label = styles.column.label
@@ -24,7 +28,11 @@ export default class DayColumn extends Component {
     this.data = {}
     if (cycleDay) {
       this.data = props.chartSymptoms.reduce((acc, symptom) => {
-        if (['bleeding', 'temperature', 'mucus', 'desire', 'note'].includes(symptom)) {
+        if (
+          ['bleeding', 'temperature', 'mucus', 'desire', 'note'].includes(
+            symptom
+          )
+        ) {
           acc[symptom] = cycleDay[symptom] && cycleDay[symptom].value
           if (symptom === 'temperature' && acc.temperature) {
             acc.y = normalizeToScale(acc.temperature, columnHeight)
@@ -34,22 +42,23 @@ export default class DayColumn extends Component {
             }
           }
         } else if (symptom === 'cervix') {
-          acc.cervix = cycleDay.cervix &&
-            (cycleDay.cervix.opening + cycleDay.cervix.firmness)
+          acc.cervix =
+            cycleDay.cervix &&
+            cycleDay.cervix.opening + cycleDay.cervix.firmness
         } else if (symptom === 'sex') {
           // solo = 1 + partner = 2
-          acc.sex = cycleDay.sex &&
-            (cycleDay.sex.solo + 2 * cycleDay.sex.partner)
+          acc.sex = cycleDay.sex && cycleDay.sex.solo + 2 * cycleDay.sex.partner
         } else if (symptom === 'pain') {
           // is any pain documented?
-          acc.pain = cycleDay.pain &&
-            Object.values(cycleDay.pain).some(x => x === true)
+          acc.pain =
+            cycleDay.pain && Object.values(cycleDay.pain).some(x => x === true)
         } else if (symptom === 'mood') {
           // is mood documented?
-          acc.mood = cycleDay.mood &&
-            Object.values(cycleDay.mood).some(x => x === true)
+          acc.mood =
+            cycleDay.mood && Object.values(cycleDay.mood).some(x => x === true)
         }
-        acc[`${symptom}Exclude`] = cycleDay[symptom] && cycleDay[symptom].exclude
+        acc[`${symptom}Exclude`] =
+          cycleDay[symptom] && cycleDay[symptom].exclude
         return acc
       }, this.data)
     }
@@ -70,34 +79,33 @@ export default class DayColumn extends Component {
     const dateString = this.props.dateString
     const symptomHeight = this.props.symptomHeight
 
-    if(this.fhmAndLtl.drawLtlAt) {
-      const ltlLine = (<Shape
-        stroke={styles.nfpLine.stroke}
-        strokeWidth={styles.nfpLine.strokeWidth}
-        d={new Path()
-          .moveTo(0, this.fhmAndLtl.drawLtlAt)
-          .lineTo(config.columnWidth, this.fhmAndLtl.drawLtlAt)
-        }
-        key='ltl'
-      />)
+    if (this.fhmAndLtl.drawLtlAt) {
+      const ltlLine = (
+        <Shape
+          stroke={styles.nfpLine.stroke}
+          strokeWidth={styles.nfpLine.strokeWidth}
+          d={new Path()
+            .moveTo(0, this.fhmAndLtl.drawLtlAt)
+            .lineTo(config.columnWidth, this.fhmAndLtl.drawLtlAt)}
+          key="ltl"
+        />
+      )
       columnElements.push(ltlLine)
     }
 
     if (this.fhmAndLtl.drawFhmLine) {
       const x = styles.nfpLine.strokeWidth / 2
-      const fhmLine = (<Shape
-        fill="red"
-        stroke={styles.nfpLine.stroke}
-        strokeWidth={styles.nfpLine.strokeWidth}
-        d={new Path()
-          .moveTo(x, x)
-          .lineTo(x, this.props.columnHeight)
-        }
-        key='fhm'
-      />)
+      const fhmLine = (
+        <Shape
+          fill="red"
+          stroke={styles.nfpLine.stroke}
+          strokeWidth={styles.nfpLine.strokeWidth}
+          d={new Path().moveTo(x, x).lineTo(x, this.props.columnHeight)}
+          key="fhm"
+        />
+      )
       columnElements.push(fhmLine)
     }
-
 
     if (this.data.y) {
       columnElements.push(
@@ -108,26 +116,24 @@ export default class DayColumn extends Component {
           rightTemperatureExclude={this.data.rightTemperatureExclude}
           leftY={this.data.leftY}
           leftTemperatureExclude={this.data.leftTemperatureExclude}
-          key='dotandline'
+          key="dotandline"
         />
       )
     }
 
     const cycleDayNumber = this.getCycleDayNumber(dateString)
     const dayDate = LocalDate.parse(dateString)
-    const shortDate = dayDate.dayOfMonth() === 1 ?
-      moment(dateString, "YYYY-MM-DD").format('MMM')
-      :
-      moment(dateString, "YYYY-MM-DD").format('Do')
-    const boldDateLabel = dayDate.dayOfMonth() === 1 ? {fontWeight: 'bold'} : {}
+    const shortDate =
+      dayDate.dayOfMonth() === 1
+        ? moment(dateString, 'YYYY-MM-DD').format('MMM')
+        : moment(dateString, 'YYYY-MM-DD').format('Do')
+    const boldDateLabel =
+      dayDate.dayOfMonth() === 1 ? { fontWeight: 'bold' } : {}
     const cycleDayLabel = (
-      <Text style = {label.number}>
-        {cycleDayNumber ? cycleDayNumber : ' '}
-      </Text>)
+      <Text style={label.number}>{cycleDayNumber ? cycleDayNumber : ' '}</Text>
+    )
     const dateLabel = (
-      <Text style = {[label.date, boldDateLabel]}>
-        {shortDate}
-      </Text>
+      <Text style={[label.date, boldDateLabel]}>{shortDate}</Text>
     )
 
     const column = (
@@ -137,7 +143,7 @@ export default class DayColumn extends Component {
           strokeWidth={styles.column.stroke.width}
           d={new Path().lineTo(0, this.props.chartHeight)}
         />
-        { columnElements }
+        {columnElements}
       </G>
     )
 
@@ -146,7 +152,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.bleeding}
           symptomHeight={symptomHeight}
-          key='bleeding'
+          key="bleeding"
         >
           <View
             {...styles.symptomIcon}
@@ -158,7 +164,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.mucus}
           symptomHeight={symptomHeight}
-          key='mucus'
+          key="mucus"
         >
           <View
             {...styles.symptomIcon}
@@ -170,14 +176,15 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.cervix}
           symptomHeight={symptomHeight}
-          key='cervix'
+          key="cervix"
         >
           <View
             {...styles.symptomIcon}
             // cervix is sum of openess and firmness - fertile only when closed and hard (=0)
-            backgroundColor={this.data.cervix > 0 ?
-              styles.iconShades.cervix[2] :
-              styles.iconShades.cervix[0]
+            backgroundColor={
+              this.data.cervix > 0
+                ? styles.iconShades.cervix[2]
+                : styles.iconShades.cervix[0]
             }
           />
         </SymptomIconView>
@@ -186,7 +193,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.sex}
           symptomHeight={symptomHeight}
-          key='sex'
+          key="sex"
         >
           <View
             {...styles.symptomIcon}
@@ -198,7 +205,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.desire}
           symptomHeight={symptomHeight}
-          key='desire'
+          key="desire"
         >
           <View
             {...styles.symptomIcon}
@@ -210,7 +217,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.pain}
           symptomHeight={symptomHeight}
-          key='pain'
+          key="pain"
         >
           <View
             {...styles.symptomIcon}
@@ -222,7 +229,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.mood}
           symptomHeight={symptomHeight}
-          key='mood'
+          key="mood"
         >
           <View
             {...styles.symptomIcon}
@@ -234,7 +241,7 @@ export default class DayColumn extends Component {
         <SymptomIconView
           value={this.data.note}
           symptomHeight={symptomHeight}
-          key='note'
+          key="note"
         >
           <View
             {...styles.symptomIcon}
@@ -259,7 +266,7 @@ export default class DayColumn extends Component {
           {column}
         </Surface>
 
-        <View style={{height: this.props.xAxisHeight}}>
+        <View style={{ height: this.props.xAxisHeight }}>
           {cycleDayLabel}
           {dateLabel}
         </View>
@@ -268,14 +275,14 @@ export default class DayColumn extends Component {
   }
 }
 
-
 function SymptomIconView(props) {
-  const style = [styles.symptomRow, {height: props.symptomHeight}]
+  const style = [styles.symptomRow, { height: props.symptomHeight }]
   return (
     <View style={style}>
-      {(typeof props.value === 'number' || props.value === true || typeof props.value === 'string') &&
-        props.children
-      }
+      {(typeof props.value === 'number' ||
+        props.value === true ||
+        typeof props.value === 'string') &&
+        props.children}
     </View>
   )
 }

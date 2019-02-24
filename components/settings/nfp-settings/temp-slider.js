@@ -1,14 +1,12 @@
+import Slider from '@ptomasroos/react-native-multi-slider'
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import Slider from '@ptomasroos/react-native-multi-slider'
-import AppText from '../../app-text'
-import {
-  scaleObservable,
-  saveTempScale,
-} from '../../../local-storage'
-import { secondaryColor } from '../../../styles/index'
-import labels from '../../../i18n/en/settings'
+
 import config from '../../../config'
+import labels from '../../../i18n/en/settings'
+import { saveTempScale, scaleObservable } from '../../../local-storage'
+import { secondaryColor } from '../../../styles/index'
+import AppText from '../../app-text'
 import alertError from '../shared/alert-error'
 
 export default class TempSlider extends Component {
@@ -17,21 +15,21 @@ export default class TempSlider extends Component {
     this.state = Object.assign({}, scaleObservable.value)
   }
 
-  onValuesChange = (values) => {
+  onValuesChange = values => {
     this.setState({
       min: values[0],
       max: values[1]
     })
   }
 
-  onValuesChangeFinish = (values) => {
+  onValuesChangeFinish = values => {
     this.setState({
       min: values[0],
       max: values[1]
     })
     try {
       saveTempScale(this.state)
-    } catch(err) {
+    } catch (err) {
       alertError(labels.tempScale.saveError)
     }
   }
@@ -39,8 +37,12 @@ export default class TempSlider extends Component {
   render() {
     return (
       <View style={{ alignItems: 'center' }}>
-        <AppText>{`${labels.tempScale.min} ${this.state.min.toFixed(1)}`}</AppText>
-        <AppText>{`${labels.tempScale.max} ${this.state.max.toFixed(1)}`}</AppText>
+        <AppText>{`${labels.tempScale.min} ${this.state.min.toFixed(
+          1
+        )}`}</AppText>
+        <AppText>{`${labels.tempScale.max} ${this.state.max.toFixed(
+          1
+        )}`}</AppText>
         <Slider
           values={[this.state.min, this.state.max]}
           min={config.temperatureScale.min}
@@ -49,13 +51,13 @@ export default class TempSlider extends Component {
           onValuesChange={this.onValuesChange}
           onValuesChangeFinish={this.onValuesChangeFinish}
           selectedStyle={{
-            backgroundColor: 'darkgrey',
+            backgroundColor: 'darkgrey'
           }}
           unselectedStyle={{
-            backgroundColor: 'silver',
+            backgroundColor: 'silver'
           }}
           trackStyle={{
-            height: 10,
+            height: 10
           }}
           markerStyle={{
             backgroundColor: secondaryColor,

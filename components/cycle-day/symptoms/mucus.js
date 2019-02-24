@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Switch,
-  ScrollView
-} from 'react-native'
-import styles from '../../../styles'
+import { ScrollView, Switch, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
 import { mucus as labels } from '../../../i18n/en/cycle-day'
 import computeNfpValue from '../../../lib/nfp-mucus'
-import ActionButtonFooter from './action-button-footer'
-import SelectTabGroup from '../select-tab-group'
-import SymptomSection from './symptom-section'
+import styles from '../../../styles'
 import { ActionHint } from '../../app-text'
+import SelectTabGroup from '../select-tab-group'
+import ActionButtonFooter from './action-button-footer'
+import SymptomSection from './symptom-section'
 
 export default class Mucus extends Component {
   constructor(props) {
@@ -34,24 +31,20 @@ export default class Mucus extends Component {
       { label: labels.texture.categories[1], value: 1 },
       { label: labels.texture.categories[2], value: 2 }
     ]
-    const mandatoryNotCompletedYet = typeof this.state.feeling != 'number' || typeof this.state.texture != 'number'
+    const mandatoryNotCompletedYet =
+      typeof this.state.feeling != 'number' ||
+      typeof this.state.texture != 'number'
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.page}>
-          <SymptomSection
-            header='Feeling'
-            explainer={labels.feeling.explainer}
-          >
+          <SymptomSection header="Feeling" explainer={labels.feeling.explainer}>
             <SelectTabGroup
               buttons={mucusFeeling}
               onSelect={val => this.setState({ feeling: val })}
               active={this.state.feeling}
             />
           </SymptomSection>
-          <SymptomSection
-            header='Texture'
-            explainer={labels.texture.explainer}
-          >
+          <SymptomSection header="Texture" explainer={labels.texture.explainer}>
             <SelectTabGroup
               buttons={mucusTexture}
               onSelect={val => this.setState({ texture: val })}
@@ -64,16 +57,18 @@ export default class Mucus extends Component {
             inline={true}
           >
             <Switch
-              onValueChange={(val) => {
+              onValueChange={val => {
                 this.setState({ exclude: val })
               }}
               value={this.state.exclude}
             />
           </SymptomSection>
         </ScrollView>
-        <ActionHint isVisible={mandatoryNotCompletedYet}>{labels.actionHint}</ActionHint>
+        <ActionHint isVisible={mandatoryNotCompletedYet}>
+          {labels.actionHint}
+        </ActionHint>
         <ActionButtonFooter
-          symptom='mucus'
+          symptom="mucus"
           date={this.props.date}
           currentSymptomValue={this.mucus}
           saveAction={() => {

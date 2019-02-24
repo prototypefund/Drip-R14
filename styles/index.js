@@ -4,12 +4,7 @@ export const primaryColor = '#000D19'
 export const secondaryColor = '#4FAFA7'
 export const secondaryColorLight = '#91749d'
 export const fontOnPrimaryColor = 'white'
-export const shadesOfRed = [
-  '#e7999e',
-  '#db666d',
-  '#cf323d',
-  '#c3000d'
-] // light to dark
+export const shadesOfRed = ['#e7999e', '#db666d', '#cf323d', '#c3000d'] // light to dark
 export const cycleDayColor = '#29287f'
 export const periodColor = '#802249'
 
@@ -46,7 +41,7 @@ export default StyleSheet.create({
   emphasis: {
     fontWeight: 'bold',
     fontFamily: textFontBold,
-    color: secondaryColor,
+    color: secondaryColor
   },
   link: {
     color: cycleDayColor,
@@ -55,7 +50,7 @@ export default StyleSheet.create({
   title: {
     fontSize: 18,
     color: 'black',
-    marginBottom: defaultBottomMargin,
+    marginBottom: defaultBottomMargin
   },
   textWrappingView: {
     marginHorizontal: defaultIndentation,
@@ -72,7 +67,7 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: headerFont,
     color: fontOnPrimaryColor,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   headerText: {
     fontSize: 30,
@@ -95,13 +90,13 @@ export default StyleSheet.create({
     marginTop: 6
   },
   homeView: {
-    marginHorizontal: 50,
+    marginHorizontal: 50
   },
   button: {
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   homeButton: {
     width: 200,
@@ -117,7 +112,7 @@ export default StyleSheet.create({
   homeIconTextWrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 10
   },
   wrapperCycle: {
     width: 80,
@@ -142,17 +137,17 @@ export default StyleSheet.create({
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: secondaryColor,
+    borderColor: secondaryColor
   },
   iconText: {
     fontSize: 25
   },
   showMore: {
-    transform: [{rotate: '90deg'}],
-    position: 'absolute',
+    transform: [{ rotate: '90deg' }],
+    position: 'absolute'
   },
   showLess: {
-    transform: [{rotate: '270deg'}],
+    transform: [{ rotate: '270deg' }],
     position: 'absolute'
   },
   cycleDayNumber: {
@@ -190,10 +185,10 @@ export default StyleSheet.create({
     paddingVertical: '6%',
     marginHorizontal: 1,
     width: 110,
-    height: 80,
+    height: 80
   },
   symptomBoxActive: {
-    backgroundColor: secondaryColor,
+    backgroundColor: secondaryColor
   },
   symptomTextActive: {
     color: fontOnPrimaryColor
@@ -215,7 +210,7 @@ export default StyleSheet.create({
     padding: '3%',
     marginHorizontal: 1,
     width: 110,
-    height: 50,
+    height: 50
   },
   symptomDataText: {
     fontSize: 12
@@ -228,7 +223,7 @@ export default StyleSheet.create({
   },
   headerCycleDay: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   navigationArrow: {
     padding: 20
@@ -283,7 +278,7 @@ export default StyleSheet.create({
     fontFamily: textFont
   },
   framedSegmentLast: {
-    marginBottom: defaultTopMargin,
+    marginBottom: defaultTopMargin
   },
   framedSegmentTitle: {
     fontWeight: 'bold',
@@ -305,7 +300,6 @@ export default StyleSheet.create({
   },
   settingsButtonSecondaryText: {
     color: secondaryColor
-
   },
   statsRow: {
     flexDirection: 'row',
@@ -333,7 +327,7 @@ export default StyleSheet.create({
   selectBoxSection: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginVertical: 10,
+    marginVertical: 10
   },
   selectTabGroup: {
     marginVertical: 10,
@@ -356,7 +350,7 @@ export default StyleSheet.create({
   },
   selectTabLast: {
     borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
+    borderBottomRightRadius: 10
   },
   selectTabFirst: {
     borderTopLeftRadius: 10,
@@ -446,7 +440,7 @@ export const iconStyles = {
     color: fontOnPrimaryColor
   },
   menuIconInactive: {
-    color: colorInActive,
+    color: colorInActive
   },
   infoInHeading: {
     marginRight: 5,

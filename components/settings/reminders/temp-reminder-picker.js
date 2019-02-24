@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import {
-  View,
-  TouchableOpacity,
-  Switch
-} from 'react-native'
+import { Switch, TouchableOpacity, View } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker-nevo'
-import AppText from '../../app-text'
-import {
-  tempReminderObservable,
-  saveTempReminder
-} from '../../../local-storage'
+
 import labels from '../../../i18n/en/settings'
+import {
+  saveTempReminder,
+  tempReminderObservable
+} from '../../../local-storage'
+import AppText from '../../app-text'
 import padWithZeros from '../../helpers/pad-time-with-zeros'
 
 export default class TempReminderPicker extends Component {
@@ -31,11 +28,11 @@ export default class TempReminderPicker extends Component {
         onPress={() => this.setState({ isTimePickerVisible: true })}
       >
         <View style={{ flex: 1 }}>
-          {this.state.time && this.state.enabled ?
+          {this.state.time && this.state.enabled ? (
             <AppText>{labels.tempReminder.timeSet(this.state.time)}</AppText>
-            :
+          ) : (
             <AppText>{labels.tempReminder.noTimeSet}</AppText>
-          }
+          )}
         </View>
         <Switch
           value={this.state.enabled}
@@ -64,7 +61,7 @@ export default class TempReminderPicker extends Component {
           }}
           onCancel={() => {
             this.setState({ isTimePickerVisible: false })
-            if (!this.state.time) this.setState({enabled: false})
+            if (!this.state.time) this.setState({ enabled: false })
           }}
         />
       </TouchableOpacity>

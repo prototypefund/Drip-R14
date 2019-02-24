@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { ScrollView } from 'react-native'
-import CreatePassword from './create'
-import ChangePassword from './update'
-import DeletePassword from './delete'
-import FramedSegment from '../../framed-segment'
-import AppText from '../../app-text'
-import {
-  hasEncryptionObservable
-} from '../../../local-storage'
+
 import labels from '../../../i18n/en/settings'
+import { hasEncryptionObservable } from '../../../local-storage'
+import AppText from '../../app-text'
+import FramedSegment from '../../framed-segment'
+import CreatePassword from './create'
+import DeletePassword from './delete'
+import ChangePassword from './update'
 
 export default class PasswordSetting extends Component {
   constructor(props) {
@@ -29,12 +28,7 @@ export default class PasswordSetting extends Component {
   }
 
   render() {
-
-    const {
-      isPasswordSet,
-      isChangingPassword,
-      isDeletingPassword,
-    } = this.state
+    const { isPasswordSet, isChangingPassword, isDeletingPassword } = this.state
 
     const {
       title,
@@ -46,21 +40,17 @@ export default class PasswordSetting extends Component {
       <ScrollView>
         <FramedSegment title={title}>
           <AppText>
-            { isPasswordSet ? explainerEnabled : explainerDisabled }
+            {isPasswordSet ? explainerEnabled : explainerDisabled}
           </AppText>
 
-          { !isPasswordSet && <CreatePassword/> }
+          {!isPasswordSet && <CreatePassword />}
 
-          { (isPasswordSet && !isDeletingPassword) && (
-            <ChangePassword
-              onStartChangingPassword = {this.onChangingPassword}
-            />
+          {isPasswordSet && !isDeletingPassword && (
+            <ChangePassword onStartChangingPassword={this.onChangingPassword} />
           )}
 
-          { (isPasswordSet && !isChangingPassword) && (
-            <DeletePassword
-              onStartDeletingPassword = {this.onDeletingPassword}
-            />
+          {isPasswordSet && !isChangingPassword && (
+            <DeletePassword onStartDeletingPassword={this.onDeletingPassword} />
           )}
         </FramedSegment>
       </ScrollView>

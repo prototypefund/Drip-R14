@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import {
-  TextInput,
-  View,
-  ScrollView
-} from 'react-native'
-import styles from '../../../styles'
+import { ScrollView, TextInput, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
-import { sex as sexLabels, contraceptives as contraceptivesLabels } from '../../../i18n/en/cycle-day'
+import {
+  contraceptives as contraceptivesLabels,
+  sex as sexLabels
+} from '../../../i18n/en/cycle-day'
 import { shared as sharedLabels } from '../../../i18n/en/labels'
-import ActionButtonFooter from './action-button-footer'
+import styles from '../../../styles'
 import SelectBoxGroup from '../select-box-group'
+import ActionButtonFooter from './action-button-footer'
 import SymptomSection from './symptom-section'
 
 export default class Sex extends Component {
@@ -26,11 +26,11 @@ export default class Sex extends Component {
     if (this.state.note) this.state.other = true
   }
 
-  toggleState = (key) => {
+  toggleState = key => {
     const curr = this.state[key]
-    this.setState({[key]: !curr})
+    this.setState({ [key]: !curr })
     if (key === 'other' && !curr) {
-      this.setState({focusTextArea: true})
+      this.setState({ focusTextArea: true })
     }
   }
 
@@ -59,20 +59,20 @@ export default class Sex extends Component {
             />
           </SymptomSection>
 
-          {this.state.other &&
+          {this.state.other && (
             <TextInput
               autoFocus={this.state.focusTextArea}
               multiline={true}
               placeholder={sharedLabels.enter}
               value={this.state.note}
-              onChangeText={(val) => {
+              onChangeText={val => {
                 this.setState({ note: val })
               }}
             />
-          }
+          )}
         </ScrollView>
         <ActionButtonFooter
-          symptom='sex'
+          symptom="sex"
           date={this.props.date}
           currentSymptomValue={this.state}
           saveAction={() => {

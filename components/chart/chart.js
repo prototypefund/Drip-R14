@@ -1,30 +1,75 @@
-import React, { Component } from 'react'
-import { View, FlatList, ActivityIndicator } from 'react-native'
 import range from 'date-range'
 import { LocalDate } from 'js-joda'
-import { makeYAxisLabels, makeHorizontalGrid } from './y-axis'
-import nfpLines from './nfp-lines'
-import DayColumn from './day-column'
-import { getCycleDaysSortedByDate, getAmountOfCycleDays } from '../../db'
-import styles from './styles'
-import { cycleDayColor } from '../../styles'
-import { scaleObservable } from '../../local-storage'
-import config from '../../config'
-import AppText from '../app-text'
-import { shared as labels } from '../../i18n/en/labels'
-import DripIcon from '../../assets/drip-icons'
+import React, { Component } from 'react'
+import { ActivityIndicator, FlatList, View } from 'react-native'
+
 import DripHomeIcon from '../../assets/drip-home-icons'
+import DripIcon from '../../assets/drip-icons'
+import config from '../../config'
+import { getAmountOfCycleDays, getCycleDaysSortedByDate } from '../../db'
 import nothingChanged from '../../db/db-unchanged'
+import { shared as labels } from '../../i18n/en/labels'
+import { scaleObservable } from '../../local-storage'
+import { cycleDayColor } from '../../styles'
+import AppText from '../app-text'
+import DayColumn from './day-column'
+import nfpLines from './nfp-lines'
+import styles from './styles'
+import { makeHorizontalGrid, makeYAxisLabels } from './y-axis'
 
 const symptomIcons = {
-  bleeding: <DripIcon size={16} name='drip-icon-bleeding' color={styles.iconShades.bleeding[3]}/>,
-  mucus: <DripIcon size={16} name='drip-icon-mucus' color={styles.iconShades.mucus[4]}/>,
-  cervix: <DripIcon size={16} name='drip-icon-cervix' color={styles.iconShades.cervix[3]}/>,
-  desire: <DripIcon size={16} name='drip-icon-desire' color={styles.iconShades.desire[2]}/>,
-  sex: <DripIcon size={16} name='drip-icon-sex' color={styles.iconShades.sex[2]}/>,
-  pain: <DripIcon size={16} name='drip-icon-pain' color={styles.iconShades.pain[0]}/>,
-  mood: <DripIcon size={16} name='drip-icon-mood' color={styles.iconShades.mood[0]}/>,
-  note: <DripIcon size={16} name='drip-icon-note' color={styles.iconShades.note[0]}/>
+  bleeding: (
+    <DripIcon
+      size={16}
+      name="drip-icon-bleeding"
+      color={styles.iconShades.bleeding[3]}
+    />
+  ),
+  mucus: (
+    <DripIcon
+      size={16}
+      name="drip-icon-mucus"
+      color={styles.iconShades.mucus[4]}
+    />
+  ),
+  cervix: (
+    <DripIcon
+      size={16}
+      name="drip-icon-cervix"
+      color={styles.iconShades.cervix[3]}
+    />
+  ),
+  desire: (
+    <DripIcon
+      size={16}
+      name="drip-icon-desire"
+      color={styles.iconShades.desire[2]}
+    />
+  ),
+  sex: (
+    <DripIcon size={16} name="drip-icon-sex" color={styles.iconShades.sex[2]} />
+  ),
+  pain: (
+    <DripIcon
+      size={16}
+      name="drip-icon-pain"
+      color={styles.iconShades.pain[0]}
+    />
+  ),
+  mood: (
+    <DripIcon
+      size={16}
+      name="drip-icon-mood"
+      color={styles.iconShades.mood[0]}
+    />
+  ),
+  note: (
+    <DripIcon
+      size={16}
+      name="drip-icon-note"
+      color={styles.iconShades.note[0]}
+    />
+  )
 }
 
 export default class CycleChart extends Component {
@@ -65,7 +110,7 @@ export default class CycleChart extends Component {
         'pain',
         'mood',
         'note'
-      ].filter((symptomName) => {
+      ].filter(symptomName => {
         return this.cycleDaysSortedByDate.some(cycleDay => {
           return cycleDay[symptomName]
         })
@@ -74,8 +119,8 @@ export default class CycleChart extends Component {
       this.xAxisHeight = height * config.xAxisHeightPercentage
       const remainingHeight = height - this.xAxisHeight
       this.symptomHeight = config.symptomHeightPercentage * remainingHeight
-      this.symptomRowHeight = this.symptomRowSymptoms.length *
-        this.symptomHeight
+      this.symptomRowHeight =
+        this.symptomRowSymptoms.length * this.symptomHeight
       this.columnHeight = remainingHeight - this.symptomRowHeight
 
       this.chartSymptoms = [...this.symptomRowSymptoms]
@@ -96,7 +141,7 @@ export default class CycleChart extends Component {
 
   updateListeners(dataUpdateHandler) {
     // remove existing listeners
-    if(this.handleDbChange) {
+    if (this.handleDbChange) {
       this.cycleDaysSortedByDate.removeListener(this.handleDbChange)
     }
     if (this.removeObvListener) this.removeObvListener()
@@ -136,55 +181,65 @@ export default class CycleChart extends Component {
 
   render() {
     return (
-      <View
-        onLayout={this.onLayout}
-        style={{ flexDirection: 'row', flex: 1 }}
-      >
-        {!this.state.chartLoaded &&
-          <View style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <View onLayout={this.onLayout} style={{ flexDirection: 'row', flex: 1 }}>
+        {!this.state.chartLoaded && (
+          <View
+            style={{
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
             <AppText>{labels.loading}</AppText>
           </View>
-        }
+        )}
 
-        {this.state.chartHeight && this.state.chartLoaded &&
+        {this.state.chartHeight && this.state.chartLoaded && (
           <View>
-            <View style={[styles.yAxis, {height: this.symptomRowHeight}]}>
+            <View style={[styles.yAxis, { height: this.symptomRowHeight }]}>
               {this.symptomRowSymptoms.map(symptomName => {
-                return <View
-                  style={{ alignItems: 'center', justifyContent: 'center' }}
-                  key={symptomName}
-                  width={styles.yAxis.width}
-                  height={this.symptomRowHeight /
-                    this.symptomRowSymptoms.length}
-                >
-                  {symptomIcons[symptomName]}
-                </View>
+                return (
+                  <View
+                    style={{ alignItems: 'center', justifyContent: 'center' }}
+                    key={symptomName}
+                    width={styles.yAxis.width}
+                    height={
+                      this.symptomRowHeight / this.symptomRowSymptoms.length
+                    }
+                  >
+                    {symptomIcons[symptomName]}
+                  </View>
+                )
               })}
             </View>
-            <View style={[styles.yAxis, {height: this.columnHeight}]}>
+            <View style={[styles.yAxis, { height: this.columnHeight }]}>
               {makeYAxisLabels(this.columnHeight)}
             </View>
-            <View style={[styles.yAxis, { alignItems: 'center', justifyContent: 'center' }]}>
+            <View
+              style={[
+                styles.yAxis,
+                { alignItems: 'center', justifyContent: 'center' }
+              ]}
+            >
               <DripHomeIcon
                 name="circle"
                 size={styles.yAxis.width - 7}
                 color={cycleDayColor}
               />
-              <AppText style={[
-                styles.column.label.date,
-                styles.yAxisLabels.dateLabel
-              ]}>
+              <AppText
+                style={[styles.column.label.date, styles.yAxisLabels.dateLabel]}
+              >
                 {labels.date.toLowerCase()}
               </AppText>
             </View>
-          </View>}
-
-
-        {this.state.chartHeight && this.state.chartLoaded &&
-          makeHorizontalGrid(this.columnHeight, this.symptomRowHeight)
-        }
+          </View>
+        )}
 
         {this.state.chartHeight &&
+          this.state.chartLoaded &&
+          makeHorizontalGrid(this.columnHeight, this.symptomRowHeight)}
+
+        {this.state.chartHeight && (
           <FlatList
             horizontal={true}
             inverted={true}
@@ -194,12 +249,12 @@ export default class CycleChart extends Component {
             keyExtractor={item => item}
             initialNumToRender={15}
             windowSize={30}
-            onLayout={() => this.setState({chartLoaded: true})}
-            onEndReached={() => this.setState({end: true})}
-            ListFooterComponent={<LoadingMoreView end={this.state.end}/>}
+            onLayout={() => this.setState({ chartLoaded: true })}
+            onEndReached={() => this.setState({ end: true })}
+            ListFooterComponent={<LoadingMoreView end={this.state.end} />}
             updateCellsBatchingPeriod={800}
           />
-        }
+        )}
       </View>
     )
   }
@@ -208,9 +263,7 @@ export default class CycleChart extends Component {
 function LoadingMoreView(props) {
   return (
     <View style={styles.loadingMore}>
-      {!props.end &&
-        <ActivityIndicator size={'large'} color={'white'}/>
-      }
+      {!props.end && <ActivityIndicator size={'large'} color={'white'} />}
     </View>
   )
 }
@@ -221,7 +274,7 @@ function getTodayAndPreviousDays(n) {
   today.setMinutes(0)
   today.setSeconds(0)
   today.setMilliseconds(0)
-  const earlierDate = new Date(today - (range.DAY * n))
+  const earlierDate = new Date(today - range.DAY * n)
 
   return range(earlierDate, today).reverse()
 }

@@ -4,11 +4,11 @@ export const intensity = ['low', 'medium', 'high']
 export const bleeding = {
   labels: ['spotting', 'light', 'medium', 'heavy'],
   heaviness: {
-    header: "Heaviness",
-    explainer: "How heavy is the bleeding?",
+    header: 'Heaviness',
+    explainer: 'How heavy is the bleeding?'
   },
   exclude: {
-    header: "Exclude",
+    header: 'Exclude',
     explainer: "You can exclude this value if it's not menstrual bleeding"
   }
 }
@@ -36,9 +36,11 @@ export const mucus = {
   },
   texture: {
     categories: ['nothing', 'creamy', 'egg white'],
-    explainer: "Looking at and touching your cervical mucus, which describes it best?"
+    explainer:
+      'Looking at and touching your cervical mucus, which describes it best?'
   },
-  excludeExplainer: "You can exclude this value if you don't want to use it for fertility detection",
+  excludeExplainer:
+    "You can exclude this value if you don't want to use it for fertility detection",
   actionHint: 'Choose values for both "Feeling" and "Texture" to save.'
 }
 
@@ -48,16 +50,16 @@ export const desire = {
 }
 
 export const sex = {
-  categories:{
+  categories: {
     solo: 'Solo',
-    partner: 'Partner',
+    partner: 'Partner'
   },
-  header: "Activity",
-  explainer: 'Were you sexually active today?',
+  header: 'Activity',
+  explainer: 'Were you sexually active today?'
 }
 
 export const contraceptives = {
-  categories:{
+  categories: {
     condom: 'Condom',
     pill: 'Pill',
     iud: 'IUD',
@@ -66,9 +68,9 @@ export const contraceptives = {
     implant: 'Implant',
     diaphragm: 'Diaphragm',
     none: 'None',
-    other: 'Other',
+    other: 'Other'
   },
-  header: "Contraceptives",
+  header: 'Contraceptives',
   explainer: 'Did you use contraceptives?'
 }
 
@@ -103,25 +105,30 @@ export const mood = {
 }
 
 export const temperature = {
-  outOfRangeWarning: 'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
-  outOfAbsoluteRangeWarning: 'This temperature value is too high or low to be shown on the temperature chart.',
+  outOfRangeWarning:
+    'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
+  outOfAbsoluteRangeWarning:
+    'This temperature value is too high or low to be shown on the temperature chart.',
   saveAnyway: 'Save anyway',
   temperature: {
-    header: "Temperature (°C)",
-    explainer: 'Take your temperature right after waking up, before getting out of bed'
+    header: 'Temperature (°C)',
+    explainer:
+      'Take your temperature right after waking up, before getting out of bed'
   },
-  time: "Time",
+  time: 'Time',
   note: {
-    header: "Note",
-    explainer: 'Is there anything that could have influenced this value, such as bad sleep or alcohol consumption?'
+    header: 'Note',
+    explainer:
+      'Is there anything that could have influenced this value, such as bad sleep or alcohol consumption?'
   },
   exclude: {
-    header: "Exclude",
-    explainer: "You can exclude this value if you don't want to use it for fertility detection"
+    header: 'Exclude',
+    explainer:
+      "You can exclude this value if you don't want to use it for fertility detection"
   }
 }
 
-export const noteExplainer = "Anything you want to add for the day?"
+export const noteExplainer = 'Anything you want to add for the day?'
 
 export const sharedDialogs = {
   cancel: 'Cancel',

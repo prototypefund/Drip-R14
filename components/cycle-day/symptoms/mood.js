@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import {
-  ScrollView,
-  TextInput,
-  View
-} from 'react-native'
+import { ScrollView, TextInput, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
 import { mood as labels } from '../../../i18n/en/cycle-day'
-import ActionButtonFooter from './action-button-footer'
-import SelectBoxGroup from '../select-box-group'
-import SymptomSection from './symptom-section'
 import styles from '../../../styles'
+import SelectBoxGroup from '../select-box-group'
+import ActionButtonFooter from './action-button-footer'
+import SymptomSection from './symptom-section'
 
 export default class Mood extends Component {
   constructor(props) {
@@ -25,11 +22,11 @@ export default class Mood extends Component {
     }
   }
 
-  toggleState = (key) => {
+  toggleState = key => {
     const curr = this.state[key]
-    this.setState({[key]: !curr})
+    this.setState({ [key]: !curr })
     if (key === 'other' && !curr) {
-      this.setState({focusTextArea: true})
+      this.setState({ focusTextArea: true })
     }
   }
 
@@ -37,29 +34,27 @@ export default class Mood extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.page}>
-          <SymptomSection
-            explainer={labels.explainer}
-          >
+          <SymptomSection explainer={labels.explainer}>
             <SelectBoxGroup
               labels={labels.categories}
               onSelect={this.toggleState}
               optionsState={this.state}
             />
-            { this.state.other &&
+            {this.state.other && (
               <TextInput
                 autoFocus={this.state.focusTextArea}
                 multiline={true}
                 placeholder="Enter"
                 value={this.state.note}
-                onChangeText={(val) => {
-                  this.setState({note: val})
+                onChangeText={val => {
+                  this.setState({ note: val })
                 }}
               />
-            }
+            )}
           </SymptomSection>
         </ScrollView>
         <ActionButtonFooter
-          symptom='mood'
+          symptom="mood"
           date={this.props.date}
           currentSymptomValue={this.state}
           saveAction={() => {

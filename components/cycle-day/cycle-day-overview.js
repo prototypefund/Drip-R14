@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
-import {
-  ScrollView,
-  View,
-  TouchableOpacity,
-  Dimensions
-} from 'react-native'
 import { LocalDate } from 'js-joda'
-import Header from '../header'
+import React, { Component } from 'react'
+import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native'
+
+import DripIcon from '../../assets/drip-icons'
 import { getCycleDay } from '../../db'
+import * as labels from '../../i18n/en/cycle-day'
 import cycleModule from '../../lib/cycle'
 import styles from '../../styles'
-import * as labels from '../../i18n/en/cycle-day'
 import AppText from '../app-text'
-import DripIcon from '../../assets/drip-icons'
+import Header from '../header'
 
 const bleedingLabels = labels.bleeding.labels
 const feelingLabels = labels.mucus.feeling.categories
@@ -35,11 +31,12 @@ export default class CycleDayOverView extends Component {
     }
   }
 
-  goToCycleDay = (target) => {
+  goToCycleDay = target => {
     const localDate = LocalDate.parse(this.state.date)
-    const targetDate = target === 'before' ?
-      localDate.minusDays(1).toString() :
-      localDate.plusDays(1).toString()
+    const targetDate =
+      target === 'before'
+        ? localDate.minusDays(1).toString()
+        : localDate.plusDays(1).toString()
     this.setState({
       date: targetDate,
       cycleDay: getCycleDay(targetDate)
@@ -58,7 +55,7 @@ export default class CycleDayOverView extends Component {
       bleeding: bleeding => {
         if (isNumber(bleeding.value)) {
           let bleedingLabel = bleedingLabels[bleeding.value]
-          if (bleeding.exclude) bleedingLabel = "( " + bleedingLabel + " )"
+          if (bleeding.exclude) bleedingLabel = '( ' + bleedingLabel + ' )'
           return bleedingLabel
         }
       },
@@ -66,7 +63,7 @@ export default class CycleDayOverView extends Component {
         if (isNumber(temperature.value)) {
           let temperatureLabel = `${temperature.value} °C - ${temperature.time}`
           if (temperature.exclude) {
-            temperatureLabel = "( " + temperatureLabel + " )"
+            temperatureLabel = '( ' + temperatureLabel + ' )'
           }
           return temperatureLabel
         }
@@ -74,7 +71,10 @@ export default class CycleDayOverView extends Component {
       mucus: mucus => {
         const categories = ['feeling', 'texture', 'value']
         if (categories.every(c => isNumber(mucus[c]))) {
-          let mucusLabel = [feelingLabels[mucus.feeling], textureLabels[mucus.texture]].join(', ')
+          let mucusLabel = [
+            feelingLabels[mucus.feeling],
+            textureLabels[mucus.texture]
+          ].join(', ')
           mucusLabel += `\n${labels.mucusNFP[mucus.value]}`
           if (mucus.exclude) mucusLabel = `(${mucusLabel})`
           return mucusLabel
@@ -106,17 +106,14 @@ export default class CycleDayOverView extends Component {
       },
       sex: sex => {
         let sexLabel = []
-        if (sex && Object.values(sex).some(val => val)){
+        if (sex && Object.values(sex).some(val => val)) {
           Object.keys(sex).forEach(key => {
-            if(sex[key] && key !== 'other' && key !== 'note') {
-              sexLabel.push(
-                sexLabels[key] ||
-                contraceptiveLabels[key]
-              )
+            if (sex[key] && key !== 'other' && key !== 'note') {
+              sexLabel.push(sexLabels[key] || contraceptiveLabels[key])
             }
-            if(key === 'other' && sex.other) {
+            if (key === 'other' && sex.other) {
               let label = contraceptiveLabels[key]
-              if(sex.note) {
+              if (sex.note) {
                 label = `${label} (${sex.note})`
               }
               sexLabel.push(label)
@@ -128,14 +125,14 @@ export default class CycleDayOverView extends Component {
       },
       pain: pain => {
         let painLabel = []
-        if (pain && Object.values(pain).some(val => val)){
+        if (pain && Object.values(pain).some(val => val)) {
           Object.keys(pain).forEach(key => {
-            if(pain[key] && key !== 'other' && key !== 'note') {
+            if (pain[key] && key !== 'other' && key !== 'note') {
               painLabel.push(painLabels[key])
             }
-            if(key === 'other' && pain.other) {
+            if (key === 'other' && pain.other) {
               let label = painLabels[key]
-              if(pain.note) {
+              if (pain.note) {
                 label = `${label} (${pain.note})`
               }
               painLabel.push(label)
@@ -147,14 +144,14 @@ export default class CycleDayOverView extends Component {
       },
       mood: mood => {
         let moodLabel = []
-        if (mood && Object.values(mood).some(val => val)){
+        if (mood && Object.values(mood).some(val => val)) {
           Object.keys(mood).forEach(key => {
-            if(mood[key] && key !== 'other' && key !== 'note') {
+            if (mood[key] && key !== 'other' && key !== 'note') {
               moodLabel.push(moodLabels[key])
             }
-            if(key === 'other' && mood.other) {
+            if (key === 'other' && mood.other) {
               let label = moodLabels[key]
-              if(mood.note) {
+              if (mood.note) {
                 label = `${label} (${mood.note})`
               }
               moodLabel.push(label)
@@ -173,9 +170,9 @@ export default class CycleDayOverView extends Component {
   render() {
     const getCycleDayNumber = cycleModule().getCycleDayNumber
     const cycleDayNumber = getCycleDayNumber(this.state.date)
-    const dateInFuture = LocalDate
-      .now()
-      .isBefore(LocalDate.parse(this.state.date))
+    const dateInFuture = LocalDate.now().isBefore(
+      LocalDate.parse(this.state.date)
+    )
 
     return (
       <View style={{ flex: 1 }}>
@@ -188,76 +185,67 @@ export default class CycleDayOverView extends Component {
         <ScrollView>
           <View style={styles.symptomBoxesView}>
             <SymptomBox
-              title='Bleeding'
+              title="Bleeding"
               onPress={() => this.navigate('BleedingEditView')}
               data={this.getLabel('bleeding')}
               disabled={dateInFuture}
-              iconName='drip-icon-bleeding'
-            >
-            </SymptomBox>
+              iconName="drip-icon-bleeding"
+            />
             <SymptomBox
-              title='Temperature'
+              title="Temperature"
               onPress={() => this.navigate('TemperatureEditView')}
               data={this.getLabel('temperature')}
               disabled={dateInFuture}
-              iconName='drip-icon-temperature'
-            >
-            </SymptomBox>
+              iconName="drip-icon-temperature"
+            />
             <SymptomBox
-              title='Mucus'
+              title="Mucus"
               onPress={() => this.navigate('MucusEditView')}
               data={this.getLabel('mucus')}
               disabled={dateInFuture}
-              iconName='drip-icon-mucus'
-            >
-            </SymptomBox>
+              iconName="drip-icon-mucus"
+            />
             <SymptomBox
-              title='Cervix'
+              title="Cervix"
               onPress={() => this.navigate('CervixEditView')}
               data={this.getLabel('cervix')}
               disabled={dateInFuture}
-              iconName='drip-icon-cervix'
-            >
-            </SymptomBox>
+              iconName="drip-icon-cervix"
+            />
             <SymptomBox
-              title='Desire'
+              title="Desire"
               onPress={() => this.navigate('DesireEditView')}
               data={this.getLabel('desire')}
               disabled={dateInFuture}
-              iconName='drip-icon-desire'
-            >
-            </SymptomBox>
+              iconName="drip-icon-desire"
+            />
             <SymptomBox
-              title='Sex'
+              title="Sex"
               onPress={() => this.navigate('SexEditView')}
               data={this.getLabel('sex')}
               disabled={dateInFuture}
-              iconName='drip-icon-sex'
-            >
-            </SymptomBox>
+              iconName="drip-icon-sex"
+            />
             <SymptomBox
-              title='Pain'
+              title="Pain"
               onPress={() => this.navigate('PainEditView')}
               data={this.getLabel('pain')}
               disabled={dateInFuture}
-              iconName='drip-icon-pain'
-            >
-            </SymptomBox>
+              iconName="drip-icon-pain"
+            />
             <SymptomBox
-              title='Mood'
+              title="Mood"
               onPress={() => this.navigate('MoodEditView')}
               data={this.getLabel('mood')}
               disabled={dateInFuture}
-              iconName='drip-icon-mood'
-            >
-            </SymptomBox>
+              iconName="drip-icon-mood"
+            />
             <SymptomBox
-              title='Note'
+              title="Note"
               onPress={() => this.navigate('NoteEditView')}
               data={this.getLabel('note')}
-              iconName='drip-icon-note'
-            >
-            </SymptomBox>
+              iconName="drip-icon-note"
+            />
             {/*  this is just to make the last row adhere to the grid
         (and) because there are no pseudo properties in RN */}
             <FillerBoxes />
@@ -267,9 +255,6 @@ export default class CycleDayOverView extends Component {
     )
   }
 }
-
-
-
 
 class SymptomBox extends Component {
   render() {
@@ -284,16 +269,19 @@ class SymptomBox extends Component {
         disabled={this.props.disabled}
       >
         <View style={[styles.symptomBox, boxActive, disabledStyle]}>
-          <DripIcon name={this.props.iconName} size={50} color={hasData ? 'white' : 'black'}/>
+          <DripIcon
+            name={this.props.iconName}
+            size={50}
+            color={hasData ? 'white' : 'black'}
+          />
           <AppText style={[textActive, disabledStyle]}>
             {this.props.title.toLowerCase()}
           </AppText>
         </View>
         <View style={[styles.symptomDataBox, disabledStyle]}>
-          <AppText
-            style={styles.symptomDataText}
-            numberOfLines={3}
-          >{this.props.data}</AppText>
+          <AppText style={styles.symptomDataText} numberOfLines={3}>
+            {this.props.data}
+          </AppText>
         </View>
       </TouchableOpacity>
     )
@@ -306,11 +294,7 @@ class FillerBoxes extends Component {
     const fillerBoxes = []
     for (let i = 0; i < Math.ceil(n); i++) {
       fillerBoxes.push(
-        <View
-          width={styles.symptomBox.width}
-          height={0}
-          key={i.toString()}
-        />
+        <View width={styles.symptomBox.width} height={0} key={i.toString()} />
       )
     }
     return fillerBoxes

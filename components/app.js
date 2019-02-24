@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { View, BackHandler } from 'react-native'
-import Header from './header'
-import Menu from './menu'
-import Home from './home'
+import { BackHandler, View } from 'react-native'
+
+import { headerTitles, menuTitles } from '../i18n/en/labels'
+import setupNotifications from '../lib/notifications'
 import Calendar from './calendar'
+import Chart from './chart/chart'
 import CycleDay from './cycle-day/cycle-day-overview'
 import symptomViews from './cycle-day/symptoms'
-import Chart from './chart/chart'
-import SettingsMenu from './settings/settings-menu'
-import settingsViews from './settings'
-import Stats from './stats'
-import {headerTitles, menuTitles} from '../i18n/en/labels'
 import InfoSymptom from './cycle-day/symptoms/info-symptom'
-import setupNotifications from '../lib/notifications'
+import Header from './header'
+import Home from './home'
+import Menu from './menu'
+import settingsViews from './settings'
+import SettingsMenu from './settings/settings-menu'
+import Stats from './stats'
 
 // design wants everyhting lowercased, but we don't
 // have CSS pseudo properties
@@ -32,7 +33,10 @@ export default class App extends Component {
     this.state = {
       currentPage: HOME_PAGE
     }
-    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonPress)
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackButtonPress
+    )
     setupNotifications(this.navigate)
   }
 
@@ -59,17 +63,14 @@ export default class App extends Component {
     const { currentPage, currentProps } = this.state
     if (currentPage === HOME_PAGE) return false
     if (this.isSymptomView()) {
-      this.navigate(
-        this.originForSymptomView, { date: currentProps.date }
-      )
+      this.navigate(this.originForSymptomView, { date: currentProps.date })
     } else if (this.isSettingsView()) {
       this.navigate(SETTINGS_MENU_PAGE)
     } else if (currentPage === CYCLE_DAY_PAGE) {
       this.navigate(this.menuOrigin)
     } else if (this.isInfoSymptomView()) {
       const { date, cycleDay, symptomView } = currentProps
-      this.navigate(
-        symptomView, { date, cycleDay })
+      this.navigate(symptomView, { date, cycleDay })
     } else {
       this.navigate(HOME_PAGE)
     }
@@ -113,37 +114,38 @@ export default class App extends Component {
     const page = pages[currentPage]
     const title = headerTitlesLowerCase[currentPage]
     return (
-      <View style={{flex: 1}}>
-        {this.isDefaultView() &&
-          <Header title={title} />
-        }
-        {(this.isInfoSymptomView() || this.isSettingsView()) &&
+      <View style={{ flex: 1 }}>
+        {this.isDefaultView() && <Header title={title} />}
+        {(this.isInfoSymptomView() || this.isSettingsView()) && (
           <Header
             title={title}
             showBackButton={true}
             goBack={this.handleBackButtonPress}
           />
-        }
-        {this.isSymptomView() &&
+        )}
+        {this.isSymptomView() && (
           <Header
             title={title}
             isSymptomView={true}
             goBack={this.handleBackButtonPress}
             date={currentProps.date}
-            goToSymptomInfo={() => this.navigate(INFO_SYMPTOM_PAGE, {
-              symptomView: currentPage,
-              ...currentProps
-            })}
-          />}
+            goToSymptomInfo={() =>
+              this.navigate(INFO_SYMPTOM_PAGE, {
+                symptomView: currentPage,
+                ...currentProps
+              })
+            }
+          />
+        )}
 
         {React.createElement(page, {
           navigate: this.navigate,
           ...currentProps
         })}
 
-        {!this.isSymptomView() &&
+        {!this.isSymptomView() && (
           <Menu navigate={this.navigate} currentPage={currentPage} />
-        }
+        )}
       </View>
     )
   }

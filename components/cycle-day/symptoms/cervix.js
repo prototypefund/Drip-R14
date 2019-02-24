@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Switch,
-  ScrollView
-} from 'react-native'
-import styles from '../../../styles'
+import { ScrollView, Switch, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
 import { cervix as labels } from '../../../i18n/en/cycle-day'
-import ActionButtonFooter from './action-button-footer'
-import SelectTabGroup from '../select-tab-group'
-import SymptomSection from './symptom-section'
+import styles from '../../../styles'
 import { ActionHint } from '../../app-text'
+import SelectTabGroup from '../select-tab-group'
+import ActionButtonFooter from './action-button-footer'
+import SymptomSection from './symptom-section'
 
 export default class Cervix extends Component {
   constructor(props) {
@@ -36,14 +33,13 @@ export default class Cervix extends Component {
       { label: labels.position.categories[1], value: 1 },
       { label: labels.position.categories[2], value: 2 }
     ]
-    const mandatoryNotCompletedYet = typeof this.state.opening != 'number' || typeof this.state.firmness != 'number'
+    const mandatoryNotCompletedYet =
+      typeof this.state.opening != 'number' ||
+      typeof this.state.firmness != 'number'
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.page}>
-          <SymptomSection
-            header="Opening"
-            explainer={labels.opening.explainer}
-          >
+          <SymptomSection header="Opening" explainer={labels.opening.explainer}>
             <SelectTabGroup
               buttons={cervixOpeningRadioProps}
               active={this.state.opening}
@@ -76,16 +72,18 @@ export default class Cervix extends Component {
             inline={true}
           >
             <Switch
-              onValueChange={(val) => {
+              onValueChange={val => {
                 this.setState({ exclude: val })
               }}
               value={this.state.exclude}
             />
           </SymptomSection>
         </ScrollView>
-        <ActionHint isVisible={mandatoryNotCompletedYet}>{labels.actionHint}</ActionHint>
+        <ActionHint isVisible={mandatoryNotCompletedYet}>
+          {labels.actionHint}
+        </ActionHint>
         <ActionButtonFooter
-          symptom='cervix'
+          symptom="cervix"
           date={this.props.date}
           currentSymptomValue={this.cervix}
           saveAction={() => {

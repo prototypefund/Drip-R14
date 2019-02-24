@@ -1,5 +1,5 @@
 import config from '../../config'
-import { shadesOfRed, cycleDayColor } from '../../styles/index'
+import { cycleDayColor, shadesOfRed } from '../../styles/index'
 
 const colorTemperature = '#765285'
 const colorTemperatureLight = '#a67fb5'
@@ -13,7 +13,7 @@ const numberLabelFontSize = 13
 const styles = {
   curve: {
     stroke: colorTemperature,
-    strokeWidth: lineWidth,
+    strokeWidth: lineWidth
   },
   curveExcluded: {
     stroke: colorTemperatureLight,
@@ -33,52 +33,33 @@ const styles = {
         color: 'grey',
         fontSize: 9,
         fontWeight: '100',
-        textAlign: 'center',
+        textAlign: 'center'
       },
       number: {
         color: cycleDayColor,
         fontSize: numberLabelFontSize,
-        textAlign: 'center',
+        textAlign: 'center'
       }
     },
     stroke: {
       color: gridColor,
-      width: gridLineWidth,
+      width: gridLineWidth
     }
   },
   symptomIcon: {
     width: 12,
     height: 12,
-    borderRadius: 50,
+    borderRadius: 50
   },
   iconShades: {
-    'bleeding': shadesOfRed,
-    'mucus': [
-      '#e3e7ed',
-      '#c8cfdc',
-      '#acb8cb',
-      '#91a0ba',
-      '#7689a9'
-    ],
-    'cervix': [
-      '#f0e19d',
-      '#e9d26d',
-      '#e2c33c',
-      '#dbb40c',
-    ],
-    'sex': [
-      '#a87ca2',
-      '#8b5083',
-      '#6f2565',
-    ],
-    'desire': [
-      '#c485a6',
-      '#b15c89',
-      '#9e346c',
-    ],
-    'pain': ['#bccd67'],
-    'mood': ['#bc6642'],
-    'note': ['#6ca299']
+    bleeding: shadesOfRed,
+    mucus: ['#e3e7ed', '#c8cfdc', '#acb8cb', '#91a0ba', '#7689a9'],
+    cervix: ['#f0e19d', '#e9d26d', '#e2c33c', '#dbb40c'],
+    sex: ['#a87ca2', '#8b5083', '#6f2565'],
+    desire: ['#c485a6', '#b15c89', '#9e346c'],
+    pain: ['#bccd67'],
+    mood: ['#bc6642'],
+    note: ['#6ca299']
   },
   yAxis: {
     width: 27,
@@ -105,7 +86,7 @@ const styles = {
     }
   },
   horizontalGrid: {
-    position:'absolute',
+    position: 'absolute',
     borderColor: gridColor,
     borderWidth: gridLineWidth,
     width: '100%',
@@ -114,11 +95,11 @@ const styles = {
   },
   nfpLine: {
     stroke: colorLtl,
-    strokeWidth: lineWidth,
+    strokeWidth: lineWidth
   },
   symptomRow: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   loadingMore: {
     height: '100%',

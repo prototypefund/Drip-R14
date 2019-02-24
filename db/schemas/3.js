@@ -39,7 +39,7 @@ const CervixSchema = {
   properties: {
     opening: 'int',
     firmness: 'int',
-    position: {type: 'int', optional: true },
+    position: { type: 'int', optional: true },
     exclude: 'bool'
   }
 }
@@ -169,7 +169,8 @@ export default {
   schemaVersion: 3,
   migration: (oldRealm, newRealm) => {
     if (oldRealm.schemaVersion >= 3) return
-    const oldBleedingDays = oldRealm.objects('CycleDay')
+    const oldBleedingDays = oldRealm
+      .objects('CycleDay')
       .filtered('bleeding != null')
       .sorted('date', true)
 
@@ -177,7 +178,8 @@ export default {
       bleedingDaysSortedByDate: oldBleedingDays
     })
 
-    const newBleedingDays = newRealm.objects('CycleDay')
+    const newBleedingDays = newRealm
+      .objects('CycleDay')
       .filtered('bleeding != null')
       .sorted('date', true)
 

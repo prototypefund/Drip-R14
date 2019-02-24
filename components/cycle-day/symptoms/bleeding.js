@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Switch,
-  ScrollView
-} from 'react-native'
-import styles from '../../../styles'
+import { ScrollView, Switch, View } from 'react-native'
+
 import { saveSymptom } from '../../../db'
 import { bleeding } from '../../../i18n/en/cycle-day'
-import ActionButtonFooter from './action-button-footer'
+import styles from '../../../styles'
 import SelectTabGroup from '../select-tab-group'
+import ActionButtonFooter from './action-button-footer'
 import SymptomSection from './symptom-section'
 
 export default class Bleeding extends Component {
@@ -28,7 +25,7 @@ export default class Bleeding extends Component {
       { label: bleeding.labels[0], value: 0 },
       { label: bleeding.labels[1], value: 1 },
       { label: bleeding.labels[2], value: 2 },
-      { label: bleeding.labels[3], value: 3 },
+      { label: bleeding.labels[3], value: 3 }
     ]
     return (
       <View style={{ flex: 1 }}>
@@ -49,7 +46,7 @@ export default class Bleeding extends Component {
             inline={true}
           >
             <Switch
-              onValueChange={(val) => {
+              onValueChange={val => {
                 this.setState({ exclude: val })
               }}
               value={this.state.exclude}
@@ -57,7 +54,7 @@ export default class Bleeding extends Component {
           </SymptomSection>
         </ScrollView>
         <ActionButtonFooter
-          symptom='bleeding'
+          symptom="bleeding"
           date={this.props.date}
           currentSymptomValue={this.bleeding}
           saveAction={() => {

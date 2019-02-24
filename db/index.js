@@ -1,16 +1,17 @@
-import Realm from 'realm'
-import { LocalDate, ChronoUnit } from 'js-joda'
+import { ChronoUnit, LocalDate } from 'js-joda'
 import nodejs from 'nodejs-mobile-react-native'
 import fs from 'react-native-fs'
 import restart from 'react-native-restart'
-import schemas from './schemas'
+import Realm from 'realm'
+
 import cycleModule from '../lib/cycle'
+import schemas from './schemas'
 
 let db
 let isMensesStart
 let getMensesDaysRightAfter
 
-export async function openDb (hash) {
+export async function openDb(hash) {
   const realmConfig = {}
   if (hash) {
     realmConfig.encryptionKey = hashToInt8Array(hash)
@@ -21,7 +22,7 @@ export async function openDb (hash) {
   let tempConnection
   try {
     tempConnection = await Realm.open(realmConfig)
-  } catch(err) {
+  } catch (err) {
     // wrong password provided
     if (hash && err.toString().includes('decrypt')) return false
     // tried to open without password, but is encrypted
@@ -33,20 +34,16 @@ export async function openDb (hash) {
   let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath)
   tempConnection.close()
   while (nextSchemaIndex < schemas.length - 1) {
-    const tempConfig = Object.assign(
-      realmConfig,
-      schemas[nextSchemaIndex++]
-    )
+    const tempConfig = Object.assign(realmConfig, schemas[nextSchemaIndex++])
     const migratedRealm = new Realm(tempConfig)
     migratedRealm.close()
   }
 
   // open the Realm with the latest schema
   realmConfig.schema = schemas[schemas.length - 1]
-  const connection = await Realm.open(Object.assign(
-    realmConfig,
-    schemas[schemas.length - 1]
-  ))
+  const connection = await Realm.open(
+    Object.assign(realmConfig, schemas[schemas.length - 1])
+  )
 
   db = connection
   const cycle = cycleModule()
@@ -56,17 +53,26 @@ export async function openDb (hash) {
 }
 
 export function getBleedingDaysSortedByDate() {
-  return db.objects('CycleDay').filtered('bleeding != null').sorted('date', true)
+  return db
+    .objects('CycleDay')
+    .filtered('bleeding != null')
+    .sorted('date', true)
 }
 export function getTemperatureDaysSortedByDate() {
-  return db.objects('CycleDay').filtered('temperature != null').sorted('date', true)
+  return db
+    .objects('CycleDay')
+    .filtered('temperature != null')
+    .sorted('date', true)
 }
 export function getCycleDaysSortedByDate() {
   return db.objects('CycleDay').sorted('date', true)
 }
 
 export function getCycleStartsSortedByDate() {
-  return db.objects('CycleDay').filtered('isCycleStart = true').sorted('date', true)
+  return db
+    .objects('CycleDay')
+    .filtered('isCycleStart = true')
+    .sorted('date', true)
 }
 export function saveSymptom(symptom, date, val) {
   let cycleDay = getCycleDay(date)
@@ -111,7 +117,7 @@ export function saveSymptom(symptom, date, val) {
     // menses start marker from all following days of this
     // menses that may have been marked as start before
     const mensesDaysAfter = getMensesDaysRightAfter(cycleDay)
-    mensesDaysAfter.forEach(day => day.isCycleStart = false)
+    mensesDaysAfter.forEach(day => (day.isCycleStart = false))
   }
 }
 
@@ -195,10 +201,13 @@ export function tryToImportWithoutDelete(cycleDays) {
 }
 
 export function requestHash(type, pw) {
-  nodejs.channel.post('request-SHA512', JSON.stringify({
-    type: type,
-    message: pw
-  }))
+  nodejs.channel.post(
+    'request-SHA512',
+    JSON.stringify({
+      type: type,
+      message: pw
+    })
+  )
 }
 
 export async function changeEncryptionAndRestartApp(hash) {
@@ -223,7 +232,7 @@ export async function changeEncryptionAndRestartApp(hash) {
   restart.Restart()
 }
 
-export function isDbEmpty () {
+export function isDbEmpty() {
   return db.empty
 }
 

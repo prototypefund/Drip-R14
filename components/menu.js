@@ -1,16 +1,10 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  TouchableOpacity
-} from 'react-native'
-
-import settingsViews from './settings'
+import { Text, TouchableOpacity, View } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { menuTitles } from '../i18n/en/labels'
-
 import styles, { iconStyles, secondaryColor } from '../styles'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import settingsViews from './settings'
 
 const menuTitlesLowerCase = Object.keys(menuTitles).reduce((acc, curr) => {
   acc[curr] = menuTitles[curr].toLowerCase()
@@ -21,38 +15,35 @@ const menuItems = [
   {
     labelKey: 'Home',
     icon: 'home',
-    component: 'Home',
+    component: 'Home'
   },
   {
     labelKey: 'Calendar',
     icon: 'calendar-range',
-    component: 'Calendar',
+    component: 'Calendar'
   },
   {
     labelKey: 'Chart',
     icon: 'chart-line',
-    component: 'Chart',
+    component: 'Chart'
   },
   {
     labelKey: 'Stats',
     icon: 'chart-pie',
-    component: 'Stats',
+    component: 'Stats'
   },
   {
     labelKey: 'Settings',
     icon: 'settings',
     component: 'SettingsMenu',
-    children: Object.keys(settingsViews),
+    children: Object.keys(settingsViews)
   }
 ]
 
 const MenuItem = ({ icon, labelKey, active, onPress }) => {
   const styleActive = active ? { color: secondaryColor } : null
   return (
-    <TouchableOpacity
-      style={styles.menuItem}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
       <Icon name={icon} {...iconStyles.menuIcon} {...styleActive} />
       <Text style={[styles.menuText, styleActive]}>
         {menuTitlesLowerCase[labelKey]}
@@ -64,8 +55,9 @@ const MenuItem = ({ icon, labelKey, active, onPress }) => {
 const Menu = ({ currentPage, navigate }) => {
   return (
     <View style={styles.menu}>
-      { menuItems.map(({ icon, labelKey, component, children }) => {
-        const isActive = (component === currentPage) ||
+      {menuItems.map(({ icon, labelKey, component, children }) => {
+        const isActive =
+          component === currentPage ||
           (children && children.indexOf(currentPage) !== -1)
         return (
           <MenuItem
@@ -75,9 +67,9 @@ const Menu = ({ currentPage, navigate }) => {
             active={isActive}
             onPress={() => navigate(component)}
           />
-        )}
-      )}
-    </View >
+        )
+      })}
+    </View>
   )
 }
 

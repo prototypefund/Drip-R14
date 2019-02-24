@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { View, Alert } from 'react-native'
-
 import nodejs from 'nodejs-mobile-react-native'
-import { requestHash, openDb } from '../../../db'
+import React, { Component } from 'react'
+import { Alert, View } from 'react-native'
 
-import PasswordField from './password-field'
-import SettingsButton from '../shared/settings-button'
-
-import settings from '../../../i18n/en/settings'
+import { openDb, requestHash } from '../../../db'
 import { shared } from '../../../i18n/en/labels'
+import settings from '../../../i18n/en/settings'
+import SettingsButton from '../shared/settings-button'
+import PasswordField from './password-field'
 
 export default class ConfirmWithPassword extends Component {
   constructor() {
@@ -16,11 +14,7 @@ export default class ConfirmWithPassword extends Component {
     this.state = {
       password: null
     }
-    nodejs.channel.addListener(
-      'password-check',
-      this.checkPassword,
-      this
-    )
+    nodejs.channel.addListener('password-check', this.checkPassword, this)
   }
 
   componentWillUnmount() {
@@ -31,19 +25,17 @@ export default class ConfirmWithPassword extends Component {
     this.setState({ password: null })
   }
 
-
   onIncorrectPassword = () => {
-    Alert.alert(
-      shared.incorrectPassword,
-      shared.incorrectPasswordMessage,
-      [{
+    Alert.alert(shared.incorrectPassword, shared.incorrectPasswordMessage, [
+      {
         text: shared.cancel,
         onPress: this.props.onCancel
-      }, {
+      },
+      {
         text: shared.tryAgain,
         onPress: this.resetPasswordInput
-      }]
-    )
+      }
+    ])
   }
 
   checkPassword = async hash => {
@@ -55,7 +47,7 @@ export default class ConfirmWithPassword extends Component {
     }
   }
 
-  handlePasswordInput = (password) => {
+  handlePasswordInput = password => {
     this.setState({ password })
   }
 
@@ -74,22 +66,21 @@ export default class ConfirmWithPassword extends Component {
           value={password}
           onChangeText={this.handlePasswordInput}
         />
-        <View style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-between'
-        }}>
-          <SettingsButton
-            onPress={this.props.onCancel}
-            secondary
-          >
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
+          <SettingsButton onPress={this.props.onCancel} secondary>
             {shared.cancel}
           </SettingsButton>
           <SettingsButton
             onPress={this.initPasswordCheck}
             disabled={!password}
             style={{
-              flex: 1,
+              flex: 1
             }}
           >
             {shared.confirmToProceed}
@@ -97,6 +88,5 @@ export default class ConfirmWithPassword extends Component {
         </View>
       </View>
     )
-
   }
 }

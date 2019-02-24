@@ -1,23 +1,24 @@
+import { ChronoUnit, LocalDate } from 'js-joda'
 import React, { Component } from 'react'
-import { ScrollView, View, TouchableHighlight, Dimensions } from 'react-native'
-import { LocalDate, ChronoUnit } from 'js-joda'
+import { Dimensions, ScrollView, TouchableHighlight, View } from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo'
-import { secondaryColor, cycleDayColor, periodColor } from '../styles'
+
+import DripHomeIcon from '../assets/drip-home-icons'
 import {
   home as labels,
   bleedingPrediction as predictLabels,
-  shared,
+  shared
 } from '../i18n/en/labels'
 import links from '../i18n/en/links'
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
+import { cycleDayColor, periodColor, secondaryColor } from '../styles'
 import styles from '../styles'
 import AppText from './app-text'
-import DripHomeIcon from '../assets/drip-home-icons'
 import Button from './button'
 
 const ShowMoreToggler = ({ isShowingMore, onToggle }) => {
-  const {height, width} = Dimensions.get('window')
+  const { height, width } = Dimensions.get('window')
   const leftPosition = isShowingMore ? 10 : width - 40
   const style = isShowingMore ? styles.showLess : styles.showMore
   const topPosition = height / 2 - styles.header.height - 30
@@ -25,11 +26,11 @@ const ShowMoreToggler = ({ isShowingMore, onToggle }) => {
   return (
     <TouchableHighlight
       onPress={onToggle}
-      style={[style, { top: topPosition, left: leftPosition}]}
+      style={[style, { top: topPosition, left: leftPosition }]}
     >
-      <View style={{alignItems: 'center'}}>
+      <View style={{ alignItems: 'center' }}>
         <AppText>{isShowingMore ? shared.less : shared.more}</AppText>
-        <Icon name='chevron-thin-down' />
+        <Icon name="chevron-thin-down" />
       </View>
     </TouchableHighlight>
   )
@@ -38,25 +39,21 @@ const ShowMoreToggler = ({ isShowingMore, onToggle }) => {
 const IconText = ({ children, wrapperStyles }) => {
   return (
     <View style={[styles.homeIconTextWrapper, wrapperStyles]}>
-      <AppText style={styles.iconText}>
-        { children }
-      </AppText>
+      <AppText style={styles.iconText}>{children}</AppText>
     </View>
   )
 }
 
-const HomeElement = ({ children, onPress, buttonColor, buttonLabel  }) => {
+const HomeElement = ({ children, onPress, buttonColor, buttonLabel }) => {
   return (
-    <View
-      onPress={ onPress }
-      style={ styles.homeIconElement }
-    >
-      { children }
+    <View onPress={onPress} style={styles.homeIconElement}>
+      {children}
       <Button
         style={styles.homeButton}
-        onPress={ onPress }
-        backgroundColor={ buttonColor }>
-        { buttonLabel }
+        onPress={onPress}
+        backgroundColor={buttonColor}
+      >
+        {buttonLabel}
       </Button>
     </View>
   )
@@ -93,9 +90,9 @@ export default class Home extends Component {
   render() {
     const { isShowingMore, cycleDayNumber, phase, status } = this.state
     const { navigate } = this.props
-    const cycleDayMoreText = cycleDayNumber ?
-      labels.cycleDayKnown(cycleDayNumber) :
-      labels.cycleDayNotEnoughInfo
+    const cycleDayMoreText = cycleDayNumber
+      ? labels.cycleDayKnown(cycleDayNumber)
+      : labels.cycleDayNotEnoughInfo
 
     const { statusText } = this.state
 
@@ -103,28 +100,27 @@ export default class Home extends Component {
       <View flex={1}>
         <ScrollView>
           <View style={styles.homeView}>
-
             <HomeElement
-              onPress={ () => this.passTodayTo('CycleDay') }
-              buttonColor={ cycleDayColor }
-              buttonLabel={ labels.editToday }
+              onPress={() => this.passTodayTo('CycleDay')}
+              buttonColor={cycleDayColor}
+              buttonLabel={labels.editToday}
             >
               <View>
-                <DripHomeIcon name="circle" size={80} color={cycleDayColor}/>
+                <DripHomeIcon name="circle" size={80} color={cycleDayColor} />
               </View>
               <IconText wrapperStyles={styles.wrapperCycle}>
                 {cycleDayNumber || labels.unknown}
               </IconText>
 
-              { isShowingMore &&
-                  <AppText style={styles.paragraph}>{cycleDayMoreText}</AppText>
-              }
+              {isShowingMore && (
+                <AppText style={styles.paragraph}>{cycleDayMoreText}</AppText>
+              )}
             </HomeElement>
 
             <HomeElement
-              onPress={ () => this.passTodayTo('BleedingEditView') }
-              buttonColor={ periodColor }
-              buttonLabel={ labels.trackPeriod }
+              onPress={() => this.passTodayTo('BleedingEditView')}
+              buttonColor={periodColor}
+              buttonLabel={labels.trackPeriod}
             >
               <View>
                 <DripHomeIcon name="drop" size={105} color={periodColor} />
@@ -134,34 +130,34 @@ export default class Home extends Component {
                 {this.state.bleedingPredictionRange}
               </IconText>
 
-              { isShowingMore &&
+              {isShowingMore && (
                 <AppText style={styles.paragraph}>
                   {this.state.predictionText}
                 </AppText>
-              }
+              )}
             </HomeElement>
 
             <HomeElement
-              onPress={ () => navigate('Chart') }
-              buttonColor={ secondaryColor }
-              buttonLabel={ labels.checkFertility }
+              onPress={() => navigate('Chart')}
+              buttonColor={secondaryColor}
+              buttonLabel={labels.checkFertility}
             >
-              <View style={styles.homeCircle}/>
+              <View style={styles.homeCircle} />
 
               <IconText wrapperStyles={styles.wrapperCircle}>
-                { phase ? phase.toString() : labels.unknown }
+                {phase ? phase.toString() : labels.unknown}
               </IconText>
 
-              { phase &&
+              {phase && (
                 <AppText>{`${labels.phase(phase)} (${status})`}</AppText>
-              }
-              { isShowingMore &&
+              )}
+              {isShowingMore && (
                 <View>
                   <AppText styles={styles.paragraph}>
-                    { `${statusText} ${links.moreAboutNfp.url}` }
+                    {`${statusText} ${links.moreAboutNfp.url}`}
                   </AppText>
                 </View>
-              }
+              )}
             </HomeElement>
           </View>
         </ScrollView>
@@ -179,7 +175,7 @@ function determinePredictionText(bleedingPrediction) {
   const todayDate = LocalDate.now()
   const bleedingStart = LocalDate.parse(bleedingPrediction[0][0])
   const bleedingEnd = LocalDate.parse(
-    bleedingPrediction[0][ bleedingPrediction[0].length - 1 ]
+    bleedingPrediction[0][bleedingPrediction[0].length - 1]
   )
   if (todayDate.isBefore(bleedingStart)) {
     return predictLabels.predictionInFuture(
@@ -189,7 +185,8 @@ function determinePredictionText(bleedingPrediction) {
   }
   if (todayDate.isAfter(bleedingEnd)) {
     return predictLabels.predictionInPast(
-      bleedingStart.toString(), bleedingEnd.toString()
+      bleedingStart.toString(),
+      bleedingEnd.toString()
     )
   }
   const daysToEnd = todayDate.until(bleedingEnd, ChronoUnit.DAYS)
@@ -206,9 +203,12 @@ function getBleedingPredictionRange(prediction) {
   if (!prediction.length) return labels.unknown
   const todayDate = LocalDate.now()
   const bleedingStart = LocalDate.parse(prediction[0][0])
-  const bleedingEnd = LocalDate.parse(prediction[0][ prediction[0].length - 1 ])
+  const bleedingEnd = LocalDate.parse(prediction[0][prediction[0].length - 1])
   if (todayDate.isBefore(bleedingStart)) {
-    return `${todayDate.until(bleedingStart, ChronoUnit.DAYS)}-${todayDate.until(bleedingEnd, ChronoUnit.DAYS)}`
+    return `${todayDate.until(
+      bleedingStart,
+      ChronoUnit.DAYS
+    )}-${todayDate.until(bleedingEnd, ChronoUnit.DAYS)}`
   }
   if (todayDate.isAfter(bleedingEnd)) {
     return labels.unknown

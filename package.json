@@ -1,19 +1,61 @@
 {
   "name": "drip",
   "version": "0.0.1",
+  "description": "A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle or for fertility awareness!",
+  "keywords": [
+    "cycle-tracking",
+    "symptothermal"
+  ],
+  "homepage": "https://gitlab.com/bloodyhealth/drip#README",
+  "bugs": {
+    "url": "https://gitlab.com/bloodyhealth/drip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/bloodyhealth/drip.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "",
   "contributors": [
     "Julia Friesel <julia.friesel@gmail.com>",
     "Marie Kochsiek",
     "Tina Baumann"
   ],
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
-    "log": "react-native log-android",
-    "test": "mocha --recursive --require @babel/register test && npm run lint",
-    "test-watch": "mocha --recursive --require @babel/register --watch test",
+    "devtool": "adb shell input keyevent 82",
+    "format": "prettier --write '**/*.js'; eslint --fix '**/*.js'; import-sort **/*.js --write; sort-package-json",
     "lint": "eslint components lib test",
-    "devtool": "adb shell input keyevent 82"
+    "log": "react-native log-android",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "mocha --recursive --require @babel/register test && npm run lint",
+    "test-watch": "mocha --recursive --require @babel/register --watch test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "import-sort --write",
+      "git add"
+    ],
+    "*.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
@@ -44,36 +86,30 @@
     "sympto": "^1.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "@babel/register": "^7.0.0",
     "@babel/core": "^7.2.2",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
     "eslint": "^4.19.1",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.8.2",
+    "husky": "^1.3.1",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "lint-staged": "^8.1.4",
     "metro-react-native-babel-preset": "^0.51.1",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "prettier": "1.16.4",
+    "sort-package-json": "^1.19.0"
   },
-  "description": "A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle or for fertility awareness!",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
+  "importSort": {
+    ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
+      "parser": "babylon",
+      "style": "module"
+    }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/bloodyhealth/drip.git"
-  },
-  "keywords": [
-    "cycle-tracking",
-    "symptothermal"
-  ],
-  "author": "",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://gitlab.com/bloodyhealth/drip/issues"
-  },
-  "homepage": "https://gitlab.com/bloodyhealth/drip#README",
   "rnpm": {
     "assets": [
       "assets/fonts"

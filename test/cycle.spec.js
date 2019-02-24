@@ -1,5 +1,6 @@
 import chai from 'chai'
 import dirtyChai from 'dirty-chai'
+
 import cycleModule from '../lib/cycle'
 
 const expect = chai.expect
@@ -7,17 +8,20 @@ chai.use(dirtyChai)
 
 describe('getCycleDayNumber', () => {
   it('works for a simple example', () => {
-    const cycleStarts = [{
-      date: '2018-05-09',
-      isCycleStart: true,
-      bleeding: {
-        value: 2
+    const cycleStarts = [
+      {
+        date: '2018-05-09',
+        isCycleStart: true,
+        bleeding: {
+          value: 2
+        }
+      },
+      {
+        date: '2018-05-03',
+        isCycleStart: true,
+        bleeding: { value: 2 }
       }
-    }, {
-      date: '2018-05-03',
-      isCycleStart: true,
-      bleeding: { value: 2 }
-    }]
+    ]
     const getCycleDayNumber = cycleModule({
       cycleStartsSortedByDate: cycleStarts
     }).getCycleDayNumber
@@ -27,17 +31,20 @@ describe('getCycleDayNumber', () => {
   })
 
   it('gets the correct number if the target day is not in the current cycle', () => {
-    const cycleStarts = [{
-      date: '2018-05-13',
-      isCycleStart: true,
-      bleeding: {
-        value: 2
+    const cycleStarts = [
+      {
+        date: '2018-05-13',
+        isCycleStart: true,
+        bleeding: {
+          value: 2
+        }
+      },
+      {
+        date: '2018-04-10',
+        isCycleStart: true,
+        bleeding: { value: 2 }
       }
-    }, {
-      date: '2018-04-10',
-      isCycleStart: true,
-      bleeding: { value: 2 }
-    }]
+    ]
 
     const targetDate = '2018-04-27'
     const getCycleDayNumber = cycleModule({
@@ -48,11 +55,13 @@ describe('getCycleDayNumber', () => {
   })
 
   it('gets the correct number if the target day is the only bleeding day', () => {
-    const cycleStarts = [{
-      date: '2018-05-13',
-      isCycleStart: true,
-      bleeding: { value: 2 }
-    }]
+    const cycleStarts = [
+      {
+        date: '2018-05-13',
+        isCycleStart: true,
+        bleeding: { value: 2 }
+      }
+    ]
 
     const targetDate = '2018-05-13'
     const getCycleDayNumber = cycleModule({
@@ -62,7 +71,7 @@ describe('getCycleDayNumber', () => {
     expect(result).to.eql(1)
   })
 
-  it('returns null if there are no bleeding days', function () {
+  it('returns null if there are no bleeding days', function() {
     const cycleStarts = []
     const targetDate = '2018-05-17'
     const getCycleDayNumber = cycleModule({
@@ -72,18 +81,21 @@ describe('getCycleDayNumber', () => {
     expect(result).to.be.null()
   })
 
-  it('returns null if the cycle is longer than the max', function () {
-    const cycleStarts = [{
-      date: '2018-05-09',
-      isCycleStart: true,
-      bleeding: {
-        value: 2
+  it('returns null if the cycle is longer than the max', function() {
+    const cycleStarts = [
+      {
+        date: '2018-05-09',
+        isCycleStart: true,
+        bleeding: {
+          value: 2
+        }
+      },
+      {
+        date: '2018-05-03',
+        isCycleStart: true,
+        bleeding: { value: 2 }
       }
-    }, {
-      date: '2018-05-03',
-      isCycleStart: true,
-      bleeding: { value: 2 }
-    }]
+    ]
     // we use the default 99 days max length
     const getCycleDayNumber = cycleModule({
       cycleStartsSortedByDate: cycleStarts
@@ -132,15 +144,10 @@ describe('getPreviousCycle', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
-    const cycleStarts = [
-      '2018-07-05',
-      '2018-06-05',
-      '2018-05-03',
-      '2018-04-02'
-    ]
+    const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
@@ -168,33 +175,33 @@ describe('getPreviousCycle', () => {
   it('returns null when target day is not in a cyle', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-07-05',
+        date: '2018-07-05'
       },
       {
-        date: '2018-06-05',
+        date: '2018-06-05'
       },
       {
-        date: '2018-05-05',
+        date: '2018-05-05'
       },
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
-        date: '2018-05-03',
+        date: '2018-05-03'
       },
       {
-        date: '2018-04-05',
+        date: '2018-04-05'
       },
       {
         date: '2018-04-04',
         mucus: { value: 2 }
       },
       {
-        date: '2018-04-03',
+        date: '2018-04-03'
       },
       {
-        date: '2018-04-02',
-      },
+        date: '2018-04-02'
+      }
     ]
 
     const cycleStarts = []
@@ -246,15 +253,10 @@ describe('getPreviousCycle', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
-    const cycleStarts = [
-      '2018-07-05',
-      '2018-06-05',
-      '2018-05-03',
-      '2018-04-02'
-    ]
+    const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
@@ -303,15 +305,10 @@ describe('getPreviousCycle', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
-    const cycleStarts = [
-      '2018-07-05',
-      '2018-06-05',
-      '2018-05-03',
-      '2018-04-02'
-    ]
+    const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
@@ -363,15 +360,10 @@ describe('getCyclesBefore', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
-    const cycleStarts = [
-      '2018-07-05',
-      '2018-06-05',
-      '2018-05-03',
-      '2018-04-02'
-    ]
+    const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
     const { getCyclesBefore } = cycleModule({
       cycleDaysSortedByDate,
@@ -387,7 +379,8 @@ describe('getCyclesBefore', () => {
           date: '2018-06-05',
           bleeding: { value: 2 }
         }
-      ], [
+      ],
+      [
         {
           date: '2018-05-05',
           mucus: { value: 2 }
@@ -400,7 +393,8 @@ describe('getCyclesBefore', () => {
           date: '2018-05-03',
           bleeding: { value: 2 }
         }
-      ], [
+      ],
+      [
         {
           date: '2018-04-05',
           mucus: { value: 2 }
@@ -416,7 +410,7 @@ describe('getCyclesBefore', () => {
         {
           date: '2018-04-02',
           bleeding: { value: 2 }
-        },
+        }
       ]
     ])
   })
@@ -458,15 +452,10 @@ describe('getCyclesBefore', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
-    const cycleStarts = [
-      '2018-07-05',
-      '2018-06-05',
-      '2018-05-03',
-      '2018-04-02'
-    ]
+    const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
     const { getCyclesBefore } = cycleModule({
       cycleDaysSortedByDate,
@@ -477,10 +466,14 @@ describe('getCyclesBefore', () => {
     })
     const result = getCyclesBefore(cycleDaysSortedByDate[0])
     expect(result.length).to.eql(1)
-    expect(result).to.eql([[{
-      bleeding: { value: 2 },
-      date: "2018-06-05"
-    }]])
+    expect(result).to.eql([
+      [
+        {
+          bleeding: { value: 2 },
+          date: '2018-06-05'
+        }
+      ]
+    ])
   })
 })
 
@@ -521,14 +514,9 @@ describe('getCycleForDay', () => {
     {
       date: '2018-04-02',
       bleeding: { value: 2 }
-    },
+    }
   ]
-  const cycleStarts = [
-    '2018-07-05',
-    '2018-06-05',
-    '2018-05-03',
-    '2018-04-02'
-  ]
+  const cycleStarts = ['2018-07-05', '2018-06-05', '2018-05-03', '2018-04-02']
 
   const { getCycleForDay } = cycleModule({
     cycleDaysSortedByDate,
@@ -603,7 +591,7 @@ describe('getCycleForDay', () => {
       {
         date: '2018-04-02',
         bleeding: { value: 2 }
-      },
+      }
     ])
   })
 })
@@ -611,7 +599,7 @@ describe('getCycleForDay', () => {
 describe('getPredictedMenses', () => {
   describe('cannot predict next menses', () => {
     it('if no bleeding is documented', () => {
-      const cycleDaysSortedByDate = [ {} ]
+      const cycleDaysSortedByDate = [{}]
       const cycleStarts = []
 
       const { getPredictedMenses } = cycleModule({
@@ -662,7 +650,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-05-01',
           bleeding: { value: 2 }
-        },
+        }
       ]
       const cycleStarts = ['2018-06-01', '2018-05-01']
 
@@ -671,7 +659,7 @@ describe('getPredictedMenses', () => {
         bleedingDaysSortedByDate: cycleDaysSortedByDate.filter(d => d.bleeding),
         cycleStartsSortedByDate: cycleDaysSortedByDate.filter(d => {
           return cycleStarts.includes(d.date)
-        }),
+        })
       })
       const result = getPredictedMenses()
       expect(result).to.eql([])
@@ -702,7 +690,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-04-01',
           bleeding: { value: 2 }
-        },
+        }
       ]
       const cycleStarts = ['2018-06-01', '2018-05-01', '2018-04-01']
 
@@ -740,27 +728,9 @@ describe('getPredictedMenses', () => {
       })
       const result = getPredictedMenses()
       const expectedResult = [
-        [
-          '2018-07-27',
-          '2018-07-28',
-          '2018-07-29',
-          '2018-07-30',
-          '2018-07-31'
-        ],
-        [
-          '2018-08-10',
-          '2018-08-11',
-          '2018-08-12',
-          '2018-08-13',
-          '2018-08-14',
-        ],
-        [
-          '2018-08-24',
-          '2018-08-25',
-          '2018-08-26',
-          '2018-08-27',
-          '2018-08-28',
-        ]
+        ['2018-07-27', '2018-07-28', '2018-07-29', '2018-07-30', '2018-07-31'],
+        ['2018-08-10', '2018-08-11', '2018-08-12', '2018-08-13', '2018-08-14'],
+        ['2018-08-24', '2018-08-25', '2018-08-26', '2018-08-27', '2018-08-28']
       ]
       expect(result).to.eql(expectedResult)
     })
@@ -782,7 +752,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-05-01',
           bleeding: { value: 2 }
-        },
+        }
       ]
 
       const { getPredictedMenses } = cycleModule({
@@ -792,21 +762,9 @@ describe('getPredictedMenses', () => {
       })
       const result = getPredictedMenses()
       const expectedResult = [
-        [
-          '2018-09-01',
-          '2018-09-02',
-          '2018-09-03'
-        ],
-        [
-          '2018-10-02',
-          '2018-10-03',
-          '2018-10-04'
-        ],
-        [
-          '2018-11-02',
-          '2018-11-03',
-          '2018-11-04'
-        ]
+        ['2018-09-01', '2018-09-02', '2018-09-03'],
+        ['2018-10-02', '2018-10-03', '2018-10-04'],
+        ['2018-11-02', '2018-11-03', '2018-11-04']
       ]
       expect(result).to.eql(expectedResult)
     })
@@ -828,7 +786,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-06-20',
           bleeding: { value: 2 }
-        },
+        }
       ]
 
       const { getPredictedMenses } = cycleModule({
@@ -837,21 +795,9 @@ describe('getPredictedMenses', () => {
       })
       const result = getPredictedMenses()
       const expectedResult = [
-        [
-          '2018-08-14',
-          '2018-08-15',
-          '2018-08-16'
-        ],
-        [
-          '2018-08-28',
-          '2018-08-29',
-          '2018-08-30'
-        ],
-        [
-          '2018-09-11',
-          '2018-09-12',
-          '2018-09-13'
-        ]
+        ['2018-08-14', '2018-08-15', '2018-08-16'],
+        ['2018-08-28', '2018-08-29', '2018-08-30'],
+        ['2018-09-11', '2018-09-12', '2018-09-13']
       ]
       expect(result).to.eql(expectedResult)
     })
@@ -873,7 +819,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-06-20',
           bleeding: { value: 2 }
-        },
+        }
       ]
 
       const { getPredictedMenses } = cycleModule({
@@ -882,27 +828,9 @@ describe('getPredictedMenses', () => {
       })
       const result = getPredictedMenses()
       const expectedResult = [
-        [
-          '2018-08-13',
-          '2018-08-14',
-          '2018-08-15',
-          '2018-08-16',
-          '2018-08-17',
-        ],
-        [
-          '2018-08-27',
-          '2018-08-28',
-          '2018-08-29',
-          '2018-08-30',
-          '2018-08-31',
-        ],
-        [
-          '2018-09-10',
-          '2018-09-11',
-          '2018-09-12',
-          '2018-09-13',
-          '2018-09-14',
-        ]
+        ['2018-08-13', '2018-08-14', '2018-08-15', '2018-08-16', '2018-08-17'],
+        ['2018-08-27', '2018-08-28', '2018-08-29', '2018-08-30', '2018-08-31'],
+        ['2018-09-10', '2018-09-11', '2018-09-12', '2018-09-13', '2018-09-14']
       ]
       expect(result).to.eql(expectedResult)
     })
@@ -928,7 +856,7 @@ describe('getPredictedMenses', () => {
         {
           date: '2018-04-20',
           bleeding: { value: 2 }
-        },
+        }
       ]
 
       const { getPredictedMenses } = cycleModule({
@@ -938,27 +866,9 @@ describe('getPredictedMenses', () => {
       })
       const result = getPredictedMenses()
       const expectedResult = [
-        [
-          '2018-08-13',
-          '2018-08-14',
-          '2018-08-15',
-          '2018-08-16',
-          '2018-08-17',
-        ],
-        [
-          '2018-08-27',
-          '2018-08-28',
-          '2018-08-29',
-          '2018-08-30',
-          '2018-08-31',
-        ],
-        [
-          '2018-09-10',
-          '2018-09-11',
-          '2018-09-12',
-          '2018-09-13',
-          '2018-09-14',
-        ]
+        ['2018-08-13', '2018-08-14', '2018-08-15', '2018-08-16', '2018-08-17'],
+        ['2018-08-27', '2018-08-28', '2018-08-29', '2018-08-30', '2018-08-31'],
+        ['2018-09-10', '2018-09-11', '2018-09-12', '2018-09-13', '2018-09-14']
       ]
       expect(result).to.eql(expectedResult)
     })
@@ -969,7 +879,7 @@ describe('isMensesStart', () => {
   it('works for simple menses start', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
         date: '2018-05-03',
@@ -984,7 +894,7 @@ describe('isMensesStart', () => {
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1012,8 +922,8 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 , exclude: true}
-      },
+        bleeding: { value: 2, exclude: true }
+      }
     ]
 
     const { isMensesStart } = cycleModule({
@@ -1029,15 +939,15 @@ describe('isMensesStart', () => {
   it('returns false when day has no bleeding', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-06-01',
+        date: '2018-06-01'
       },
       {
-        date: '2018-05-01',
+        date: '2018-05-01'
       },
       {
         date: '2018-04-30',
-        bleeding: { value: 2 , exclude: true}
-      },
+        bleeding: { value: 2, exclude: true }
+      }
     ]
 
     const { isMensesStart } = cycleModule({
@@ -1051,10 +961,10 @@ describe('isMensesStart', () => {
   it('returns false when there is a previous bleeding day within the threshold', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-06-01',
+        date: '2018-06-01'
       },
       {
-        date: '2018-05-01',
+        date: '2018-05-01'
       },
       {
         date: '2018-04-30',
@@ -1066,7 +976,7 @@ describe('isMensesStart', () => {
       {
         date: '2018-04-28',
         bleeding: { value: 2 }
-      },
+      }
     ]
 
     const { isMensesStart } = cycleModule({
@@ -1080,10 +990,10 @@ describe('isMensesStart', () => {
   it('returns true when there is a previous excluded bleeding day within the threshold', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-06-01',
+        date: '2018-06-01'
       },
       {
-        date: '2018-05-01',
+        date: '2018-05-01'
       },
       {
         date: '2018-04-30',
@@ -1094,8 +1004,8 @@ describe('isMensesStart', () => {
       },
       {
         date: '2018-04-28',
-        bleeding: { value: 2 , exclude: true}
-      },
+        bleeding: { value: 2, exclude: true }
+      }
     ]
 
     const { isMensesStart } = cycleModule({
@@ -1109,17 +1019,20 @@ describe('isMensesStart', () => {
     const maxBreakInBleeding = 3
 
     it('disregards bleeding breaks equal to maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2
+          }
+        },
+        {
+          date: '2018-05-10',
+          bleeding: {
+            value: 2
+          }
         }
-      }, {
-        date: '2018-05-10',
-        bleeding: {
-          value: 2
-        }
-      }]
+      ]
 
       const isMensesStart = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,
@@ -1130,17 +1043,20 @@ describe('isMensesStart', () => {
     })
 
     it('counts bleeding breaks longer than maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2
+          }
+        },
+        {
+          date: '2018-05-09',
+          bleeding: {
+            value: 2
+          }
         }
-      }, {
-        date: '2018-05-09',
-        bleeding: {
-          value: 2
-        }
-      }]
+      ]
 
       const isMensesStart = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,
@@ -1156,7 +1072,7 @@ describe('getMensesDaysRightAfter', () => {
   it('works for simple menses start', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
         date: '2018-05-03',
@@ -1171,7 +1087,7 @@ describe('getMensesDaysRightAfter', () => {
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1195,7 +1111,7 @@ describe('getMensesDaysRightAfter', () => {
   it('works when the day is not a bleeding day', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
         date: '2018-05-03',
@@ -1239,7 +1155,7 @@ describe('getMensesDaysRightAfter', () => {
   it('ignores excluded values', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
         date: '2018-05-03',
@@ -1254,7 +1170,7 @@ describe('getMensesDaysRightAfter', () => {
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1274,20 +1190,20 @@ describe('getMensesDaysRightAfter', () => {
   it('returns empty when there are no bleeding days after', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
-        date: '2018-05-03',
+        date: '2018-05-03'
       },
       {
-        date: '2018-05-02',
+        date: '2018-05-02'
       },
       {
         date: '2018-05-01',
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1306,17 +1222,17 @@ describe('getMensesDaysRightAfter', () => {
         bleeding: { value: 1 }
       },
       {
-        date: '2018-05-03',
+        date: '2018-05-03'
       },
       {
-        date: '2018-05-02',
+        date: '2018-05-02'
       },
       {
         date: '2018-05-01',
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1331,7 +1247,7 @@ describe('getMensesDaysRightAfter', () => {
   it('includes days within the treshold', () => {
     const cycleDaysSortedByDate = [
       {
-        date: '2018-05-04',
+        date: '2018-05-04'
       },
       {
         date: '2018-05-05',
@@ -1346,7 +1262,7 @@ describe('getMensesDaysRightAfter', () => {
         bleeding: { value: 1 }
       },
       {
-        date: '2018-04-30',
+        date: '2018-04-30'
       }
     ]
 
@@ -1370,17 +1286,20 @@ describe('getMensesDaysRightAfter', () => {
     const maxBreakInBleeding = 3
 
     it('disregards bleeding breaks shorter than maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2
+          }
+        },
+        {
+          date: '2018-05-10',
+          bleeding: {
+            value: 2
+          }
         }
-      }, {
-        date: '2018-05-10',
-        bleeding: {
-          value: 2
-        }
-      }]
+      ]
 
       const getMensesDaysRightAfter = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,
@@ -1391,17 +1310,20 @@ describe('getMensesDaysRightAfter', () => {
     })
 
     it('counts bleeding breaks longer than maxAllowedBleedingBreak in a bleeding period', () => {
-      const bleedingDays = [{
-        date: '2018-05-14',
-        bleeding: {
-          value: 2
+      const bleedingDays = [
+        {
+          date: '2018-05-14',
+          bleeding: {
+            value: 2
+          }
+        },
+        {
+          date: '2018-05-09',
+          bleeding: {
+            value: 2
+          }
         }
-      }, {
-        date: '2018-05-09',
-        bleeding: {
-          value: 2
-        }
-      }]
+      ]
 
       const getMensesDaysRightAfter = cycleModule({
         bleedingDaysSortedByDate: bleedingDays,

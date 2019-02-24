@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import settings from '../../../i18n/en/settings'
-import EnterNewPassword from './enter-new-password'
-import SettingsButton from '../shared/settings-button'
-import showBackUpReminder from './show-backup-reminder'
-import ConfirmWithPassword from '../shared/confirm-with-password'
 
+import settings from '../../../i18n/en/settings'
+import ConfirmWithPassword from '../shared/confirm-with-password'
+import SettingsButton from '../shared/settings-button'
+import EnterNewPassword from './enter-new-password'
+import showBackUpReminder from './show-backup-reminder'
 
 export default class ChangePassword extends Component {
   constructor() {
@@ -40,7 +40,6 @@ export default class ChangePassword extends Component {
   }
 
   render() {
-
     const {
       enteringCurrentPassword,
       enteringNewPassword,

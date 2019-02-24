@@ -1,7 +1,7 @@
 import { getCycleStatusForDay } from '../../lib/sympto-adapter'
 import { normalizeToScale } from './y-axis'
 
-export default function () {
+export default function() {
   const cycle = {
     status: null
   }
@@ -10,10 +10,10 @@ export default function () {
     // for the NFP lines, we don't care about potentially extending the
     // preOvu phase, so we don't include all earlier cycles, as that is
     // an expensive db operation at the moment
-    cycle.status = getCycleStatusForDay(
-      dateString, { excludeEarlierCycles: true }
-    )
-    if(!cycle.status) {
+    cycle.status = getCycleStatusForDay(dateString, {
+      excludeEarlierCycles: true
+    })
+    if (!cycle.status) {
       cycle.noMoreCycles = true
       return
     }
@@ -25,9 +25,7 @@ export default function () {
   }
 
   function dateIsInPeriOrPostPhase(dateString) {
-    return (
-      dateString >= cycle.status.phases.periOvulatory.start.date
-    )
+    return dateString >= cycle.status.phases.periOvulatory.start.date
   }
 
   function precededByAnotherTempValue(dateString) {
@@ -38,10 +36,9 @@ export default function () {
         return cycle.status.phases[phaseName].cycleDays.some(day => {
           return day.temperature && day.date < dateString
         })
-      })
+      }) &&
       // and also a following temp, so we don't draw the line
       // longer than necessary
-      &&
       cycle.status.phases.postOvulatory.cycleDays.some(day => {
         return day.temperature && day.date > dateString
       })
@@ -49,9 +46,7 @@ export default function () {
   }
 
   function isInTempMeasuringPhase(temperature, dateString) {
-    return (
-      temperature || precededByAnotherTempValue(dateString)
-    )
+    return temperature || precededByAnotherTempValue(dateString)
   }
 
   return function(dateString, temperature, columnHeight) {

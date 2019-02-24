@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import {
-  View,
-  ScrollView,
-  TextInput,
-} from 'react-native'
+import { ScrollView, TextInput, View } from 'react-native'
 
-import styles from '../../../styles'
 import { saveSymptom } from '../../../db'
-import ActionButtonFooter from './action-button-footer'
-import SymptomSection from './symptom-section'
 import { noteExplainer } from '../../../i18n/en/cycle-day'
 import { shared as sharedLabels } from '../../../i18n/en/labels'
+import styles from '../../../styles'
+import ActionButtonFooter from './action-button-footer'
+import SymptomSection from './symptom-section'
 
 export default class Note extends Component {
   constructor(props) {
@@ -20,7 +16,7 @@ export default class Note extends Component {
     this.makeActionButtons = props.makeActionButtons
 
     this.state = {
-      currentValue: this.note && this.note.value || ''
+      currentValue: (this.note && this.note.value) || ''
     }
   }
 
@@ -28,14 +24,12 @@ export default class Note extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.page}>
-          <SymptomSection
-            explainer={noteExplainer}
-          >
+          <SymptomSection explainer={noteExplainer}>
             <TextInput
               autoFocus={!this.state.currentValue}
               multiline={true}
               placeholder={sharedLabels.enter}
-              onChangeText={(val) => {
+              onChangeText={val => {
                 this.setState({ currentValue: val })
               }}
               value={this.state.currentValue}
@@ -43,7 +37,7 @@ export default class Note extends Component {
           </SymptomSection>
         </ScrollView>
         <ActionButtonFooter
-          symptom='note'
+          symptom="note"
           date={this.props.date}
           currentSymptomValue={this.note}
           saveAction={() => {
