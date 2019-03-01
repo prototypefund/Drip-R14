@@ -20,29 +20,35 @@ export default class ActionButtonFooter extends Component {
       autoShowDayView = true}
       = this.props
     const navigateToOverView = () => navigate('CycleDay', {date})
+    const disabledDelete = () => {
+      (currentSymptomValue === null ||
+      (typeof currentSymptomValue === 'object' && Object.keys(currentSymptomValue).length === 0) ||
+      Object.values(currentSymptomValue).every(x => x == false))
+    }
     const buttons = [
       {
         title: labels.delete,
         action: () => {
-          Alert.alert(
-            labels.areYouSureTitle,
-            labels.areYouSureToDelete,
-            [{
-              text: labels.cancel,
-              style: 'cancel'
-            }, {
-              text: labels.reallyDeleteData,
-              onPress: () => {
-                saveSymptom(symptom, date)
-                navigateToOverView()
-              }
-            }]
-          )
+          if(disabledDelete) {
+            return null
+          } else {
+            Alert.alert(
+              labels.areYouSureTitle,
+              labels.areYouSureToDelete,
+              [{
+                text: labels.cancel,
+                style: 'cancel'
+              }, {
+                text: labels.reallyDeleteData,
+                onPress: () => {
+                  saveSymptom(symptom, date)
+                  navigateToOverView()
+                }
+              }]
+            )
+          }
         },
-        disabledCondition: (currentSymptomValue === null ||
-          (typeof currentSymptomValue === 'object' && Object.keys(currentSymptomValue).length === 0) ||
-          Object.values(currentSymptomValue).every(x => x == false)
-        ),
+        disabledCondition: (disabledDelete),
         icon: 'delete-outline'
       }, {
         title: labels.save,
