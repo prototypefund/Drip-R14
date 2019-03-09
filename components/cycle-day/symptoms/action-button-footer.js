@@ -7,7 +7,6 @@ import { saveSymptom } from '../../../db'
 import styles, {iconStyles} from '../../../styles'
 import {sharedDialogs as labels} from '../../../i18n/en/cycle-day'
 
-
 export default class ActionButtonFooter extends Component {
   render() {
     const {
@@ -79,13 +78,13 @@ export default class ActionButtonFooter extends Component {
               onPress={action}
               style={styles.menuItem}
               key={i.toString()}
+              disabled={title=="Delete" ? disabledCondition : false}
             >
               <Icon name={icon} {...iconStyle} />
               <Text style={textStyle}>
                 {title.toLowerCase()}
               </Text>
             </TouchableOpacity>
-
           )
         })}
       </View>
