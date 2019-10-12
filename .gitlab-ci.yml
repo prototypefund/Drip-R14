@@ -1,4 +1,3 @@
-image: node:8
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -7,6 +6,8 @@ cache:
   - node_modules/
 
 test_async:
+  stage: test
+  image: node:10
   script:
    - npm install
    - npm test
