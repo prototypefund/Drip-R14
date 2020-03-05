@@ -147,11 +147,12 @@ export default class SymptomBox extends Component {
       {fontSize: 15}
     ]
     const dataBoxStyle = [styles.symptomDataBox, disabledStyle]
+    const iconColor = data ? 'white' : 'black'
 
     return (
       <TouchableOpacity onPress={onPress} disabled={disabled} testID={iconName}>
         <View style={containerStyle}>
-          <Icon name={iconName} isActive={data} />
+          <DripIcon name={iconName} size={50} color={iconColor} />
           <AppText style={titleStyle} numberOfLines={1}>
             {symptomTitles[symptom].toLowerCase()}
           </AppText>
@@ -165,6 +166,3 @@ export default class SymptomBox extends Component {
     )
   }
 }
-
-const Icon = ({name, isActive}) =>
-  <DripIcon name={name} size={50} color={isActive ? 'white' : 'black'} />
