@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View, TouchableOpacity } from 'react-native'
 
 import AppText from '../app-text'
@@ -128,7 +129,9 @@ const getLabel = (symptom, symptomData) => {
   return symptomData && l[symptom](symptomData)
 }
 
-export default function SymptomBox({ symptom, symptomData, onPress, disabled }) {
+export default function SymptomBox(
+  { disabled, onPress, symptom, symptomData }) {
+
   const data = getLabel(symptom, symptomData)
   const iconName = `drip-icon-${symptom}`
 
@@ -161,4 +164,11 @@ export default function SymptomBox({ symptom, symptomData, onPress, disabled }) 
       </View>
     </TouchableOpacity>
   )
+}
+
+SymptomBox.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+  symptom: PropTypes.string.isRequired,
+  symptomData: PropTypes.object
 }
