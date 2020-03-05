@@ -29,7 +29,9 @@ export default function Header({
 
 Header.propTypes = {
   handleBack: PropTypes.func,
+  //Todo: update all component calls to make sure only func type is passed
+  handleDelete: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   handleNext: PropTypes.func,
-  title: PropTypes.string,
   subtitle: PropTypes.string,
+  title: PropTypes.string.isRequired
 }
