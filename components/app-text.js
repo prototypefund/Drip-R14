@@ -29,11 +29,3 @@ AppText.propTypes = {
   //Todo: update all component calls to make sure only array type of parameter is passed
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 }
-
-export function SymptomSectionHeader(props) {
-  return (
-    <AppText style={styles.symptomViewHeading}>
-      {props.children}
-    </AppText>
-  )
-}
