@@ -20,6 +20,12 @@ const FramedSegment = ({children, ...props}) => {
 }
 
 FramedSegment.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  last: PropTypes.bool,
+  style: PropTypes.object,
   title: PropTypes.string
 }
 
