@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { TextInput } from 'react-native'
 
 import SymptomSection from './symptom-section'
@@ -9,6 +10,11 @@ import SymptomView from './symptom-view'
 import { saveSymptom } from '../../../db'
 
 class Note extends Component {
+  static propTypes = {
+    cycleDay: PropTypes.object.isRequired,
+    date: PropTypes.string.isRequired
+  }
+
   constructor(props) {
     super(props)
     const symptom = 'note'
