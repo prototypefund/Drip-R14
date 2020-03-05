@@ -26,6 +26,5 @@ AppText.propTypes = {
   ]),
   onPress: PropTypes.func,
   numberOfLines: PropTypes.number,
-  //Todo: update all component calls to make sure only array type of parameter is passed
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 }

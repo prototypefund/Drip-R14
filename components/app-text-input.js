@@ -22,7 +22,6 @@ AppTextInput.propTypes = {
   onChangeText: PropTypes.func,
   placeholder: PropTypes.string,
   secureTextEntry: PropTypes.bool,
-  //Todo: update all component calls to make sure only array type of parameter is passed
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   value: PropTypes.string,
 }

@@ -44,8 +44,7 @@ export default function SelectTabGroup({ active, buttons, onSelect }) {
 }
 
 SelectTabGroup.propTypes = {
-  //Todo: update all component calls to make sure only one type of parameter is passed
-  active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  active: PropTypes.number,
   buttons: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired
 }
