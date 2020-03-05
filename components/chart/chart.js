@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, FlatList, ActivityIndicator } from 'react-native'
 
 import AppLoadingView from '../app-loading'
@@ -17,6 +18,11 @@ import config from '../../config'
 import styles from './styles'
 
 export default class CycleChart extends Component {
+  static propTypes = {
+    navigate: PropTypes.func,
+    end: PropTypes.bool
+  }
+
   constructor(props) {
     super(props)
     this.state = {}
@@ -155,4 +161,8 @@ function LoadingMoreView(props) {
       }
     </View>
   )
+}
+
+LoadingMoreView.propTypes = {
+  end: PropTypes.bool
 }
