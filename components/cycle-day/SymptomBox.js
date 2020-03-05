@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 
 import AppText from '../app-text'
@@ -124,45 +124,41 @@ const l = {
   }
 }
 
-export default class SymptomBox extends Component {
-  getLabel = () => {
-    const { symptom, symptomData } = this.props
-    return symptomData && l[symptom](symptomData)
-  }
+const getLabel = (symptom, symptomData) => {
+  return symptomData && l[symptom](symptomData)
+}
 
-  render() {
-    const { symptom, onPress, disabled } = this.props
-    const data = this.getLabel()
-    const iconName = `drip-icon-${symptom}`
+export default function SymptomBox({ symptom, symptomData, onPress, disabled }) {
+  const data = getLabel(symptom, symptomData)
+  const iconName = `drip-icon-${symptom}`
 
-    const disabledStyle = disabled ? styles.symptomInFuture : null
-    const containerStyle = [
-      styles.symptomBox,
-      data && styles.symptomBoxActive,
-      disabledStyle
-    ]
-    const titleStyle = [
-      data && styles.symptomTextActive,
-      disabledStyle,
-      {fontSize: 15}
-    ]
-    const dataBoxStyle = [styles.symptomDataBox, disabledStyle]
-    const iconColor = data ? 'white' : 'black'
+  const disabledStyle = disabled ? styles.symptomInFuture : null
+  const containerStyle = [
+    styles.symptomBox,
+    data && styles.symptomBoxActive,
+    disabledStyle
+  ]
+  const titleStyle = [
+    data && styles.symptomTextActive,
+    disabledStyle,
+    {fontSize: 15}
+  ]
+  const dataBoxStyle = [styles.symptomDataBox, disabledStyle]
+  const iconColor = data ? 'white' : 'black'
 
-    return (
-      <TouchableOpacity onPress={onPress} disabled={disabled} testID={iconName}>
-        <View style={containerStyle}>
-          <DripIcon name={iconName} size={50} color={iconColor} />
-          <AppText style={titleStyle} numberOfLines={1}>
-            {symptomTitles[symptom].toLowerCase()}
-          </AppText>
-        </View>
-        <View style={dataBoxStyle}>
-          <AppText style={styles.symptomDataText} numberOfLines={3}>
-            {data}
-          </AppText>
-        </View>
-      </TouchableOpacity>
-    )
-  }
+  return (
+    <TouchableOpacity onPress={onPress} disabled={disabled} testID={iconName}>
+      <View style={containerStyle}>
+        <DripIcon name={iconName} size={50} color={iconColor} />
+        <AppText style={titleStyle} numberOfLines={1}>
+          {symptomTitles[symptom].toLowerCase()}
+        </AppText>
+      </View>
+      <View style={dataBoxStyle}>
+        <AppText style={styles.symptomDataText} numberOfLines={3}>
+          {data}
+        </AppText>
+      </View>
+    </TouchableOpacity>
+  )
 }
