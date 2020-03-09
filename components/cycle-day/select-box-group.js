@@ -6,23 +6,23 @@ import AppText from '../app-text'
 
 import styles from '../../styles'
 
-export default function SelectBoxGroup(props) {
+export default function SelectBoxGroup({ labels, onSelect, optionsState }) {
   return (
     <View style={styles.selectBoxSection}>
-      {Object.keys(props.labels).map(key => {
+      {Object.keys(labels).map(key => {
         const style = [styles.selectBox]
         const textStyle = []
-        if (props.optionsState[key]) {
+        if (optionsState[key]) {
           style.push(styles.selectBoxActive)
           textStyle.push(styles.selectBoxTextActive)
         }
         return (
           <TouchableOpacity
-            onPress={() => props.onSelect(key)}
+            onPress={() => onSelect(key)}
             key={key}
           >
             <View style={style}>
-              <AppText style={textStyle}>{props.labels[key]}</AppText>
+              <AppText style={textStyle}>{labels[key]}</AppText>
             </View>
           </TouchableOpacity>
         )

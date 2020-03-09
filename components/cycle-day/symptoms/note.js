@@ -47,16 +47,12 @@ class Note extends Component {
         values={this.state}
         date={this.props.date}
       >
-        <SymptomSection
-          explainer={noteExplainer}
-        >
+        <SymptomSection explainer={noteExplainer} >
           <TextInput
             autoFocus={true}
             multiline={true}
             placeholder={sharedLabels.enter}
-            onChangeText={(val) => {
-              this.setState({ value: val })
-            }}
+            onChangeText={(val) => { this.setState({ value: val })}}
             value={this.state.value}
             testID='noteInput'
           />

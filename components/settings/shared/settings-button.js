@@ -28,10 +28,7 @@ const SettingsButton = ({ children, style, secondary, ...props }) => {
 }
 
 SettingsButton.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
+  children: PropTypes.node,
   disabled: PropTypes.bool,
   onPress: PropTypes.func.isRequired,
   secondary: PropTypes.bool,

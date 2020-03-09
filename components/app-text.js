@@ -4,26 +4,22 @@ import { Text } from 'react-native'
 import styles from "../styles"
 import Link from './link'
 
-export default function AppText(props) {
+export default function AppText({ children, onPress, numberOfLines, style}) {
   // we parse for links in case the text contains any
   return (
     <Link>
-      <Text
-        style={[styles.appText, props.style]}
-        onPress={props.onPress}
-        numberOfLines={props.numberOfLines}
+      <Text style={[styles.appText, style]}
+        onPress={onPress}
+        numberOfLines={numberOfLines}
       >
-        {props.children}
+        {children}
       </Text>
     </Link>
   )
 }
 
 AppText.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
+  children: PropTypes.node,
   onPress: PropTypes.func,
   numberOfLines: PropTypes.number,
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),

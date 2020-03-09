@@ -14,11 +14,9 @@ const menuTitlesLowerCase = Object.keys(menuTitles).reduce((acc, curr) => {
 
 export default function MenuItem({ active, icon, label, onPress }) {
   const styleActive = active ? { color: secondaryColor } : null
+
   return (
-    <TouchableOpacity
-      style={styles.menuItem}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={styles.menuItem} onPress={onPress} >
       <Icon name={icon} {...iconStyles.menuIcon} {...styleActive} />
       <Text
         testID={active ? 'activeMenuItem' : `menuItem${label}`}

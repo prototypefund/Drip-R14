@@ -21,7 +21,6 @@ AppTextInput.propTypes = {
   autoFocus: PropTypes.bool,
   onChangeText: PropTypes.func,
   placeholder: PropTypes.string,
-  secureTextEntry: PropTypes.bool,
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   value: PropTypes.string,
 }

@@ -153,12 +153,10 @@ export default class CycleChart extends Component {
   }
 }
 
-function LoadingMoreView(props) {
+function LoadingMoreView({ end }) {
   return (
     <View style={styles.loadingMore}>
-      {!props.end &&
-        <ActivityIndicator size={'large'} color={'white'}/>
-      }
+      {!end && <ActivityIndicator size={'large'} color={'white'}/>}
     </View>
   )
 }
