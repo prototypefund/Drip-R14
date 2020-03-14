@@ -41,11 +41,9 @@ describe('getPreviousCycle', () => {
 
   it('returns null when target day is not in a cyle', () => {
 
-    const cycleStartsSortedByDate = []
-
     const { getPreviousCycle } = cycleModule({
       cycleDaysSortedByDate,
-      cycleStartsSortedByDate,
+      cycleStartsSortedByDate: [],
     })
 
     expect(getPreviousCycle('2018-06-08')).to.eql(null)
