@@ -1,7 +1,7 @@
 import labels from './settings'
 const settingsTitles = labels.menuTitles
 
-export const home_redesign = {
+export const homeRedesign = {
   cycleDay: ' day of your cycle',
   cyclePhase: ' cycle phase - ',
   addData: 'add data for today'

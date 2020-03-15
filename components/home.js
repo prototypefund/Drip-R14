@@ -11,10 +11,10 @@ import { navigate } from '../slices/navigation'
 import { getDate, setDate } from '../slices/date'
 import cycleModule from '../lib/cycle'
 import { getFertilityStatusForDay } from '../lib/sympto-adapter'
-import { determinePredictionText, dateEnding} from './helpers/home'
+import { determinePredictionText, dateEnding } from './helpers/home'
 
 import styles from '../styles/redesign'
-import { home_redesign as labels } from '../i18n/en/labels'
+import { homeRedesign as labels, home as cycle } from '../i18n/en/labels'
 
 class Home extends Component {
 
@@ -29,14 +29,15 @@ class Home extends Component {
     const today = LocalDate.now()
     this.todayDateString = today.toString()
     const { getCycleDayNumber, getPredictedMenses } = cycleModule()
-    const cycleDayNumber = getCycleDayNumber(this.todayDateString)
+    this.cycleDayNumber = getCycleDayNumber(this.todayDateString)
     const {status, phase, statusText} =
       getFertilityStatusForDay(this.todayDateString)
     const prediction = getPredictedMenses()
 
-    this.cycleDayText = !cycleDayNumber ? '?'
-      : `${cycleDayNumber}${dateEnding[this.cycleDayNumber] || dateEnding['default']}`
-    this.phaseText = !phase ? '?'
+    this.cycleDayText = !this.cycleDayNumber ? cycle.cycleDayNotEnoughInfo
+      : `${this.cycleDayNumber}${dateEnding[this.cycleDayNumber] || dateEnding['default']}`
+    this.phase = phase
+    this.phaseText = !phase ? statusText
       : `${phase}${dateEnding[phase] || dateEnding['default']}`
     this.predictionText = determinePredictionText(prediction)
     this.status = status
@@ -52,6 +53,7 @@ class Home extends Component {
   render() {
     const {
       cycleDayText,
+      phase,
       phaseText,
       predictionText,
       status,
@@ -66,31 +68,78 @@ class Home extends Component {
           vertical={true}
         >
           <AppText style={styles.titleText}>{titleText}</AppText>
-          <View style={styles.lineContainer}>
-            <AppText style={styles.whiteText}>{cycleDayText}</AppText>
-            <AppText>{labels.cycleDay}</AppText>
-          </View>
-          <View style={styles.lineContainer}>
-            <AppText style={styles.whiteText}>{phaseText}</AppText>
-            <AppText>{labels.cyclePhase}</AppText>
-            <AppText style={styles.whiteText}>{status}</AppText>
-            <AppText style={styles.orangeText}>*</AppText>
-          </View>
-          <View style={styles.lineContainer}>
+          <TextLine>
+            {this.cycleDayNumber && (
+              <React.Fragment>
+                <WhiteText>{cycleDayText}</WhiteText>
+                <AppText>{labels.cycleDay}</AppText>
+              </React.Fragment>
+            )}
+            {!this.cycleDayNumber && <AppText>{cycleDayText}</AppText>}
+          </TextLine>
+          <TextLine>
+            {phase === null && <AppText>{phaseText}</AppText>}
+            {phase !== null && (
+              <React.Fragment>
+                <WhiteText>{phaseText}</WhiteText>
+                <AppText>{labels.cyclePhase}</AppText>
+                <WhiteText>{status}</WhiteText>
+                <Asterisk />
+              </React.Fragment>
+            )}
+          </TextLine>
+          <TextLine>
             <AppText>{predictionText}</AppText>
-          </View>
-          <Button
-            label={labels.addData}
-            onPress={this.navigateToCycleDayView}
-          />
-          <View style={{flexDirection: 'row'}}>
-            <AppText style={styles.orangeText}>*</AppText>
-            <AppText style={styles.hintText}>{statusDescription}</AppText>
-          </View>
+          </TextLine>
+          <Button onPress={this.navigateToCycleDayView}>
+            {labels.addData}
+          </Button>
+          {phase !== null && (
+            <View style={styles.itemRow}>
+              <Asterisk />
+              <Hint>{statusDescription}</Hint>
+            </View>
+          )}
         </ScrollView>
       </View>
     )
   }
+}
+
+const WhiteText = ({children}) => {
+  return(
+    <AppText style={styles.whiteText}>{children}</AppText>
+  )
+}
+
+WhiteText.propTypes = {
+  children: PropTypes.node
+}
+
+const Hint = ({children}) => {
+  return(
+    <AppText style={styles.hintText}>{children}</AppText>
+  )
+}
+
+Hint.propTypes = {
+  children: PropTypes.node
+}
+
+const Asterisk = () => {
+  return(
+    <AppText style={styles.orangeText}>*</AppText>
+  )
+}
+
+const TextLine = ({children}) => {
+  return(
+    <View style={styles.lineContainer}>{children}</View>
+  )
+}
+
+TextLine.propTypes = {
+  children: PropTypes.node
 }
 
 const mapStateToProps = (state) => {

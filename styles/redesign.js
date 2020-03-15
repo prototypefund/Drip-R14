@@ -11,8 +11,6 @@ const textFont = 'Jost-400-Book'
 const textFontBold = 'Jost-700-Bold'
 
 const mainTextSize = 20
-const mainTextSizeHalf = 10
-const mainTextSizeQuarter = 5
 const hintTextSize = 16
 const titleTextSize = 44
 
@@ -32,7 +30,7 @@ export default StyleSheet.create({
     color: purpleLight,
     fontFamily: textFontBold,
     fontSize: titleTextSize,
-    marginBottom: mainTextSizeHalf,
+    marginBottom: (mainTextSize * 1.3),
     textTransform: 'lowercase'
   },
   link: {
@@ -42,7 +40,7 @@ export default StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: orange,
-    borderRadius: 15,
+    borderRadius: 25,
     margin: 30,
     paddingVertical: hintTextSize
   },
@@ -52,6 +50,7 @@ export default StyleSheet.create({
     fontSize: hintTextSize,
     textTransform: 'uppercase'
   },
+  itemRow: { flexDirection: 'row' },
   //Home page styles
   homePageContainer: {
     backgroundColor: purple,
@@ -59,11 +58,11 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
-  homeContentContainer: { marginHorizontal: mainTextSize },
+  homeContentContainer: { marginHorizontal: (mainTextSize * 1.3) },
   lineContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: mainTextSizeQuarter
+    marginTop: (mainTextSize * 0.4)
   }
 })
 
