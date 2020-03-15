@@ -78,8 +78,8 @@ class Home extends Component {
             {!this.cycleDayNumber && <AppText>{cycleDayText}</AppText>}
           </TextLine>
           <TextLine>
-            {phase === null && <AppText>{phaseText}</AppText>}
-            {phase !== null && (
+            {!phase && <AppText>{phaseText}</AppText>}
+            {phase && (
               <React.Fragment>
                 <WhiteText>{phaseText}</WhiteText>
                 <AppText>{labels.cyclePhase}</AppText>
@@ -94,7 +94,7 @@ class Home extends Component {
           <Button onPress={this.navigateToCycleDayView}>
             {labels.addData}
           </Button>
-          {phase !== null && (
+          {phase && (
             <View style={styles.itemRow}>
               <Asterisk />
               <Hint>{statusDescription}</Hint>
