@@ -19,26 +19,25 @@ export const pages = [
   {
     component: 'Home',
     icon: 'home',
-    isInMenu: true,
     label: 'Home',
   },
   {
     component: 'Calendar',
-    icon: 'calendar-range',
+    icon: 'calendar',
     isInMenu: true,
     label: 'Calendar',
     parent: 'Home',
   },
   {
     component: 'Chart',
-    icon: 'chart-line',
+    icon: 'chart',
     isInMenu: true,
     label: 'Chart',
     parent: 'Home',
   },
   {
     component: 'Stats',
-    icon: 'chart-pie',
+    icon: 'statistics',
     isInMenu: true,
     label: 'Stats',
     parent: 'Home',
@@ -47,7 +46,6 @@ export const pages = [
     children: Object.keys(settingsViews),
     component: 'SettingsMenu',
     icon: 'settings',
-    isInMenu: true,
     label: 'Settings',
     parent: 'Home',
   },
@@ -74,12 +72,12 @@ export const pages = [
   {
     component: 'About',
     label: labels.about,
-    parent: 'SettingsMenu',
+    parent: 'Home',
   },
   {
     component: 'License',
     label: labels.license,
-    parent: 'SettingsMenu',
+    parent: 'Home',
   },
   {
     component: 'CycleDay',
