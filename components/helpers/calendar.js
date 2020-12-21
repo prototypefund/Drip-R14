@@ -14,12 +14,12 @@ export const toCalFormat = (bleedingDaysSortedByDate) => {
           backgroundColor: shades[day.bleeding.value],
           paddingTop: 2,
         },
-        text: {
-          color: Colors.turquoiseLight,
-          ...(day.date === todayDateString && {
-            fontWeight: 'bold',
-          }),
-        },
+        text:
+          day.date === todayDateString
+            ? styles.calendarToday
+            : {
+                color: Colors.turquoiseLight,
+              },
       },
     }
     return acc
