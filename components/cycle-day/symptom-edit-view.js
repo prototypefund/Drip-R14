@@ -236,7 +236,7 @@ class SymptomEditView extends Component {
           </View>
           {shouldShowInfo &&
             <Segment last style={styles.segmentBorder} >
-              <AppText>{info[symptom].text}</AppText>
+              <AppText>{info[symptom]}</AppText>
             </Segment>
           }
         </ScrollView>

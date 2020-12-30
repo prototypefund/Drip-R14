@@ -18,9 +18,7 @@ Please find more info on the sympto-thermal method in ${links.wiki.url}.`,
 }
 
 export default {
-  bleeding: {
-    title: `Tracking menstrual bleeding`,
-    text: `Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.
+  bleeding: `Tracking menstrual bleeding allows you to know the beginning and the end of a menstrual cycle.
 
 After tracking at least 3 menstrual cycles, drip will give you an overview of
 · how long your cycles last on average (in "stats"),
@@ -32,10 +30,7 @@ The app allows you to track different intensities of bleeding. On the chart and 
 Excluding bleeding values is for tracking bleeding when it's not marking the start of a new cycle or the continuation of menstrual bleeding the day(s) before, e.g. bleeding caused by ovulation or a miscarriage.
 
 ${generalInfo.nfpTfyReminder}`,
-  },
-  cervix:  {
-    title: `Tracking your cervix`,
-    text: `The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.
+  cervix: `The cervix is located inside of the body at the end of the vaginal canal, between the vagina and the uterus.
 
 Tracking how open or closed and how firm or soft the cervix feels can help determine in which phase of the menstrual cycle you are.
 
@@ -49,30 +44,24 @@ ${generalInfo.chartNfp}
 ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
-  },
-  desire:  {
-    title: 'Tracking sexual desire',
-    text: `The app allows you to track sexual desire independently from sexual activity.
+  ,
+  desire: `The app allows you to track sexual desire independently from sexual activity.
 
 ${generalInfo.cycleRelation}
 
 ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
-  },
-  mood:  {
-    title: 'Tracking mood',
-    text: `The app allows you to track your mood.
+  ,
+  mood: `The app allows you to track your mood.
 
 ${generalInfo.cycleRelation}
 
 ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
-  },
-  mucus:  {
-    title: 'Tracking cervical mucus',
-    text: `Cervical mucus can help determine in which phase of the menstrual cycle you are.
+  ,
+  mucus: `Cervical mucus can help determine in which phase of the menstrual cycle you are.
 
 By default the secondary symptom the app uses for NFP evaluation is cervical mucus.
 
@@ -94,36 +83,28 @@ ${generalInfo.chartNfp}
 ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
-  },
-  note:  {
-    title: 'Notes',
-    text: `Note allows you to track any extra information you want to save. It is the only category that can store information for a date in the future. This can be helpful for reminding you of an appointment.
+  ,
+  note: `Note allows you to track any extra information you want to save. It is the only category that can store information for a date in the future. This can be helpful for reminding you of an appointment.
 
 ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
-  },
-  pain:  {
-    title: 'Tracking pain',
-    text: `The app allows you to keep track of different kinds of pain you experience.
+  ,
+  pain: `The app allows you to keep track of different kinds of pain you experience.
 
 ${generalInfo.cycleRelation}
 
 ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
-  },
-  sex:  {
-    title: 'Tracking sex and contraceptives',
-    text: `The app allows you to track sex independently from sexual desire. You can differentiate between masturbation and sex with a partner/partners. Here you can also track your contraceptive method(s). Only sexual activity will be shown in the "chart" section, lighter purple indicating solo sex and darker purple partner sex. Did you know that having an orgasm can help release cramps?
+  ,
+  sex: `The app allows you to track sex independently from sexual desire. You can differentiate between masturbation and sex with a partner/partners. Here you can also track your contraceptive method(s). Only sexual activity will be shown in the "chart" section, lighter purple indicating solo sex and darker purple partner sex. Did you know that having an orgasm can help release cramps?
 
 ${generalInfo.noNfpSymptom}
 
 ${generalInfo.curiousNfp}`
-  },
-  temperature:  {
-    title: 'Tracking body basal temperature',
-    text: `One of the body signs you need to track for knowing your fertility status is your body basal temperature. The body temperature changes over the course of a menstrual cycle, it rises after ovulation.
+  ,
+  temperature: `One of the body signs you need to track for knowing your fertility status is your body basal temperature. The body temperature changes over the course of a menstrual cycle, it rises after ovulation.
 
 By default the secondary symptom is cervical mucus, but you can change it to cervix in "Settings" -> "NFP Settings".
 
@@ -141,5 +122,5 @@ ${generalInfo.chartNfp}
 ${generalInfo.excludeExplainer}
 
 ${generalInfo.nfpTfyReminder}`
-  },
+  ,
 }
