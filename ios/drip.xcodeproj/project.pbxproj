@@ -71,7 +71,6 @@
 		DB91E6CCC3EB4A549D947797 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4902D5DCD46748BD8DC403FD /* Octicons.ttf */; };
 		DB93C03E56074FB78F7F5B7C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C7294680449AEA698AF76 /* Ionicons.ttf */; };
 		DF31809C83AD48569741458C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B39DD260535A4B0EB31A3E0A /* MaterialIcons.ttf */; };
-		E09F3B05A4F84E9883101CC7 /* libRNNodeJsMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F992F2D99E614DD79FAD6565 /* libRNNodeJsMobile.a */; };
 		E43EF009AC8C4698AB322190 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C225FC4966694B9FBD32E946 /* NodeMobile.framework */; };
 		E4584E55EEC24302A3E84A23 /* nodejs-project in Resources */ = {isa = PBXBuildFile; fileRef = 6466AE2461BE4FA88B8372F0 /* nodejs-project */; };
 		D9D0CDA164E74C0EA3FC53EC /* libGCDWebServers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90224CB4571D41C4969E9722 /* libGCDWebServers.a */; };
@@ -325,13 +324,6 @@
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
 		};
-		42C7F9D92202468600F22656 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65F706FAFA1444AE9937D472 /* RNNodeJsMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNNodeJsMobile;
-		};
 		42C7F9DF2202468600F22656 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1E5ACC4B66345868F556374 /* RNVectorIcons.xcodeproj */;
@@ -486,7 +478,6 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		644690BCCEBF41789960B9A2 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		6466AE2461BE4FA88B8372F0 /* nodejs-project */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "nodejs-project"; path = "../nodejs-assets/nodejs-project"; sourceTree = "<group>"; };
-		65F706FAFA1444AE9937D472 /* RNNodeJsMobile.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNodeJsMobile.xcodeproj; path = "../node_modules/nodejs-mobile-react-native/ios/RNNodeJsMobile.xcodeproj"; sourceTree = "<group>"; };
 		673C016DDDD74C2F89050279 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A5827160B914D2B99C47381 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
@@ -513,7 +504,6 @@
 		EE8CBB8533DA48A9A78697C3 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F5039D0A572B4BBCB7995891 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		F59A471BDE4144A1A41D4B52 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		F992F2D99E614DD79FAD6565 /* libRNNodeJsMobile.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNNodeJsMobile.a; sourceTree = "<group>"; };
 		BB052EE60D044AD3A9D08692 /* RealmJS.xcodeproj */ = {isa = PBXFileReference; name = "RealmJS.xcodeproj"; path = "../node_modules/realm/src/RealmJS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		90224CB4571D41C4969E9722 /* libGCDWebServers.a */ = {isa = PBXFileReference; name = "libGCDWebServers.a"; path = "libGCDWebServers.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		F710D85E391D4094816E1B62 /* libRealmJS.a */ = {isa = PBXFileReference; name = "libRealmJS.a"; path = "libRealmJS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
@@ -556,7 +546,6 @@
 				29DF0CCC1AEA4C92BCA0BCCD /* libRNDocumentPicker.a in Frameworks */,
 				17AD822C42A44BADA96BD860 /* libRNFS.a in Frameworks */,
 				72DA6B4241504DB096AFAD40 /* libRCTRestart.a in Frameworks */,
-				E09F3B05A4F84E9883101CC7 /* libRNNodeJsMobile.a in Frameworks */,
 				E43EF009AC8C4698AB322190 /* NodeMobile.framework in Frameworks */,
 				D9D0CDA164E74C0EA3FC53EC /* libGCDWebServers.a in Frameworks */,
 				FDC5A23FB0A04961ABE52950 /* libRealmJS.a in Frameworks */,
@@ -760,14 +749,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		42C7F9BB2202468500F22656 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				42C7F9DA2202468600F22656 /* libRNNodeJsMobile.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		42C7F9BD2202468500F22656 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,7 +848,6 @@
 				1F05FE29622E4F21AF70C2B7 /* RNDocumentPicker.xcodeproj */,
 				49089E09BFCF4F3DB209B6E9 /* RNFS.xcodeproj */,
 				50DBC4BCDDF74A10AEDC99D5 /* RCTRestart.xcodeproj */,
-				65F706FAFA1444AE9937D472 /* RNNodeJsMobile.xcodeproj */,
 				BB052EE60D044AD3A9D08692 /* RealmJS.xcodeproj */,
 			);
 			name = Libraries;
@@ -1106,10 +1086,6 @@
 				{
 					ProductGroup = 42C7F9C52202468600F22656 /* Products */;
 					ProjectRef = 49089E09BFCF4F3DB209B6E9 /* RNFS.xcodeproj */;
-				},
-				{
-					ProductGroup = 42C7F9BB2202468500F22656 /* Products */;
-					ProjectRef = 65F706FAFA1444AE9937D472 /* RNNodeJsMobile.xcodeproj */;
 				},
 				{
 					ProductGroup = 42C7F9BF2202468500F22656 /* Products */;
@@ -1356,13 +1332,6 @@
 			fileType = archive.ar;
 			path = libRNFS.a;
 			remoteRef = 42C7F9D62202468600F22656 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		42C7F9DA2202468600F22656 /* libRNNodeJsMobile.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNNodeJsMobile.a;
-			remoteRef = 42C7F9D92202468600F22656 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		42C7F9E02202468600F22656 /* libRNVectorIcons.a */ = {
@@ -1680,7 +1649,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = dripTests/Info.plist;
@@ -1717,7 +1685,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = dripTests/Info.plist;
@@ -1753,7 +1720,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
@@ -1786,7 +1752,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
@@ -1828,7 +1793,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "drip-tvOS/Info.plist";
@@ -1874,7 +1838,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "drip-tvOS/Info.plist";
@@ -1918,7 +1881,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "drip-tvOSTests/Info.plist";
@@ -1962,7 +1924,6 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
-					"$(SRCROOT)/../node_modules/nodejs-mobile-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "drip-tvOSTests/Info.plist";
