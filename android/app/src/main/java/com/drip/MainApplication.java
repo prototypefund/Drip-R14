@@ -5,7 +5,6 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.rnfs.RNFSPackage;
 import cl.json.ShareApplication;
 import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactNativeHost;
