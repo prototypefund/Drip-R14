@@ -26,7 +26,7 @@ export async function getFileContent() {
   let fileInfo
   try {
     fileInfo = await DocumentPicker.pick({
-      type: [DocumentPicker.types.csv],
+      type: [DocumentPicker.types.csv, 'text/comma-separated-values'],
     })
   } catch (error) {
     if (DocumentPicker.isCancel(error)) {
