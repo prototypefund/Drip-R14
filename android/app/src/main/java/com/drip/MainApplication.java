@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.rnfs.RNFSPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
@@ -33,21 +32,6 @@ public class MainApplication extends Application implements ReactApplication, Sh
         // packages.add(new MyReactNativePackage());
         return packages;
       }
-
-    // @Override
-    // protected List<ReactPackage> getPackages() {
-    //   return Arrays.<ReactPackage>asList(
-    //       new MainReactPackage(),
-    //         new RNNodeJsMobilePackage(),
-    //         new ReactNativeRestartPackage(),
-    //         new ReactNativePushNotificationPackage(),
-    //         new VectorIconsPackage(),
-    //         new RNFSPackage(),
-    //         new ReactNativeDocumentPicker(),
-    //         new RNSharePackage(),
-    //         new RealmReactPackage()
-    //   );
-    // }
 
         @Override
         protected String getJSMainModuleName() {
