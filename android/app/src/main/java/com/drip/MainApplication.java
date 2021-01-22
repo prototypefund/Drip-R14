@@ -10,7 +10,6 @@ import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnfs.RNFSPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
-import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactNativeHost;
