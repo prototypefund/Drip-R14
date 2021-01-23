@@ -27,8 +27,8 @@ export const CHART_SYMPTOM_HEIGHT_RATIO = 0.08
 export const CHART_XAXIS_HEIGHT_RATIO = 0.1
 export const CHART_YAXIS_WIDTH = 32
 
-export const TEMP_SCALE_MAX = 38
-export const TEMP_SCALE_MIN = 36
+export const TEMP_SCALE_MAX = 37.5
+export const TEMP_SCALE_MIN = 35.5
 export const TEMP_SCALE_UNITS = 0.1
 export const TEMP_MAX = 39
 export const TEMP_MIN = 35
