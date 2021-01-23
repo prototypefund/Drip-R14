@@ -82,7 +82,7 @@ export default class PasswordPrompt extends Component {
 
   render() {
     const { password } = this.state
-    const isPasswordEntered = password ? password.length > 0 : false
+    const isPasswordEntered = Boolean(password)
 
     return (
       <React.Fragment>
