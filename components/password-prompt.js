@@ -95,15 +95,15 @@ export default class PasswordPrompt extends Component {
             placeholder={labels.enterPassword}
           />
           <View style={styles.containerButtons}>
+            <Button onPress={this.onConfirmDeletion}>
+              {labels.forgotPassword}
+            </Button>
             <Button
               disabled={!isPasswordEntered}
               isCTA={isPasswordEntered}
               onPress={this.unlockApp}
             >
               {labels.title}
-            </Button>
-            <Button onPress={this.onConfirmDeletion}>
-              {labels.forgotPassword}
             </Button>
           </View>
         </AppPage>
