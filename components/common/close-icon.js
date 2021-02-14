@@ -7,7 +7,7 @@ import AppIcon from './app-icon'
 import { HIT_SLOP} from '../../config'
 import { Colors, Sizes } from '../../styles'
 
-const CloseIcon = ({ onClose, ...props }) => {
+const CloseIcon = ({ onClose, color, ...props }) => {
   return (
     <TouchableOpacity
       hitSlop={HIT_SLOP}
@@ -15,19 +15,20 @@ const CloseIcon = ({ onClose, ...props }) => {
       style={styles.container}
       {...props}
     >
-      <AppIcon name='cross' color={Colors.orange} />
+      <AppIcon name='cross' color={color ? color : Colors.orange} />
     </TouchableOpacity>
   )
 }
 
 CloseIcon.propTypes = {
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  color: PropTypes.string
 }
 
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
-    marginBottom: Sizes.base
+    marginBottom: Sizes.base,
   }
 })
 
