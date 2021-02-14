@@ -1,4 +1,4 @@
-import { PixelRatio } from 'react-native'
+import { PixelRatio, StatusBar } from 'react-native'
 
 export const ACTION_DELETE = 'delete'
 export const ACTION_EXPORT = 'export'
@@ -35,3 +35,5 @@ export const TEMP_MIN = 35
 export const TEMP_SLIDER_STEP = 0.5
 
 export const HIT_SLOP = { top: 20, bottom: 20, left: 20, right: 20 }
+
+export const STATUSBAR_HEIGHT = StatusBar.currentHeight
