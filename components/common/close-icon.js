@@ -4,11 +4,13 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 
 import AppIcon from './app-icon'
 
+import { HIT_SLOP} from '../../config'
 import { Colors, Sizes } from '../../styles'
 
 const CloseIcon = ({ onClose, ...props }) => {
   return (
     <TouchableOpacity
+      hitSlop={HIT_SLOP}
       onPress={onClose}
       style={styles.container}
       {...props}
