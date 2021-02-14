@@ -26,6 +26,7 @@ export const CHART_STROKE_WIDTH = 3
 export const CHART_SYMPTOM_HEIGHT_RATIO = 0.08
 export const CHART_XAXIS_HEIGHT_RATIO = 0.1
 export const CHART_YAXIS_WIDTH = 32
+export const CHART_TICK_WIDTH = 44
 
 export const TEMP_SCALE_MAX = 37.5
 export const TEMP_SCALE_MIN = 35.5
