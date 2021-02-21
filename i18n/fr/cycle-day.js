@@ -5,7 +5,7 @@ export const bleeding = {
   labels: ['pertes', 'faible', 'moyen', 'important'],
   heaviness: {
     header: "Saignements",
-    explainer: "Quelle est l'intensité de votre saignement\xa0?",
+    explainer: "Quelle est l’intensité de votre saignement ?",
   },
   exclude: {
     header: "Exclure",
@@ -21,17 +21,18 @@ export const cervix = {
   },
   opening: {
     categories: ['fermé', 'moyen', 'ouvert'],
-    explainer: "Votre col de l'utérus est-il ouvert ou fermé\xa0?"
+    explainer: 'Votre col de l’utérus est-il ouvert ou fermé ?'
   },
   firmness: {
     categories: ['dur', 'mou'],
-    explainer: "Quand il est dur, la texture ressemble à celle du bout de votre nez."
+    explainer: "Quand il est dur, sa texture ressemble à celle du bout de votre nez."
   },
   position: {
     categories: ['bas', 'moyen', 'haut'],
-    explainer: 'À quelle hauteur est votre cervix\xa0?'
+    explainer: 'À quelle hauteur dans votre vagin se trouve votre col de l’uterus ?'
   },
-  actionHint: 'Sélectionnez une valeur au moins pour "Ouverture" et "Texture" avant de sauvegarder.'
+  excludeExplainer: "Vous pouvez exclure cette valeur si vous ne voulez pas qu’elle entre dans le calcul de fertilité.",
+  actionHint: 'Sélectionnez une valeur au moins à « Ouverture » et « Texture » pour sauvegarder.'
 }
 
 export const mucus = {
@@ -41,19 +42,19 @@ export const mucus = {
   },
   feeling: {
     categories: ['sèche', 'rien', 'humide', 'glissante'],
-    explainer: "Quelle est la sensation à l'entrée de votre vagin\xa0?"
+    explainer: 'Quelle est la sensation à l’entrée de votre vagin ?'
   },
   texture: {
-    categories: ['rien', 'crémeuse', "blanc d'œuf"],
-    explainer: "À la vue et au toucher, qu'est-ce qui décrit le mieux votre glaire cervicale\xa0?"
+    categories: ['rien', 'crémeuse', "blanc d’œuf"],
+    explainer: "À la vue et au toucher, qu’est-ce qui décrit le mieux votre glaire cervicale ?"
   },
-  excludeExplainer: "Vous pouvez exclure cette valeur si vous ne voulez pas qu'elle entre dans le calcul de fertilité.",
-  actionHint: 'Sélectionnez une valeur pour "Sensation" et "Texture" avant de sauvegarder.'
+  excludeExplainer: "Vous pouvez exclure cette valeur si vous ne voulez pas qu’elle entre dans le calcul de fertilité.",
+  actionHint: 'Sélectionnez une valeur à « Sensation » et « Texture » pour sauvegarder.'
 }
 
 export const desire = {
   header: 'Intensité',
-  explainer: 'Comment évalueriez-vous votre désir sexuel\xa0?'
+  explainer: 'Comment évalueriez-vous votre désir sexuel ?'
 }
 
 export const sex = {
@@ -62,14 +63,14 @@ export const sex = {
     partner: 'à plusieurs',
   },
   header: "Activité",
-  explainer: "Avez-vous eu une activité sexuelle aujourd'hui\xa0?",
+  explainer: 'Avez-vous eu une activité sexuelle aujourd’hui ?',
 }
 
 export const contraceptives = {
   categories:{
     condom: 'préservatif',
     pill: 'pilule',
-    iud: 'diu',
+    iud: 'stérilet (DIU)',
     patch: 'patch',
     ring: 'anneau',
     implant: 'implant',
@@ -78,13 +79,13 @@ export const contraceptives = {
     other: 'autre',
   },
   header: "Contraceptifs",
-  explainer: 'Avez-vous utilisé un moyen de contraception\xa0?'
+  explainer: 'Avez-vous utilisé un moyen de contraception ?'
 }
 
 export const pain = {
   categories: {
     cramps: 'crampes',
-    ovulationPain: "douleur d'ovulation",
+    ovulationPain: 'douleur d’ovulation',
     headache: 'mal de tête',
     backache: 'mal au dos',
     nausea: 'nausée',
@@ -92,7 +93,7 @@ export const pain = {
     migraine: 'migraine',
     other: 'autre'
   },
-  explainer: "Qu'avez-vous ressenti dans votre corps aujourd'hui\xa0?"
+  explainer: 'Qu’avez-vous ressenti dans votre corps aujourd’hui ?'
 }
 
 export const mood = {
@@ -108,12 +109,12 @@ export const mood = {
     angry: 'colère',
     other: 'autre'
   },
-  explainer: "Quelles émotions avez-vous ressenties aujourd'hui\xa0?"
+  explainer: 'Quelles émotions avez-vous ressenties aujourd’hui ?'
 }
 
 export const temperature = {
-  outOfRangeWarning: "Cette température est en dehors des valeurs actuelles d'affichage du graphique. Vous pouvez changer les valeurs dans les réglages.",
-  outOfAbsoluteRangeWarning: "Cette température est trop haute ou trop basse pour être affichée sur le graphique.",
+  outOfRangeWarning: 'Cette température est en dehors des valeurs actuelles d’affichage du graphique. Vous pouvez changer ces valeurs dans les réglages.',
+  outOfAbsoluteRangeWarning: 'Cette température est trop haute ou trop basse pour être affichée sur le graphique.',
   saveAnyway: 'Enregistrer malgré tout',
   temperature: {
     header: "Température",
@@ -122,20 +123,25 @@ export const temperature = {
   time: "Heure",
   note: {
     header: "Note",
-    explainer: "Est-ce que cette température a pu être influencée, par un mauvais sommeil ou de la consommation d'alcool par exemple\xa0?"
+    explainer: 'Est-ce que cette température a pu être influencée, par un mauvais sommeil ou de la consommation d’alcool par exemple ?'
   },
   exclude: {
     header: "Exclure",
-    explainer: "Vous pouvez exclure cette valeur si vous ne voulez pas qu'elle entre dans le calcul de fertilité."
+    explainer: "Vous pouvez exclure cette valeur si vous ne voulez pas qu’elle entre dans le calcul de fertilité."
   }
 }
 
-export const noteExplainer = "Voulez-vous ajouter quelque chose pour la journée\xa0?"
+export const noteExplainer = "Voulez-vous ajouter quelque chose pour la journée ?"
+
+export const general = {
+  cycleDayNumber: "Jour du cycle ",
+  today: "Aujourd’hui"
+}
 
 export const sharedDialogs = {
   cancel: 'Annuler',
-  areYouSureTitle: 'Êtes-vous sûr·e\xa0?',
-  areYouSureToDelete: 'Êtes-vous sûr·e de vouloir supprimer cette entrée\xa0?',
+  areYouSureTitle: 'Êtes-vous sûr·e ?',
+  areYouSureToDelete: 'Êtes-vous sûr·e de vouloir supprimer cette entrée ?',
   reallyDeleteData: 'Oui, je suis sûr·e',
   save: 'Enregistrer',
   delete: 'Supprimer',
