@@ -1,4 +1,4 @@
-import { PixelRatio, StatusBar } from 'react-native'
+import { Dimensions, PixelRatio, StatusBar } from 'react-native'
 
 export const ACTION_DELETE = 'delete'
 export const ACTION_EXPORT = 'export'
@@ -16,7 +16,9 @@ export const SYMPTOMS = [
   'note',
 ]
 
-export const fontRatio = PixelRatio.getFontScale()
+const windowWidth = Dimensions.get('window').width
+const factor = (windowWidth < 1000) ? 1.25 : 1
+export const fontRatio = PixelRatio.getFontScale() * factor
 export const CHART_COLUMN_WIDTH = 32
 export const CHART_COLUMN_MIDDLE = CHART_COLUMN_WIDTH / 2
 export const CHART_DOT_RADIUS = 6
