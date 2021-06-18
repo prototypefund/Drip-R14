@@ -4,7 +4,9 @@
             "noPrediction": "Sobald du 3 Zyklen aufgezeichnet hast, machen wir Vorhersagen für die nächsten Zyklen."
         },
         "home": {
-            "addDataForToday": "Eintrag hinzufügen"
+            "addDataForToday": "Eintrag hinzufügen",
+            "cycleDay": " Zyklustag",
+            "cyclePhase": " Zyklus Phase "
         }
     }
 }
