@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "bleedingPrediction": {
+            "noPrediction": "Sobald du 3 Zyklen aufgezeichnet hast, macht drip Vorhersagen für die nächsten Zyklen."
+        },
+        "home": {
+            "addDataForToday": "Eintrag für heute hinzufügen",
+            "cycleDay": " Zyklustag",
+            "cyclePhase": " Zyklusphase "
+        }
+    }
+}
