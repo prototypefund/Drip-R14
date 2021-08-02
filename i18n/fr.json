@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "bleedingPrediction": {
+            "noPrediction": "Dès que tu auras consigné 3 cycles menstruels, drip fera des prédictions pour les prochains."
+        },
+        "home": {
+            "addDataForToday": "ajouter les données pour aujourd’hui",
+            "cyclePhase": " phase du cycle - ",
+            "cycleDay": " jour de ton cycle"
+        }
+    }
+}
