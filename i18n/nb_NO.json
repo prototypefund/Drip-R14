@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "bleedingPrediction": {
+            "noPrediction": "Så snart du har loggført tre menstruasjonssykluser vil drip anslå de neste."
+        },
+        "home": {
+            "addDataForToday": "legg til data for i dag",
+            "cyclePhase": " syklusfase - ",
+            "cycleDay": " dag i din syklus"
+        }
+    }
+}
