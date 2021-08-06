@@ -88,6 +88,8 @@ $ cd ios && pod install && cd ..
 ```
 $ npm run ios
 ```
+3. If you are building the app with XCode make sure you are running this as well:
+`$ npm start`
 
 ### Troubleshooting
 #### [MacOS] Java problems
