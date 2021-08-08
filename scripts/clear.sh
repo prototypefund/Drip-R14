@@ -1,78 +1,77 @@
 #!/bin/bash
 
-COL_PINK="\x1b[35;01m"
-COL_RESET="\x1b[39;49;00m"
+# if user provided argument all, all caches are cleared
 
-echo  $COL_PINK"Your current TMPDIR variable points here: "$COL_RESET$TMPDIR$COL_PINK"\nIf path is not correct, please make sure you fix it before running the script, to make sure all caches are cleared. Is path to tmp folder correct and you would like to continue running clear script(y/n)?"$COL_RESET
-read tmp
-
-if [ $tmp == "n" ];
+if [[ -z "$1" ]];
 then
-  exit
+  if [[ -z "$TMPDIR" ]];
+  then
+    echo "\x1b[35;01m""Your current TMPDIR variable is not set. Please set it before running the script.""\x1b[39;49;00m"
+    exit
+  fi
+
+  echo "\x1b[35;01m""Do you want to clear ios project(y/n)?""\x1b[39;49;00m"
+  read ios
+
+  echo "\x1b[35;01m""Do you want to clear android project(y/n)?""\x1b[39;49;00m"
+  read android
+
+  echo "\x1b[35;01m""Do you want to clear general cache(y/n)?""\x1b[39;49;00m"
+  read cache
+
+  echo "\x1b[35;01m""Do you want to re-install project libraries?""\x1b[39;49;00m"
+  read libraries
+else
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+      ios)
+        ios="y"
+        shift
+        ;;
+      android)
+        android="y"
+        shift
+        ;;
+      cache)
+        cache="y"
+        shift
+        ;;
+      npm)
+        libraries="y"
+        shift
+        ;;
+      *)
+        shift
+        ;;
+    esac
+  done
 fi
 
-echo $COL_PINK"Do you want to clear ios project(y/n)?"$COL_RESET
-read ios
+echo "ios " $ios
+echo "android " $android
+echo "cache " $cache
+echo "npm " $libraries
 
-echo $COL_PINK"Do you want to clear android project(y/n)?"$COL_RESET
-read android
-
-echo $COL_PINK"Do you want to clear general cache(y/n)?"$COL_RESET
-read cache
-
-echo $COL_PINK"Do you want to re-install project libraries?"$COL_RESET
-read libraries
-
-if [ $ios == "y" ];
+if [[ $ios == "y" ]] || [[ $1 == "all" ]];
 then
-echo $COL_PINK"Start clearing ios cache..."$COL_RESET
-. scripts/clear-ios.sh
-echo $COL_PINK"Done!"$COL_RESET
+  . scripts/clear-ios.sh
 fi
 
-if [ $android == "y" ];
+if [[ $android == "y" ]] || [[ $1 == "all" ]];
 then
-echo $COL_PINK"Start clearing android cache..."$COL_RESET
-. scripts/clear-android.sh
-echo $COL_PINK"Done!"$COL_RESET
+  . scripts/clear-android.sh
 fi
 
-if [ $cache == "y" ];
+if [[ $cache == "y" ]] || [[ $1 == "all" ]];
 then
-echo $COL_PINK"Start clearing general cache..."$COL_RESET
-
-echo "watchman watch-del-all..."
-watchman watch-del-all
-
-echo "rm -rf $TMPDIR/react-*..."
-rm -rf $TMPDIR/react-*
-
-echo "rm -rf $TMPDIR/haste-map-react-native-packager-*..."
-rm -rf $TMPDIR/haste-map-react-native-packager-*
-
-echo "rm -rf $TMPDIR/metro-*..."
-rm -rf $TMPDIR/metro-*
-
-echo $COL_PINK"Done!"$COL_RESET
+  . scripts/clear-cache.sh
 fi
 
-if [ $cache == "y" ];
+if [[ $libraries == "y" ]] || [[ $1 == "all" ]];
 then
-echo $COL_PINK"Start re-installing dependencies..."$COL_RESET
-
-echo "rm -rf node_modules..."
-rm -rf node_modules
-
-echo "Verify npm cache"
-npm cache verify
-
-echo "npm install..."
-npm install
-
-echo "Pods install..."
-cd ios && pod install && cd ..
-
-echo $COL_PINK"Done!"$COL_RESET
+  . scripts/clear-npm.sh
 fi
 
-echo $COL_PINK"Clearing is completed. You're ready to go!"$COL_RESET
+echo "\x1b[35;01m""Clearing is completed. You're ready to go!""\x1b[39;49;00m"
