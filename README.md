@@ -97,7 +97,6 @@ $ npm run ios
 Make sure that you have Java 1.8 by running `java -version`.
 
 If you don't have Java installed, or your Java version is different, the app may not work. You can try just using Android Studio's Java by prepending it to your `$PATH` in your shell profile:
-
     ```
     $ export PATH="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin:${PATH}"
     ```
