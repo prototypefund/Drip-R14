@@ -2,16 +2,16 @@
 
 echo "\x1b[35;01m""Start clearing general cache...""\x1b[39;49;00m"
 
-echo "watchman watch-del-all..."
+echo "Clear Watchman cache..."
 watchman watch-del-all
 
-echo "rm -rf $TMPDIR/react-*..."
+echo "Remove React temp data..."
 rm -rf $TMPDIR/react-*
 
-echo "rm -rf $TMPDIR/haste-map-react-native-packager-*..."
+echo "Remove React Native Packager temp data..."
 rm -rf $TMPDIR/haste-map-react-native-packager-*
 
-echo "rm -rf $TMPDIR/metro-*..."
+echo "Remove Metro bundler temp data..."
 rm -rf $TMPDIR/metro-*
 
 echo "\x1b[35;01m""Done!""\x1b[39;49;00m"

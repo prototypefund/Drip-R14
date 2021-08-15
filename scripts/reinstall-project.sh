@@ -2,13 +2,13 @@
 
 echo "\x1b[35;01m""Start re-installing dependencies...""\x1b[39;49;00m"
 
-echo "rm -rf node_modules..."
+echo "Remove node_modules..."
 rm -rf node_modules
 
-echo "Verify npm cache"
+echo "Verify npm cache..."
 npm cache verify
 
-echo "npm install..."
+echo "Npm install..."
 npm install
 
 echo "Pods install..."
