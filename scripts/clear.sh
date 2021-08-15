@@ -71,7 +71,7 @@ fi
 
 if [[ $libraries == "y" ]] || [[ $1 == "all" ]];
 then
-  . scripts/clear-npm.sh
+  . scripts/reinstall-project.sh
 fi
 
 echo "\x1b[35;01m""Clearing is completed. You're ready to go!""\x1b[39;49;00m"
