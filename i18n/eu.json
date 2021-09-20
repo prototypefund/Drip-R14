@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "bleedingPrediction": {
+            "noPrediction": "Hilekoaren 3 zikloren jarraipena egin bezain laster, itoginak hurrengo zikloetarako iragarpenak egingo ditu."
+        },
+        "home": {
+            "addDataForToday": "gaurko datuak gehitu",
+            "cyclePhase": " zikloaren fasea - ",
+            "cycleDay": " zure zikloaren eguna"
+        }
+    }
+}
