@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "bleedingPrediction": {
+            "noPrediction": "En cuanto hayas hecho un seguimiento de 3 ciclos menstruales, el gotero hará predicciones para los siguientes."
+        },
+        "home": {
+            "addDataForToday": "añadir datos para hoy",
+            "cyclePhase": " fase del ciclo - ",
+            "cycleDay": " día de tu ciclo"
+        }
+    }
+}
