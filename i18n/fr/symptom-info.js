@@ -11,7 +11,7 @@ export const generalInfo = {
   3. vos règles
 cette application vous aide à identifier dans quelle phase de votre cycle menstruel vous êtes.
 
-drip fait des prédictions de règles et vous aide à appliquer la Méthode d’Observation du Cycle (MOC, ou NFP en anglais) pour mieux comprendre votre fertilité. Mais n’oubliez pas que cette application est fait par des humain·es, et que les humain·es font des erreurs. Demandez-vous toujours : « Est-ce que ça a du sens ? ». Rappelez-vous que vous n’avez pas besoin d’une application pour comprendre votre cycle ! Cela étant, drip veut rendre le suivi de cycle plus facile, plus transparent et plus sûr.
+drip fait des prédictions de règles et vous aide à suivre une Méthode d’Observation du Cycle (MOC) pour mieux comprendre votre fertilité : la méthode symptothermique. Il s’agit d’une méthode de planification familiale naturelle (PNF, ou NFP en anglais). Mais n’oubliez pas que cette application est faite par des humain·es, et que les humain·es font des erreurs. Demandez-vous toujours : « Est-ce que ça a du sens ? ». Rappelez-vous que vous n’avez pas besoin d’une application pour comprendre votre cycle ! Cela étant, drip veut rendre le suivi de cycle plus facile, plus transparent et plus sûr.
 
 Vous trouverez plus d’informations sur la méthode symptothermique sur ${links.wiki.url}.`,
   noNfpSymptom: `Cette application vous permet de suivre ce symptôme pour votre information personnelle. Il n’entre pas en compte dans les calculs de fertilité ou de règles. Sur le graphique, vous pouvez voir à quelle fréquence vous entrez ce symptôme.`
@@ -37,7 +37,7 @@ ${generalInfo.nfpTfyReminder}`,
     title: `Suivi du col de l’utérus`,
     text: `Le col de l’uterus est situé à l’intérieur de votre corps, au fond du vagin, avant l’utérus.
 
-Suivre son ouverture et sa texture peut aider à déterminer dans quelle phase du cycle menstruel vous êtes.
+Suivre son ouverture et son apparence peut aider à déterminer dans quelle phase du cycle menstruel vous êtes.
 
 Par défaut, le symptôme secondaire pour la méthode symptothermique est la glaire cervicale, mais vous pouvez changer pour le col de l’utérus dans « Paramètres » -> « Paramètres MOC ».
 
@@ -77,13 +77,13 @@ ${generalInfo.curiousNfp}`
 Par défaut, le symptôme secondaire pour la méthode symptothermique que l’application utilise est la glaire cervicale.
 
 · Comment identifier la glaire cervicale fertile ?
-Suivre quotidiennement la sensation et la texture de votre glaire cervicale vous aide à identifier des changements dans sa qualité. Les valeurs que vous entrez pour la sensation et la texture de votre glaire sont combinées par drip en une des cinq valeurs identifiées par la MOC.
+Suivre quotidiennement le ressenti à la vulve et l’apparence de votre glaire cervicale vous aide à identifier des changements dans sa qualité. Les valeurs que vous entrez pour votre ressenti et l’apparence de votre glaire sont combinées par drip en une des cinq valeurs identifiées par la méthode symptothermique.
 De la qualité la plus basse à la plus haute :
-· t = (sensation sèche + pas de texture),
-· ∅ = (pas de sensation + pas de texture),
-· f = (sensation mouillée + pas de texture),
-· S = (pas de sensation OU mouillée + texture crémeuse),
-· S+ = (n’importe quelle sensation + texture de blanc d’œuf) OU (sensation glissante + n’importe quelle texture).
+· t = (ressenti sec/sensation sèche, rêche + pas de glaire),
+· ∅ = (pas de sensation particulière + pas de glaire),
+· f = (sensation d’humidité MAIS pas de glaire),
+· S = (pas de sensation particulière OU sensation d’humidité + glaire d’apparence épaisse, blanchâtre, crêmeuse, jaunâtre, collante),
+· S+ = (n’importe quelle sensation + glaire d’apparence translucide, claire, comme du blanc d’œuf cru, élastique) OU (sensation glissante, mouillée, huileuse + n’importe quelle apparence).
 
 Sur le graphique, la glaire cervicale est représentée par une couleur bleue ; plus le bleu est foncé, meilleure est la qualité de votre glaire.
 
