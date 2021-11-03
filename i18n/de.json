@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cycleDay": " Zyklustag",
+            "cyclePhase": " Zyklusphase - ",
+            "addDataForToday": "Daten für heute hinzufügen"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Sobald Sie 3 Menstruationszyklen verfolgt haben, wird drip Vorhersagen für die nächsten machen."
+        }
+    }
+}
