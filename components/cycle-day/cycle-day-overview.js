@@ -16,12 +16,14 @@ import { dateToTitle } from '../helpers/format-date'
 import { getCycleDay } from '../../db'
 import { getData } from '../helpers/cycle-day'
 
-import { general as labels} from '../../i18n/en/cycle-day'
+import { general as labels } from '../../i18n/en/cycle-day'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
+import { PERIOD_SYMPTOMS } from '../../config'
+
+import { fertilityTrackObservable } from '../../local-storage'
 
 class CycleDayOverView extends Component {
-
   static propTypes = {
     navigate: PropTypes.func,
     setDate: PropTypes.func,
@@ -33,7 +35,12 @@ class CycleDayOverView extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { cycleDay: getCycleDay(props.date), data: null }
+    this.state = {
+      cycleDay: getCycleDay(props.date),
+      data: null,
+      isFertilityTrackEnabled: fertilityTrackObservable.value,
+    }
+
     if (props.isTemperatureEditView) {
       const todayDateString = LocalDate.now().toString()
       props.setDate(todayDateString)
@@ -46,12 +53,17 @@ class CycleDayOverView extends Component {
   }
 
   render() {
-    const { cycleDay } = this.state
+    const { cycleDay, isFertilityTrackEnabled } = this.state
     const { date, isTemperatureEditView } = this.props
 
     const { getCycleDayNumber } = cycleModule()
     const cycleDayNumber = getCycleDayNumber(date)
-    const subtitle = cycleDayNumber && `${labels.cycleDayNumber}${cycleDayNumber}`
+    const subtitle =
+      cycleDayNumber && `${labels.cycleDayNumber}${cycleDayNumber}`
+
+    let DISP_SYMPTOMS = []
+
+    DISP_SYMPTOMS = isFertilityTrackEnabled ? SYMPTOMS : PERIOD_SYMPTOMS
 
     return (
       <AppPage>
@@ -61,13 +73,14 @@ class CycleDayOverView extends Component {
           title={dateToTitle(date)}
         />
         <View style={styles.container}>
-          {SYMPTOMS.map(symptom => {
-            const symptomData = cycleDay && cycleDay[symptom]
-              ? cycleDay[symptom] : null
+          {DISP_SYMPTOMS.map((symptom) => {
+            const symptomData =
+              cycleDay && cycleDay[symptom] ? cycleDay[symptom] : null
 
-            const isSymptomEdited = isTemperatureEditView && symptom === 'temperature'
+            const isSymptomEdited =
+              isTemperatureEditView && symptom === 'temperature'
 
-            return(
+            return (
               <SymptomBox
                 key={symptom}
                 symptom={symptom}
@@ -89,24 +102,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    padding: Spacing.base
-  }
+    padding: Spacing.base,
+  },
 })
 
 const mapStateToProps = (state) => {
-  return({
+  return {
     date: getDate(state),
-  })
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return({
+  return {
     setDate: (date) => dispatch(setDate(date)),
     navigate: (page) => dispatch(navigate(page)),
-  })
+  }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CycleDayOverView)
+export default connect(mapStateToProps, mapDispatchToProps)(CycleDayOverView)

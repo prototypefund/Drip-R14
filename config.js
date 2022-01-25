@@ -16,8 +16,10 @@ export const SYMPTOMS = [
   'note',
 ]
 
+export const PERIOD_SYMPTOMS = ['bleeding', 'pain', 'mood', 'note']
+
 const windowWidth = Dimensions.get('window').width
-const factor = (windowWidth < 1000) && (Platform.OS === 'ios') ? 1.25 : 1
+const factor = windowWidth < 1000 && Platform.OS === 'ios' ? 1.25 : 1
 export const fontRatio = PixelRatio.getFontScale() * factor
 export const CHART_COLUMN_WIDTH = 32
 export const CHART_COLUMN_MIDDLE = CHART_COLUMN_WIDTH / 2
