@@ -14,6 +14,7 @@ import { Colors, Sizes, Spacing } from '../../styles'
 import { headerTitles as symptomTitles } from '../../i18n/en/labels'
 
 class SymptomBox extends Component {
+
   static propTypes = {
     date: PropTypes.string.isRequired,
     isSymptomEdited: PropTypes.bool,
@@ -31,7 +32,7 @@ class SymptomBox extends Component {
     super(props)
 
     this.state = {
-      isSymptomEdited: props.isSymptomEdited,
+      isSymptomEdited: props.isSymptomEdited
     }
   }
 
@@ -56,24 +57,24 @@ class SymptomBox extends Component {
     const iconName = `drip-icon-${symptom}`
     const symptomNameStyle = [
       styles.symptomName,
-      isSymptomDisabled && styles.symptomNameDisabled,
-      isExcluded && styles.symptomNameExcluded,
+      (isSymptomDisabled && styles.symptomNameDisabled),
+      (isExcluded && styles.symptomNameExcluded)
     ]
     const textStyle = [
       styles.text,
-      isSymptomDisabled && styles.textDisabled,
-      isExcluded && styles.textExcluded,
+      (isSymptomDisabled && styles.textDisabled),
+      (isExcluded && styles.textExcluded)
     ]
 
     return (
       <React.Fragment>
-        {isSymptomEdited && (
+        {isSymptomEdited &&
           <SymptomEditView
             symptom={symptom}
             symptomData={symptomData}
             onClose={this.onFinishEditing}
           />
-        )}
+        }
 
         <TouchableOpacity
           disabled={isSymptomDisabled}
@@ -91,11 +92,11 @@ class SymptomBox extends Component {
             <AppText style={symptomNameStyle}>
               {symptomTitles[symptom].toLowerCase()}
             </AppText>
-            {symptomDataToDisplay && (
+            {symptomDataToDisplay &&
               <AppText style={textStyle} numberOfLines={4}>
                 {symptomDataToDisplay}
               </AppText>
-            )}
+            }
           </View>
         </TouchableOpacity>
       </React.Fragment>
@@ -105,15 +106,15 @@ class SymptomBox extends Component {
 
 const hint = {
   fontSize: Sizes.small,
-  fontStyle: 'italic',
+  fontStyle: 'italic'
 }
 
 const main = {
   fontSize: Sizes.base,
   height: Sizes.base * 2,
   lineHeight: Sizes.base,
-  marginBottom: -1 * Sizes.tiny,
-  textAlignVertical: 'center',
+  marginBottom: (-1) * Sizes.tiny,
+  textAlignVertical: 'center'
 }
 
 const styles = StyleSheet.create({
@@ -127,14 +128,14 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.base,
     paddingHorizontal: Spacing.small,
     paddingVertical: Spacing.base,
-    width: Spacing.symptomTileWidth,
+    width: Spacing.symptomTileWidth
   },
   symptomName: {
     color: Colors.purple,
-    ...main,
+    ...main
   },
   symptomNameDisabled: {
-    color: Colors.grey,
+    color: Colors.grey
   },
   symptomNameExcluded: {
     color: Colors.greyDark,
@@ -142,23 +143,26 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'column',
     marginLeft: Spacing.small,
-    maxWidth: Spacing.textWidth,
+    maxWidth: Spacing.textWidth
   },
   text: {
-    ...hint,
+    ...hint
   },
   textDisabled: {
-    color: Colors.greyLight,
+    color: Colors.greyLight
   },
   textExcluded: {
     color: Colors.grey,
-  },
+  }
 })
 
 const mapStateToProps = (state) => {
-  return {
+  return({
     date: getDate(state),
-  }
+  })
 }
 
-export default connect(mapStateToProps, null)(SymptomBox)
+export default connect(
+  mapStateToProps,
+  null,
+)(SymptomBox)

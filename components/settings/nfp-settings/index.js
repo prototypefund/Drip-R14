@@ -8,12 +8,7 @@ import AppText from '../../common/app-text'
 import TemperatureSlider from './temperature-slider'
 import Segment from '../../common/segment'
 
-import {
-  useCervixObservable,
-  saveUseCervix,
-  fertilityTrackObservable,
-  saveFertilityTrack,
-} from '../../../local-storage'
+import { useCervixObservable, saveUseCervix } from '../../../local-storage'
 import { Colors, Spacing, Typography } from '../../../styles'
 import labels from '../../../i18n/en/settings'
 
@@ -22,8 +17,7 @@ export default class Settings extends Component {
     super(props)
 
     this.state = {
-      shouldUseCervix: useCervixObservable.value,
-      isFertilityTrackEnabled: fertilityTrackObservable.value,
+      shouldUseCervix: useCervixObservable.value
     }
   }
 
@@ -32,54 +26,35 @@ export default class Settings extends Component {
     saveUseCervix(value)
   }
 
-  onFertilityToggle = (value) => {
-    this.setState({ isFertilityTrackEnabled: value })
-    saveFertilityTrack(value)
-  }
-
   render() {
-    const { shouldUseCervix, isFertilityTrackEnabled } = this.state
-    const cervixText = shouldUseCervix
-      ? labels.useCervix.cervixModeOn
-      : labels.useCervix.cervixModeOff
+    const { shouldUseCervix } = this.state
+    const cervixText = shouldUseCervix ?
+      labels.useCervix.cervixModeOn : labels.useCervix.cervixModeOff
 
     return (
       <AppPage>
-        <Segment title={labels.fertilityTrack.title}>
+        <Segment title={labels.useCervix.title}>
           <AppSwitch
-            onToggle={this.onFertilityToggle}
-            text={labels.fertilityTrack.fertilityEnable}
-            value={isFertilityTrackEnabled}
+            onToggle={this.onCervixToggle}
+            text={cervixText}
+            value={shouldUseCervix}
           />
         </Segment>
-        {isFertilityTrackEnabled && (
-          <Segment title={labels.useCervix.title}>
-            <AppSwitch
-              onToggle={this.onCervixToggle}
-              text={cervixText}
-              value={shouldUseCervix}
+        <Segment title={labels.tempScale.segmentTitle}>
+          <AppText>{labels.tempScale.segmentExplainer}</AppText>
+          <TemperatureSlider />
+        </Segment>
+        <Segment last>
+          <View style={styles.line}>
+            <AppIcon
+              color={Colors.purple}
+              name="info-with-circle"
+              style={styles.icon}
             />
-          </Segment>
-        )}
-        {isFertilityTrackEnabled && (
-          <Segment title={labels.tempScale.segmentTitle}>
-            <AppText>{labels.tempScale.segmentExplainer}</AppText>
-            <TemperatureSlider />
-          </Segment>
-        )}
-        {isFertilityTrackEnabled && (
-          <Segment last>
-            <View style={styles.line}>
-              <AppIcon
-                color={Colors.purple}
-                name="info-with-circle"
-                style={styles.icon}
-              />
-              <AppText style={styles.title}>{labels.preOvu.title}</AppText>
-            </View>
-            <AppText>{labels.preOvu.note}</AppText>
-          </Segment>
-        )}
+            <AppText style={styles.title}>{labels.preOvu.title}</AppText>
+          </View>
+          <AppText>{labels.preOvu.note}</AppText>
+        </Segment>
       </AppPage>
     )
   }
@@ -87,13 +62,13 @@ export default class Settings extends Component {
 
 const styles = StyleSheet.create({
   icon: {
-    marginRight: Spacing.base,
+    marginRight: Spacing.base
   },
   line: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   title: {
-    ...Typography.subtitle,
-  },
+    ...Typography.subtitle
+  }
 })
