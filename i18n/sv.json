@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cycleDay": " dag i cykeln",
+            "cyclePhase": " fas i cykeln ",
+            "addDataForToday": "lägg till data för idag"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Så fort du har spårat 3 menscykler så kommer drip göra prognoser om de kommande cyklerna."
+        }
+    }
+}
