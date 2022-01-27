@@ -18,13 +18,11 @@ import {
 import { Colors, Spacing, Typography } from '../../../styles'
 import labels from '../../../i18n/en/settings'
 
-var tempReminder
+const tempReminder = new TemperatureReminder()
 
 export default class Settings extends Component {
   constructor(props) {
     super(props)
-
-    tempReminder = new TemperatureReminder()
 
     this.state = {
       shouldUseCervix: useCervixObservable.value,
