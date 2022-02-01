@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cycleDay": " dag van je cyclus",
+            "cyclePhase": " cyclusfase - ",
+            "addDataForToday": "Voeg gegevens van vandaag toe"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Na 3 menstruatiecycli doet drip voorspellingen over de aankomende cycli."
+        }
+    }
+}
