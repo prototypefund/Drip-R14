@@ -7,18 +7,16 @@ import AppSwitch from '../../common/app-switch'
 import AppText from '../../common/app-text'
 import TemperatureSlider from './temperature-slider'
 import Segment from '../../common/segment'
-import TemperatureReminder from '../reminders/temperature-reminder'
 
 import {
   useCervixObservable,
   saveUseCervix,
   fertilityTrackObservable,
   saveFertilityTrack,
+  saveTempReminder,
 } from '../../../local-storage'
 import { Colors, Spacing, Typography } from '../../../styles'
 import labels from '../../../i18n/en/settings'
-
-const tempReminder = new TemperatureReminder()
 
 export default class Settings extends Component {
   constructor(props) {
@@ -38,7 +36,7 @@ export default class Settings extends Component {
   onFertilityToggle = (value) => {
     this.setState({ isFertilityTrackEnabled: value })
     saveFertilityTrack(value)
-    tempReminder.temperatureReminderToggle(false)
+    saveTempReminder({ enabled: false })
   }
 
   render() {
