@@ -1,1 +1,12 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cycleDay": " giorno di ciclo",
+            "cyclePhase": " fase del ciclo ",
+            "addDataForToday": "aggiungi dati di oggi"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Non appena avrai inserito 3 cicli mestruali, Drip inizierà a prevedere i periodi futuri."
+        }
+    }
+}
