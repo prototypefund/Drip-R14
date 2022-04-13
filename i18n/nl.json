@@ -7,6 +7,16 @@
         },
         "bleedingPrediction": {
             "noPrediction": "Na 3 menstruatiecycli doet drip voorspellingen over de aankomende cycli."
+        },
+        "shared": {
+            "cancel": "Annuleren",
+            "ok": "Oké"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip is een opensource-fietsroute-app",
+            "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nNeem contact met ons op via drip@mailbox.org."
         }
     }
 }
