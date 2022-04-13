@@ -1,1 +1,22 @@
-{}
+{
+    "settings": {
+        "license": {
+            "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nAquest programa es distribueix amb l'esperança que sigui útil, però SENSE CAP GARANTIA; ni tan sols la garantia implícita de COMERCIALITZACIÓ o ADEQUACIÓ PER A UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU per a més detalls: https://www.gnu.org/licenses/gpl-3.0.html\n\nPodeu contactar amb nosaltres (en anglès) a drip.mailbox.org.",
+            "title": "Drip és una aplicació de codi obert per al seguiment del cicle menstrual"
+        }
+    },
+    "labels": {
+        "home": {
+            "cycleDay": " dia del cicle",
+            "cyclePhase": " fase del cicle - ",
+            "addDataForToday": "afegeix dades d'avui"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Quan hàgiu fet seguiment de 3 cicles menstruals, Drip farà prediccions per als següents."
+        },
+        "shared": {
+            "ok": "D'acord",
+            "cancel": "Cancel·la"
+        }
+    }
+}
