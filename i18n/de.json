@@ -7,6 +7,16 @@
         },
         "bleedingPrediction": {
             "noPrediction": "Sobald Sie 3 Menstruationszyklen verfolgt haben, wird drip Vorhersagen für die nächsten machen."
+        },
+        "shared": {
+            "cancel": "Abbrechen",
+            "ok": "OK"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip ist eine Open Source Perioden-Tracker App",
+            "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nDieses Programm wird in der Hoffnung verteilt, dass es nützlich ist, aber OHNE JEGLICHE GARANTIE; auch ohne die implizierte Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public\nLicense: https://www.gnu.org/licenses/gpl-3.0.html\n\nSie können uns über drip@mailbox.org kontaktieren."
         }
     }
 }
