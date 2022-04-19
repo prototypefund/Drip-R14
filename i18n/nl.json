@@ -10,7 +10,8 @@
         },
         "shared": {
             "cancel": "Annuleren",
-            "ok": "Oké"
+            "ok": "Oké",
+            "dateTimePickerTitle": "Kies een tijdstip"
         }
     },
     "settings": {
