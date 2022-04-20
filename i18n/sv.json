@@ -7,6 +7,11 @@
         },
         "bleedingPrediction": {
             "noPrediction": "Så fort du har spårat 3 menscykler så kommer drip göra prognoser om de kommande cyklerna."
+        },
+        "shared": {
+            "dateTimePickerTitle": "Välj en tid",
+            "cancel": "Avbryt",
+            "ok": "OK"
         }
     }
 }
