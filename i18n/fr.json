@@ -7,6 +7,17 @@
             "addDataForToday": "ajouter les données pour aujourd’hui",
             "cyclePhase": " phase du cycle - ",
             "cycleDay": " jour de ton cycle"
+        },
+        "shared": {
+            "dateTimePickerTitle": "Sélectionne une heure",
+            "ok": "OK",
+            "cancel": "Annuler"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip est une application de suivi de cycle open source",
+            "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nVous pouvez nous contacter à drip@mailbox.org."
         }
     }
 }
