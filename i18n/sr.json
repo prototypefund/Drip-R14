@@ -1,1 +1,23 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cyclePhase": " фаза у циклусу - ",
+            "addDataForToday": "додајте податке за данас",
+            "cycleDay": " дан циклуса"
+        },
+        "shared": {
+            "cancel": "Откажи",
+            "dateTimePickerTitle": "Изаберите време",
+            "ok": "ОК"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Чим испратите 3 менструална циклуса, дрип ће почети предвиђати следеће циклусе."
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "дрип је апликација отвореног кода за праћење циклуса",
+            "text": "Права (C) {{currentYear}} Bloody Health GbR\n\nОвај програм се нуди у нади да ће бити од користи, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак и без имплицитне гаранције ПРОМЕТНОСТИ или ПРИКЛАДНОСТИ ОДРЕЂЕНОЈ УПОТРЕБИ. За више детаља погледајте GNU General Public License: https://www.gnu.org/licenses/gpl-3.0.html\n\nМожете нас контактирати путем drip@mailbox.org."
+        }
+    }
+}
