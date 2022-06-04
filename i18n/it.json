@@ -2,11 +2,21 @@
     "labels": {
         "home": {
             "cycleDay": " giorno di ciclo",
-            "cyclePhase": " fase del ciclo ",
+            "cyclePhase": " fase del ciclo - ",
             "addDataForToday": "aggiungi dati di oggi"
         },
         "bleedingPrediction": {
-            "noPrediction": "Non appena avrai inserito 3 cicli mestruali, Drip inizierà a prevedere i periodi futuri."
+            "noPrediction": "Quando avrai inserito 3 cicli mestruali, Drip inizierà a prevedere quelli futuri."
+        },
+        "shared": {
+            "cancel": "Annulla",
+            "ok": "OK"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip è un'applicazione open source per il monitoraggio del ciclo",
+            "text": "Copyright (C) {{anno corrente}} Bloody Health GbR\n\nQuesto programma è distribuito nella speranza che possa essere utile, ma SENZA ALCUNA GARANZIA; nemmeno la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Per ulteriori informazioni, consultare la GNU General Public License: https://www.gnu.org/licenses/gpl-3.0.html.\n\nScriveteci a drip@mailbox.org ."
         }
     }
 }
