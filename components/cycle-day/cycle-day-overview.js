@@ -14,7 +14,7 @@ import { dateToTitle } from '../helpers/format-date'
 import { getCycleDay } from '../../db'
 import { getData } from '../helpers/cycle-day'
 
-import { general as labels } from '../../i18n/en/cycle-day'
+import { general as labels} from '../../i18n/en/cycle-day'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    padding: Spacing.base,
-  },
+    padding: Spacing.base
+  }
 })
 
 const mapStateToProps = (state) => {
-  return {
+  return({
     date: getDate(state),
-  }
+  })
 }
 
 export default connect(mapStateToProps, null)(CycleDayOverView)

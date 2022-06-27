@@ -1,12 +1,12 @@
 import { createSlice } from 'redux-starter-kit'
-import { LocalDate } from '@js-joda/core'
+import { LocalDate } from 'js-joda'
 
 const dateSlice = createSlice({
   slice: 'date',
   initialState: LocalDate.now().toString(),
   reducers: {
-    setDate: (state, action) => action.payload,
-  },
+    setDate: (state, action) => action.payload
+  }
 })
 
 // Extract the action creators object and the reducer
