@@ -1,12 +1,13 @@
-import { LocalDate } from '@js-joda/core'
 import { verticalScale } from 'react-native-size-matters'
+import store from '../../store'
 
 import { Colors, Fonts, Sizes } from '../../styles'
 
 const { shades } = Colors.iconColors.bleeding
 
 export const toCalFormat = (bleedingDaysSortedByDate) => {
-  const todayDateString = LocalDate.now().toString()
+  const state = store.getState()
+  const todayDateString = state.date
 
   return bleedingDaysSortedByDate.reduce((acc, day) => {
     acc[day.date] = {
@@ -27,7 +28,9 @@ export const toCalFormat = (bleedingDaysSortedByDate) => {
 
 export const predictionToCalFormat = (predictedDays) => {
   if (!predictedDays.length) return {}
-  const todayDateString = LocalDate.now().toString()
+  const state = store.getState()
+  const todayDateString = state.date
+
   const middleIndex = (predictedDays[0].length - 1) / 2
   return predictedDays.reduce((acc, setOfDays) => {
     setOfDays.reduce((accSet, day, i) => {
@@ -51,7 +54,9 @@ export const predictionToCalFormat = (predictedDays) => {
 }
 
 export const todayToCalFormat = () => {
-  const todayDateString = LocalDate.now().toString()
+  const state = store.getState()
+  const todayDateString = state.date
+
   return {
     [todayDateString]: {
       customStyles: {
