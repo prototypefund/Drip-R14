@@ -1,7 +1,7 @@
 {
     "labels": {
         "bleedingPrediction": {
-            "noPrediction": "En cuanto hayas hecho un seguimiento de 3 ciclos menstruales, el gotero hará predicciones para los siguientes."
+            "noPrediction": "En cuanto hayas hecho un seguimiento de 3 ciclos menstruales, drip. hará predicciones para los siguientes."
         },
         "home": {
             "addDataForToday": "añadir datos para hoy",
@@ -16,8 +16,27 @@
     },
     "settings": {
         "license": {
-            "title": "drip es una aplicación de seguimiento de ciclos de código abierto",
-            "text": "Copyright (C) 2022 Bloody Health GbR\n\nEste programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de COMERCIALIZACIÓN o ADECUACIÓN A UN PROPÓSITO PARTICULAR. Consulte la Licencia Pública General de GNU para más detalles: https://www.gnu.org/licenses/gpl-3.0.html\n\nPuede ponerse en contacto con nosotros en drip@mailbox.org."
+            "title": "drip. es una aplicación de seguimiento de ciclos de código abierto",
+            "text": "Copyright (C) 2022 Heart of Code e.V.\n\nEste programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de COMERCIALIZACIÓN o ADECUACIÓN A UN PROPÓSITO PARTICULAR. Consulte la Licencia Pública General de GNU para más detalles: https://www.gnu.org/licenses/gpl-3.0.html\n\nPuede ponerse en contacto con nosotros en drip@mailbox.org."
+        },
+        "privacyPolicy": {
+            "dataUse": {
+                "title": "Uso de datos",
+                "text": "Drip. respeta y celebra tu privacidad. No se recogen datos de uso o información personal, ni anuncios, ni spyware. Drip. puede almacenar datos relacionados con la salud menstrual localmente en tu dispositivo.\n\nEsto incluye:\n- ajustes\n- datos de seguimiento del ciclo menstrual\n\nLos datos se utilizan para mostrar estadísticas y aplicar reglas de conocimiento de la fertilidad. Otras aplicaciones no pueden acceder a estos datos.\n\nSi deseas eliminar todos los datos de la aplicación, puedes hacerlo accediendo a Ajustes, Datos y Eliminar datos de la aplicación. También puedes hacerlo desinstalando la aplicación."
+            },
+            "transparency": {
+                "text": "Puedes leer el código fuente de drip. para asegurarte de que la información dada es correcta. El código fuente es como una receta: Te dice cuánto y qué tipo de ingredientes necesitas y cómo los preparas para cocinar una comida sabrosa o programar una aplicación divertida.\n\n¡Buen provecho!",
+                "title": "Transparencia"
+            },
+            "title": "Política de privacidad",
+            "intro": {
+                "title": "Introducción",
+                "text": "Esta política de privacidad establece cómo la aplicación para iOS 'drip.' utiliza y protege tus datos personales que genera y almacena dentro de la aplicación."
+            },
+            "permissions": {
+                "title": "Permisos",
+                "text": "Para usar los recordatorios en drip. necesitas permitir las notificaciones push. Si no quieres utilizar esta función, simplemente no permitas las notificaciones para la aplicación."
+            }
         }
     }
 }
