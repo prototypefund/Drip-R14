@@ -1,12 +1,42 @@
 {
     "labels": {
         "bleedingPrediction": {
-            "noPrediction": "Hilekoaren 3 zikloren jarraipena egin bezain laster, dripek hurrengo zikloetarako iragarpenak egingo ditu."
+            "noPrediction": "Hilekoaren 3 zikloren jarraipena egin bezain laster, drip.(ek) hurrengo zikloetarako iragarpenak egingo ditu."
         },
         "home": {
             "addDataForToday": "gaurko datuak gehitu",
             "cyclePhase": " zikloaren fasea - ",
             "cycleDay": " zure zikloaren eguna"
+        },
+        "shared": {
+            "dateTimePickerTitle": "Aukeratu ordubete",
+            "ok": "Adoz",
+            "cancel": "Ezeztatu"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip. kode irekiko zikloen jarraipena egiteko aplikazio bat da",
+            "text": "Copyright (C) 2022 Heart of Code e. V.\n\nPrograma hau erabilgarria izateko itxaropenarekin banatzen da, baina BERMERIK GABE; ezta MERKATURATZEKO edo PROPOSITU PARTIKULARRERA EGOKITZEKO berme inplizitua ere. Kontsulta ezazu GNUren Lizentzia Publiko Orokorra xehetasun gehiagorako: https://www.gnu.org/licenses/gpl-3.0.html\n\nGurekin harremanetan jar zaitezke drip@mailbox.org helbidean."
+        },
+        "privacyPolicy": {
+            "dataUse": {
+                "text": "drip. errespetatu eta ospatu zure pribatutasuna. Ez da jasotzen erabilerari edo informazio pertsonalari buruzko daturik, ez iragarkirik, ez spyware-rik. 'drip.' hilekoaren osasunarekin lotutako datuak zure gailuan bertan gorde ditzakezu.\n\nHorren barruan sartzen dira:\n- Doikuntzak\n- Hilekoaren zikloaren jarraipenari buruzko datuak\n\nDatuak estatistikak erakusteko eta ugalkortasunari buruzko ezagutza-arauak aplikatzeko erabiltzen dira. Beste aplikazio batzuk ezin dira datu horietara sartu.\n\nAplikazioko datu guztiak ezabatu nahi badituzu, “Egokitzapenak”, “Datuak” atalean sar zaitezke eta “Aplikazioko datuak” ezabatu. Aplikazioa desinstalatzen baduzu ere egin dezakezu.",
+                "title": "Datuen erabilera"
+            },
+            "title": "Pribatutasun-politika",
+            "intro": {
+                "title": "Sarrera",
+                "text": "Pribatutasun-politika honek ezartzen du nola iOS 'drip.' erabilitzen eta babesten duen aplikazioan sortzen eta biltegiratzen dituzun datu pertsonalak."
+            },
+            "permissions": {
+                "title": "Baimenak",
+                "text": "'drip.' ohartarazpenak erabiltzeko push jakinarazpenak baimendu behar dituzu. Funtzio hori erabili nahi ez baduzu, ez utzi aplikazioa jakinarazpenak egiten."
+            },
+            "transparency": {
+                "title": "Gardentasuna",
+                "text": "'drip.' iturburu-kodea irakur dezakezu, emandako informazioa zuzena dela ziurtatzeko. Iturburu-kodea errezeta bat bezalakoa da: Zenbat eta zer osagai behar dituzun esaten dizu, eta nola prestatzen dituzun janari zaporetsu bat prestatzeko edo aplikazio dibertigarri bat programatzeko.\n\nOn egin!"
+            }
         }
     }
 }
