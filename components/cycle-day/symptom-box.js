@@ -17,35 +17,24 @@ import { headerTitles as symptomTitles } from '../../i18n/en/labels'
 class SymptomBox extends Component {
   static propTypes = {
     date: PropTypes.string.isRequired,
-    isSymptomEdited: PropTypes.bool,
     symptom: PropTypes.string.isRequired,
     symptomData: PropTypes.object,
     symptomDataToDisplay: PropTypes.string,
-  }
-
-  static defaultProps = {
-    isSymptomEdited: false,
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isSymptomEdited: props.isSymptomEdited,
-    }
-  }
-
-  onFinishEditing = () => {
-    this.setState({ isSymptomEdited: false })
-  }
-
-  onEditSymptom = () => {
-    this.setState({ isSymptomEdited: true })
+    editedSymptom: PropTypes.string.isRequired,
+    setEditedSymptom: PropTypes.func.isRequired,
   }
 
   render() {
-    const { date, symptom, symptomData, symptomDataToDisplay } = this.props
-    const { isSymptomEdited } = this.state
+    const {
+      date,
+      symptom,
+      symptomData,
+      symptomDataToDisplay,
+      editedSymptom,
+      setEditedSymptom,
+    } = this.props
+
+    const isSymptomEdited = editedSymptom === symptom
     const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
     const isExcluded = symptomData !== null ? symptomData.exclude : false
 
@@ -68,13 +57,13 @@ class SymptomBox extends Component {
           <SymptomEditView
             symptom={symptom}
             symptomData={symptomData}
-            onClose={this.onFinishEditing}
+            onClose={() => setEditedSymptom('')}
           />
         )}
 
         <TouchableOpacity
           disabled={isSymptomDisabled}
-          onPress={this.onEditSymptom}
+          onPress={() => setEditedSymptom(symptom)}
           style={styles.container}
           testID={iconName}
         >

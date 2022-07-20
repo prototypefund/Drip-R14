@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
 
@@ -7,8 +7,7 @@ import SymptomBox from './symptom-box'
 import SymptomPageTitle from './symptom-page-title'
 
 import { connect } from 'react-redux'
-import { getDate, setDate } from '../../slices/date'
-import { navigate } from '../../slices/navigation'
+import { getDate } from '../../slices/date'
 
 import cycleModule from '../../lib/cycle'
 import { dateToTitle } from '../helpers/format-date'
@@ -19,49 +18,44 @@ import { general as labels } from '../../i18n/en/cycle-day'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
-class CycleDayOverView extends Component {
-  static propTypes = {
-    navigate: PropTypes.func,
-    setDate: PropTypes.func,
-    cycleDay: PropTypes.object,
-    date: PropTypes.string,
-    isTemperatureEditView: PropTypes.bool,
-  }
+const CycleDayOverView = ({ date, isTemperatureEditView }) => {
+  const cycleDay = getCycleDay(date)
 
-  render() {
-    const { date, isTemperatureEditView } = this.props
-    const cycleDay = getCycleDay(date)
+  const { getCycleDayNumber } = cycleModule()
+  const cycleDayNumber = getCycleDayNumber(date)
+  const subtitle = cycleDayNumber && `${labels.cycleDayNumber}${cycleDayNumber}`
+  const [editedSymptom, setEditedSymptom] = useState(
+    isTemperatureEditView ? 'temperature' : ''
+  )
 
-    const { getCycleDayNumber } = cycleModule()
-    const cycleDayNumber = getCycleDayNumber(date)
-    const subtitle =
-      cycleDayNumber && `${labels.cycleDayNumber}${cycleDayNumber}`
+  return (
+    <AppPage>
+      <SymptomPageTitle subtitle={subtitle} title={dateToTitle(date)} />
+      <View style={styles.container}>
+        {SYMPTOMS.map((symptom) => {
+          const symptomData =
+            cycleDay && cycleDay[symptom] ? cycleDay[symptom] : null
 
-    return (
-      <AppPage>
-        <SymptomPageTitle subtitle={subtitle} title={dateToTitle(date)} />
-        <View style={styles.container}>
-          {SYMPTOMS.map((symptom) => {
-            const symptomData =
-              cycleDay && cycleDay[symptom] ? cycleDay[symptom] : null
+          return (
+            <SymptomBox
+              key={symptom}
+              symptom={symptom}
+              symptomData={symptomData}
+              symptomDataToDisplay={getData(symptom, symptomData)}
+              editedSymptom={editedSymptom}
+              setEditedSymptom={setEditedSymptom}
+            />
+          )
+        })}
+      </View>
+    </AppPage>
+  )
+}
 
-            const isSymptomEdited =
-              isTemperatureEditView && symptom === 'temperature'
-
-            return (
-              <SymptomBox
-                key={symptom}
-                symptom={symptom}
-                symptomData={symptomData}
-                symptomDataToDisplay={getData(symptom, symptomData)}
-                isSymptomEdited={isSymptomEdited}
-              />
-            )
-          })}
-        </View>
-      </AppPage>
-    )
-  }
+CycleDayOverView.propTypes = {
+  cycleDay: PropTypes.object,
+  date: PropTypes.string,
+  isTemperatureEditView: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({
@@ -79,11 +73,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setDate: (date) => dispatch(setDate(date)),
-    navigate: (page) => dispatch(navigate(page)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CycleDayOverView)
+export default connect(mapStateToProps, null)(CycleDayOverView)
