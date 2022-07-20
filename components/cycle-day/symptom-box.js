@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { scale } from 'react-native-size-matters'
@@ -14,79 +14,75 @@ import { isDateInFuture } from '../helpers/cycle-day'
 import { Colors, Sizes, Spacing } from '../../styles'
 import { headerTitles as symptomTitles } from '../../i18n/en/labels'
 
-class SymptomBox extends Component {
-  static propTypes = {
-    date: PropTypes.string.isRequired,
-    symptom: PropTypes.string.isRequired,
-    symptomData: PropTypes.object,
-    symptomDataToDisplay: PropTypes.string,
-    editedSymptom: PropTypes.string.isRequired,
-    setEditedSymptom: PropTypes.func.isRequired,
-  }
+const SymptomBox = ({
+  date,
+  symptom,
+  symptomData,
+  symptomDataToDisplay,
+  editedSymptom,
+  setEditedSymptom,
+}) => {
+  const isSymptomEdited = editedSymptom === symptom
+  const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
+  const isExcluded = symptomData !== null ? symptomData.exclude : false
 
-  render() {
-    const {
-      date,
-      symptom,
-      symptomData,
-      symptomDataToDisplay,
-      editedSymptom,
-      setEditedSymptom,
-    } = this.props
+  const iconColor = isSymptomDisabled ? Colors.greyLight : Colors.grey
+  const iconName = `drip-icon-${symptom}`
+  const symptomNameStyle = [
+    styles.symptomName,
+    isSymptomDisabled && styles.symptomNameDisabled,
+    isExcluded && styles.symptomNameExcluded,
+  ]
+  const textStyle = [
+    styles.text,
+    isSymptomDisabled && styles.textDisabled,
+    isExcluded && styles.textExcluded,
+  ]
 
-    const isSymptomEdited = editedSymptom === symptom
-    const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
-    const isExcluded = symptomData !== null ? symptomData.exclude : false
+  return (
+    <>
+      {isSymptomEdited && (
+        <SymptomEditView
+          symptom={symptom}
+          symptomData={symptomData}
+          onClose={() => setEditedSymptom('')}
+        />
+      )}
 
-    const iconColor = isSymptomDisabled ? Colors.greyLight : Colors.grey
-    const iconName = `drip-icon-${symptom}`
-    const symptomNameStyle = [
-      styles.symptomName,
-      isSymptomDisabled && styles.symptomNameDisabled,
-      isExcluded && styles.symptomNameExcluded,
-    ]
-    const textStyle = [
-      styles.text,
-      isSymptomDisabled && styles.textDisabled,
-      isExcluded && styles.textExcluded,
-    ]
-
-    return (
-      <React.Fragment>
-        {isSymptomEdited && (
-          <SymptomEditView
-            symptom={symptom}
-            symptomData={symptomData}
-            onClose={() => setEditedSymptom('')}
-          />
-        )}
-
-        <TouchableOpacity
-          disabled={isSymptomDisabled}
-          onPress={() => setEditedSymptom(symptom)}
-          style={styles.container}
-          testID={iconName}
-        >
-          <DripIcon
-            color={iconColor}
-            isActive={!isSymptomDisabled}
-            name={iconName}
-            size={Sizes.icon}
-          />
-          <View style={styles.textContainer}>
-            <AppText style={symptomNameStyle}>
-              {symptomTitles[symptom].toLowerCase()}
+      <TouchableOpacity
+        disabled={isSymptomDisabled}
+        onPress={() => setEditedSymptom(symptom)}
+        style={styles.container}
+        testID={iconName}
+      >
+        <DripIcon
+          color={iconColor}
+          isActive={!isSymptomDisabled}
+          name={iconName}
+          size={Sizes.icon}
+        />
+        <View style={styles.textContainer}>
+          <AppText style={symptomNameStyle}>
+            {symptomTitles[symptom].toLowerCase()}
+          </AppText>
+          {symptomDataToDisplay && (
+            <AppText style={textStyle} numberOfLines={4}>
+              {symptomDataToDisplay}
             </AppText>
-            {symptomDataToDisplay && (
-              <AppText style={textStyle} numberOfLines={4}>
-                {symptomDataToDisplay}
-              </AppText>
-            )}
-          </View>
-        </TouchableOpacity>
-      </React.Fragment>
-    )
-  }
+          )}
+        </View>
+      </TouchableOpacity>
+    </>
+  )
+}
+
+SymptomBox.propTypes = {
+  date: PropTypes.string.isRequired,
+  symptom: PropTypes.string.isRequired,
+  symptomData: PropTypes.object,
+  symptomDataToDisplay: PropTypes.string,
+  editedSymptom: PropTypes.string.isRequired,
+  setEditedSymptom: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
