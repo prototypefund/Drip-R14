@@ -32,21 +32,15 @@ class CycleDayOverView extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { cycleDay: getCycleDay(props.date), data: null }
     if (props.isTemperatureEditView) {
       const todayDateString = LocalDate.now().toString()
       props.setDate(todayDateString)
     }
   }
 
-  updateCycleDay = (date) => {
-    this.props.setDate(date)
-    this.setState({ cycleDay: getCycleDay(date) })
-  }
-
   render() {
-    const { cycleDay } = this.state
     const { date, isTemperatureEditView } = this.props
+    const cycleDay = getCycleDay(date)
 
     const { getCycleDayNumber } = cycleModule()
     const cycleDayNumber = getCycleDayNumber(date)
@@ -55,11 +49,7 @@ class CycleDayOverView extends Component {
 
     return (
       <AppPage>
-        <SymptomPageTitle
-          reloadSymptomData={this.updateCycleDay}
-          subtitle={subtitle}
-          title={dateToTitle(date)}
-        />
+        <SymptomPageTitle subtitle={subtitle} title={dateToTitle(date)} />
         <View style={styles.container}>
           {SYMPTOMS.map((symptom) => {
             const symptomData =
@@ -74,7 +64,6 @@ class CycleDayOverView extends Component {
                 symptom={symptom}
                 symptomData={symptomData}
                 symptomDataToDisplay={getData(symptom, symptomData)}
-                updateCycleDayData={this.updateCycleDay}
                 isSymptomEdited={isSymptomEdited}
               />
             )

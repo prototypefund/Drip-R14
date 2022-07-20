@@ -21,7 +21,6 @@ class SymptomBox extends Component {
     symptom: PropTypes.string.isRequired,
     symptomData: PropTypes.object,
     symptomDataToDisplay: PropTypes.string,
-    updateCycleDayData: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -37,9 +36,6 @@ class SymptomBox extends Component {
   }
 
   onFinishEditing = () => {
-    const { date, updateCycleDayData } = this.props
-
-    updateCycleDayData(date)
     this.setState({ isSymptomEdited: false })
   }
 
