@@ -24,21 +24,20 @@ const SymptomPageTitle = ({
     reloadSymptomData(nextDay)
     setDate(nextDay)
   }
-  const formattedTitle = title.length > 21
-    ? title.substring(0, 18) + '...'
-    : title
+  const formattedTitle =
+    title.length > 21 ? title.substring(0, 18) + '...' : title
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigate(false)} hitSlop={HIT_SLOP}>
-        <AppIcon name='chevron-left' color={Colors.orange}/>
+        <AppIcon name="chevron-left" color={Colors.orange} />
       </TouchableOpacity>
       <View style={styles.textContainer}>
         <AppText style={styles.title}>{formattedTitle}</AppText>
         {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
       </View>
       <TouchableOpacity onPress={() => navigate(true)} hitSlop={HIT_SLOP}>
-        <AppIcon name='chevron-right' color={Colors.orange}/>
+        <AppIcon name="chevron-right" color={Colors.orange} />
       </TouchableOpacity>
     </View>
   )
