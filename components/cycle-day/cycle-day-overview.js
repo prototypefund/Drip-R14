@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
-import { LocalDate } from 'js-joda'
 
 import AppPage from '../common/app-page'
 import SymptomBox from './symptom-box'
@@ -27,15 +26,6 @@ class CycleDayOverView extends Component {
     cycleDay: PropTypes.object,
     date: PropTypes.string,
     isTemperatureEditView: PropTypes.bool,
-  }
-
-  constructor(props) {
-    super(props)
-
-    if (props.isTemperatureEditView) {
-      const todayDateString = LocalDate.now().toString()
-      props.setDate(todayDateString)
-    }
   }
 
   render() {
