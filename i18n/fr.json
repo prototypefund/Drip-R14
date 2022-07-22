@@ -1,7 +1,7 @@
 {
     "labels": {
         "bleedingPrediction": {
-            "noPrediction": "Dès que tu auras consigné 3 cycles menstruels, drip fera des prédictions pour les prochains."
+            "noPrediction": "Dès que tu auras consigné 3 cycles menstruels, drip. fera des prédictions pour les prochains."
         },
         "home": {
             "addDataForToday": "ajouter les données pour aujourd’hui",
@@ -16,8 +16,27 @@
     },
     "settings": {
         "license": {
-            "title": "drip est une application de suivi de cycle open source",
-            "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nVous pouvez nous contacter à drip@mailbox.org."
+            "title": "drip. application libre de suivi de cycle menstruel",
+            "text": "Copyright © {{courantAnnée}} Heart of Code e.V.\n\nCe programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE ,; sans même la garantie implicite de COMMERCIALISATION ou d'ADÉQUATION À UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails : https://www.gnu.org/licenses/gpl-3.0.html\n\nVous pouvez nous contacter à l'adresse drip@mailbox.org."
+        },
+        "privacyPolicy": {
+            "title": "Politique de confidentialité",
+            "intro": {
+                "title": "Présentation",
+                "text": "La présente politique de confidentialité définit la manière dont l'application iOS drip. utilise et protège les données personnelles que vous générez et stockez dans l'application."
+            },
+            "dataUse": {
+                "title": "Utilisation des données",
+                "text": "Drip. respecte et célèbre votre vie privée. Il n'y a aucune collecte de données d'utilisation ou d'informations personnelles, aucune publicité, aucun logiciel espion. Drip. peut stocker les données relatives à la santé menstruelle localement sur votre appareil.\n\nCeci inclut :\n- les paramètres ;\n- les données de suivi du cycle menstruel.\n\nCes données sont utilisées pour afficher des statistiques et appliquer des règles de sensibilisation à la fertilité. Ces données ne sont pas accessibles à d'autres applications.\n\nSi vous souhaitez supprimer toutes les données de votre application, vous pouvez le faire en accédant à Paramètres, Données et Supprimer les données de l'application. Vous pouvez également le faire en désinstallant l'application."
+            },
+            "permissions": {
+                "title": "Autorisations",
+                "text": "Pour utiliser les rappels dans drip, vous devez autoriser les notifications push. Si vous ne voulez pas utiliser cette fonctionnalité, il suffit de ne pas autoriser les notifications pour l'application."
+            },
+            "transparency": {
+                "text": "Vous pouvez lire le code source de drip. pour vous assurer que les informations données sont correctes. Le code source est comme une recette : il vous indique la quantité et le type d'ingrédients dont vous avez besoin et comment les préparer pour cuisiner un repas savoureux ou programmer une application amusante.\n\nBuon appetito!",
+                "title": "Transparence"
+            }
         }
     }
 }
