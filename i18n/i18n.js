@@ -14,6 +14,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    compatibilityJSON: 'v3', // TODO: migrate json to v4 and afterwards remove it
     resources,
     fallbackLng: 'en',
     debug: true,
