@@ -16,7 +16,7 @@ describe('format-date', () => {
     expect(dateToTitle('2021-07-24')).to.eql('Sat 24. Jul 21')
   })
 
-  it('formats cardinal', () => {
+  it('formats ordinal', () => {
     expect(formatWithOrdinalSuffix(1)).to.eql('1st')
     expect(formatWithOrdinalSuffix(2)).to.eql('2nd')
     expect(formatWithOrdinalSuffix(3)).to.eql('3rd')

@@ -1,5 +1,5 @@
-const LocalDate = require("js-joda").LocalDate
-const moment = require('moment')
+const { DateTime } = require('luxon')
+const { formatWithOrdinalSuffix } = require('../components/helpers/format-date')
 
 describe('Date', () => {
   beforeEach(async () => {
@@ -7,7 +7,6 @@ describe('Date', () => {
   })
 
   it('should have same date when navigating between cycle day and symptom view', async () => {
-
     await element(by.text('add data for today')).tap()
     await expect(
       element(by.id('headerTitle').and(by.text('today')))
@@ -15,15 +14,15 @@ describe('Date', () => {
     await element(by.id('backButton')).tap()
     await element(by.id('drip-icon-bleeding')).tap()
 
-    const today = LocalDate.now()
-    const yesterday = today.minusDays(1)
-    const yesterdayFormatted = moment(
-      yesterday.toString()).format('MMMM Do YYYY')
-      .toLowerCase()
+    const today = DateTime.now()
+    const yesterday = today.minus({ day: 1 })
+    const yesterdayFormatted =
+      yesterday.toFormat('MMMM ').toLowerCase() +
+      formatWithOrdinalSuffix(yesterday.day) +
+      yesterday.toFormat(' yyyy')
 
     await expect(
       element(by.id('headerSubtitle').and(by.text(yesterdayFormatted)))
     ).toBeVisible()
   })
-
 })
