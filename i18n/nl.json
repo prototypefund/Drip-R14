@@ -1,0 +1,42 @@
+{
+    "labels": {
+        "home": {
+            "cycleDay": " dag van je cyclus",
+            "cyclePhase": " cyclusfase - ",
+            "addDataForToday": "Voeg gegevens van vandaag toe"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Na 3 menstruatiecycli doet drip. voorspellingen over de aankomende cycli."
+        },
+        "shared": {
+            "cancel": "Annuleren",
+            "ok": "Oké",
+            "dateTimePickerTitle": "Kies een tijdstip"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip. is een opensource menstruatie-app",
+            "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details: https://www.gnu.org/licenses/gpl-3.0.html\n\nNeem contact met ons op via drip@mailbox.org."
+        },
+        "privacyPolicy": {
+            "dataUse": {
+                "text": "Drip. respecteert je privacy. Er wordt geen persoonlijke informatie of andere gegevens verzameld, er is geen reclame in de app en ook geen spyware. Drip. kan optioneel menstruatiegegevens lokaal opslaan op je apparaat.\n\nDeze gegevens bestaan uit:\n• Instellingen;\n• Menstruatiecylusgegevens.\n\nDe gegevens worden gebruikt om statistieken op te maken en vruchtbaarheidsperiodes aan te duiden. Deze gegevens zijn ontoegankelijk voor andere apps.\n\nAls je alle appgegevens wilt wissen, dan kan dat via de instellingen of door de app te verwijderen.",
+                "title": "Gegevensgebruik"
+            },
+            "title": "Privacybeleid",
+            "intro": {
+                "title": "Introductie",
+                "text": "In het privacybeleid staat hoe de iOS-app drip. je persoonlijke gegevens binnen de app beschermt."
+            },
+            "permissions": {
+                "title": "Rechten",
+                "text": "Als je herinneringen wilt krijgen, dan dien je pushmeldingen toe te staan. Als je dat niet wilt, dan hoef je dat niet toe te staan."
+            },
+            "transparency": {
+                "title": "Transparantie",
+                "text": "Je kunt de broncode van drip. nakijken op juistheid. De broncode is als een recept: er wordt verteld welke en hoeveel ingrediënten je nodig hebt om een maaltijd te bereiden of, in dit geval, een handige app te maken.\n\nBuon appetito!"
+            }
+        }
+    }
+}
