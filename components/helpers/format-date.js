@@ -1,24 +1,35 @@
-import { LocalDate } from 'js-joda'
-import moment from 'moment'
+import { DateTime } from 'luxon'
 
 import { general as labels } from '../../i18n/en/cycle-day'
 
-export default function (date) {
-  const today = LocalDate.now()
-  const dateToDisplay = LocalDate.parse(date)
-  return today.equals(dateToDisplay)
-    ? labels.today
-    : moment(date).format('MMMM Do YYYY')
-}
-
 export function formatDateForShortText(date) {
-  return moment(date.toString()).format('dddd, MMMM Do')
+  const d = DateTime.fromFormat(date.toString(), 'yyyy-MM-dd')
+  return d.toFormat('EEEE, MMMM ') + formatWithOrdinalSuffix(d.day)
 }
 
 export function dateToTitle(dateString) {
-  const today = LocalDate.now()
-  const dateToDisplay = LocalDate.parse(dateString)
-  return today.equals(dateToDisplay)
+  const today = DateTime.now()
+  const dateToDisplay = DateTime.fromFormat(dateString, 'yyyy-MM-dd')
+  return today.hasSame(dateToDisplay, 'day')
     ? labels.today
-    : moment(dateString).format('ddd DD. MMM YY')
+    : dateToDisplay.toFormat('EEE dd. MMM yy')
+}
+
+const pr = new Intl.PluralRules('en-US', { type: 'ordinal' })
+const suffixes = new Map([
+  ['one', 'st'],
+  ['two', 'nd'],
+  ['few', 'rd'],
+  ['other', 'th'],
+])
+
+export function getOrdinalSuffix(n) {
+  const rule = pr.select(n)
+  const suffix = suffixes.get(rule)
+  return suffix
+}
+
+export function formatWithOrdinalSuffix(n) {
+  const suffix = getOrdinalSuffix(n)
+  return `${n}${suffix}`
 }
