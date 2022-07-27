@@ -7,6 +7,7 @@ const { shades } = Colors.iconColors.bleeding
 
 export const toCalFormat = (bleedingDaysSortedByDate) => {
   const todayDateString = LocalDate.now().toString()
+
   return bleedingDaysSortedByDate.reduce((acc, day) => {
     acc[day.date] = {
       customStyles: {
@@ -51,7 +52,6 @@ export const predictionToCalFormat = (predictedDays) => {
 
 export const todayToCalFormat = () => {
   const todayDateString = LocalDate.now().toString()
-
   return {
     [todayDateString]: {
       customStyles: {
