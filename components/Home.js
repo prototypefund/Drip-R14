@@ -18,9 +18,10 @@ import {
 } from './helpers/home'
 
 import { Colors, Fonts, Sizes, Spacing } from '../styles'
+import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'react-i18next'
 
-const Home = ({ navigate, setDate, date }) => {
+const Home = ({ navigate, setDate }) => {
   const { t } = useTranslation()
 
   function navigateToCycleDayView() {
@@ -28,7 +29,7 @@ const Home = ({ navigate, setDate, date }) => {
     navigate('CycleDay')
   }
 
-  const todayDateString = date
+  const todayDateString = LocalDate.now().toString()
   const { getCycleDayNumber, getPredictedMenses } = cycleModule()
   const cycleDayNumber = getCycleDayNumber(todayDateString)
   const { status, phase, statusText } =
@@ -152,7 +153,6 @@ const mapDispatchToProps = (dispatch) => {
 Home.propTypes = {
   navigate: PropTypes.func,
   setDate: PropTypes.func,
-  date: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
