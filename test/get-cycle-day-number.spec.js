@@ -1,9 +1,5 @@
-import chai from 'chai'
-import dirtyChai from 'dirty-chai'
+import { expect } from 'chai'
 import cycleModule from '../lib/cycle'
-
-const { expect } = chai
-chai.use(dirtyChai)
 
 const simpleCycleStarts = [{ date: '2018-05-09' }, { date: '2018-05-03' }]
 
@@ -40,7 +36,7 @@ describe('getCycleDayNumber', () => {
     const date = '2018-05-17'
     const { getCycleDayNumber } = cycleModule({ cycleStartsSortedByDate })
 
-    expect(getCycleDayNumber(date)).to.be.null()
+    expect(getCycleDayNumber(date)).to.be.null
   })
 
   it('returns null if the cycle is longer than the max', function () {
@@ -49,6 +45,6 @@ describe('getCycleDayNumber', () => {
     const date = '2018-08-16'
     const { getCycleDayNumber } = cycleModule({ cycleStartsSortedByDate })
 
-    expect(getCycleDayNumber(date)).to.be.null()
+    expect(getCycleDayNumber(date)).to.be.null
   })
 })

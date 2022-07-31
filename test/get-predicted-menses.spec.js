@@ -1,9 +1,5 @@
-import chai from 'chai'
-import dirtyChai from 'dirty-chai'
+import { expect } from 'chai'
 import cycleModule from '../lib/cycle'
-
-const { expect } = chai
-chai.use(dirtyChai)
 
 describe('getPredictedMenses', () => {
   describe('cannot predict next menses', () => {

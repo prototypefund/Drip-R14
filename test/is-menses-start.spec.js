@@ -1,9 +1,5 @@
-import chai from 'chai'
-import dirtyChai from 'dirty-chai'
+import { expect } from 'chai'
 import cycleModule from '../lib/cycle'
-
-const { expect } = chai
-chai.use(dirtyChai)
 
 describe('isMensesStart', () => {
   it('works for simple menses start', () => {
@@ -33,11 +29,11 @@ describe('isMensesStart', () => {
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[3])
-    expect(start).to.be.true()
-    expect(isMensesStart(cycleDaysSortedByDate[0])).to.be.false()
-    expect(isMensesStart(cycleDaysSortedByDate[1])).to.be.false()
-    expect(isMensesStart(cycleDaysSortedByDate[2])).to.be.false()
-    expect(isMensesStart(cycleDaysSortedByDate[4])).to.be.false()
+    expect(start).to.be.true
+    expect(isMensesStart(cycleDaysSortedByDate[0])).to.be.false
+    expect(isMensesStart(cycleDaysSortedByDate[1])).to.be.false
+    expect(isMensesStart(cycleDaysSortedByDate[2])).to.be.false
+    expect(isMensesStart(cycleDaysSortedByDate[4])).to.be.false
   })
 
   it('works with previous excluded value', () => {
@@ -61,9 +57,9 @@ describe('isMensesStart', () => {
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[1])
-    expect(start).to.be.true()
+    expect(start).to.be.true
     const notStart = isMensesStart(cycleDaysSortedByDate[2])
-    expect(notStart).to.be.false()
+    expect(notStart).to.be.false
   })
 
   it('returns false when day has no bleeding', () => {
@@ -85,7 +81,7 @@ describe('isMensesStart', () => {
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[0])
-    expect(start).to.be.false()
+    expect(start).to.be.false
   })
 
   it('returns false when there is a previous bleeding day within the threshold', () => {
@@ -114,7 +110,7 @@ describe('isMensesStart', () => {
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[2])
-    expect(start).to.be.false()
+    expect(start).to.be.false
   })
 
   it('returns true when there is a previous excluded bleeding day within the threshold', () => {
@@ -143,7 +139,7 @@ describe('isMensesStart', () => {
       bleedingDaysSortedByDate: cycleDaysSortedByDate.filter((d) => d.bleeding),
     })
     const start = isMensesStart(cycleDaysSortedByDate[2])
-    expect(start).to.be.true()
+    expect(start).to.be.true
   })
   describe('with cycle thresholds', () => {
     const maxBreakInBleeding = 3
@@ -169,7 +165,7 @@ describe('isMensesStart', () => {
         maxBreakInBleeding,
       }).isMensesStart
       const result = isMensesStart(bleedingDays[0])
-      expect(result).to.be.false()
+      expect(result).to.be.false
     })
 
     it('counts bleeding breaks longer than maxAllowedBleedingBreak in a bleeding period', () => {
@@ -193,7 +189,7 @@ describe('isMensesStart', () => {
         maxBreakInBleeding,
       }).isMensesStart
       const result = isMensesStart(bleedingDays[0])
-      expect(result).to.be.true()
+      expect(result).to.be.true
     })
   })
 })
