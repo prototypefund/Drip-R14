@@ -10,8 +10,6 @@ import AppText from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
 import Segment from '../common/segment'
 
-import { connect } from 'react-redux'
-import { getDate } from '../../slices/date'
 import {
   getTemperatureOutOfRangeMessage,
   getPreviousTemperature,
@@ -21,8 +19,10 @@ import {
 import { temperature as labels } from '../../i18n/en/cycle-day'
 
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
+import { useDate } from '../../hooks/useDate'
 
-const Temperature = ({ data, date, save }) => {
+const Temperature = ({ data, save }) => {
+  const { date } = useDate()
   const { t } = useTranslation()
   const [isTimePickerVisible, setIsTimePickerVisible] = useState(false)
   const [temperature, setTemperature] = useState(
@@ -121,14 +121,7 @@ const styles = StyleSheet.create({
 
 Temperature.propTypes = {
   data: PropTypes.object.isRequired,
-  date: PropTypes.string.isRequired,
   save: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-export default connect(mapStateToProps, null)(Temperature)
+export default Temperature

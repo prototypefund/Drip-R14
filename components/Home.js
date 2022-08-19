@@ -1,11 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
-import PropTypes from 'prop-types'
-import moment from 'moment'
 
-import { connect } from 'react-redux'
-import { navigate } from '../slices/navigation'
-import { getDate, setDate } from '../slices/date'
+import moment from 'moment'
 
 import AppText from './common/app-text'
 import Button from './common/button'
@@ -20,8 +16,12 @@ import {
 import { Colors, Fonts, Sizes, Spacing } from '../styles'
 import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '../hooks/useNavigation'
+import { useDate } from '../hooks/useDate'
 
-const Home = ({ navigate, setDate }) => {
+const Home = () => {
+  const { navigate } = useNavigation()
+  const { setDate } = useDate()
   const { t } = useTranslation()
 
   function navigateToCycleDayView() {
@@ -137,22 +137,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    navigate: (page) => dispatch(navigate(page)),
-    setDate: (date) => dispatch(setDate(date)),
-  }
-}
-
-Home.propTypes = {
-  navigate: PropTypes.func,
-  setDate: PropTypes.func,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home

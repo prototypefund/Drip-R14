@@ -8,15 +8,17 @@ import { connect } from 'react-redux'
 import { navigate } from '../../slices/navigation'
 
 import { Typography } from '../../styles'
+import { useNavigation } from '../../hooks/useNavigation'
 
-const MenuItem = ({ item, navigate, closeMenu }) => {
+const MenuItem = ({ item, closeMenu }) => {
   const { component, name } = item
+  const { navigate } = useNavigation()
   const onPress = () => {
     closeMenu()
     navigate(component)
   }
 
-  return(
+  return (
     <TouchableOpacity onPress={onPress}>
       <AppText style={styles.text}>{name}</AppText>
     </TouchableOpacity>
@@ -25,23 +27,14 @@ const MenuItem = ({ item, navigate, closeMenu }) => {
 
 MenuItem.propTypes = {
   item: PropTypes.object.isRequired,
-  navigate: PropTypes.func.isRequired,
-  closeMenu: PropTypes.func.isRequired
+
+  closeMenu: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
   text: {
-    ...Typography.subtitle
-  }
+    ...Typography.subtitle,
+  },
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return({
-    navigate: (page) => dispatch(navigate(page)),
-  })
-}
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(MenuItem)
+export default MenuItem
