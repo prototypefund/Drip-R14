@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Provider } from 'react-redux'
 import nodejs from 'nodejs-mobile-react-native'
 
 import { getLicenseFlag, saveEncryptionFlag } from '../local-storage'
@@ -11,7 +10,6 @@ import AppStatusBar from './common/app-status-bar'
 import License from './License'
 import PasswordPrompt from './password-prompt'
 
-import store from '../store'
 import DateProvider from '../hooks/useDate'
 import NavigationProvider from '../hooks/useNavigation'
 
@@ -49,14 +47,12 @@ export default function AppWrapper() {
   return (
     <NavigationProvider>
       <DateProvider>
-        <Provider store={store}>
-          <AppStatusBar />
-          {isDbEncrypted ? (
-            <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
-          ) : (
-            <App restartApp={() => checkIsDbEncrypted()} />
-          )}
-        </Provider>
+        <AppStatusBar />
+        {isDbEncrypted ? (
+          <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
+        ) : (
+          <App restartApp={() => checkIsDbEncrypted()} />
+        )}
       </DateProvider>
     </NavigationProvider>
   )
