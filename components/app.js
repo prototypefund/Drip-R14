@@ -8,14 +8,15 @@ import { viewsList } from './views'
 import { isSettingsView } from './pages'
 
 import { headerTitles } from '../i18n/en/labels'
-import setupNotifications from '../lib/notifications'
 import { getCycleDay, closeDb } from '../db'
 import { useDate } from '../hooks/useDate'
 import { useNavigation } from '../hooks/useNavigation'
+import useSetupNotifications from '../lib/notifications'
 
 const App = ({ restartApp }) => {
+  useSetupNotifications()
   const { date } = useDate()
-  const { currentPage, goBack, navigate } = useNavigation()
+  const { currentPage, goBack } = useNavigation()
   const Page = viewsList[currentPage]
   const title = headerTitles[currentPage]
 
@@ -33,7 +34,6 @@ const App = ({ restartApp }) => {
     isTemperatureEditView,
   }
   useEffect(() => {
-    setupNotifications(navigate)
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       sendUserBack
