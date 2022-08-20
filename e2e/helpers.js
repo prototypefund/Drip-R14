@@ -34,7 +34,7 @@ const symptomValues = {
   note: {
     valuesToSelect: ['This is test text'],
     shouldExclude: false,
-  }
+  },
 }
 
 function goBack() {

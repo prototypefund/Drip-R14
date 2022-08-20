@@ -7,21 +7,20 @@ import AppText from '../common/app-text'
 import DripIcon from '../../assets/drip-icons'
 import SymptomEditView from './symptom-edit-view'
 
-import { connect } from 'react-redux'
-import { getDate } from '../../slices/date'
 import { isDateInFuture } from '../helpers/cycle-day'
 
 import { Colors, Sizes, Spacing } from '../../styles'
 import { headerTitles as symptomTitles } from '../../i18n/en/labels'
+import { useDate } from '../../hooks/useDate'
 
 const SymptomBox = ({
-  date,
   symptom,
   symptomData,
   symptomDataToDisplay,
   editedSymptom,
   setEditedSymptom,
 }) => {
+  const { date } = useDate()
   const isSymptomEdited = editedSymptom === symptom
   const isSymptomDisabled = isDateInFuture(date) && symptom !== 'note'
   const isExcluded = symptomData !== null ? symptomData.exclude : false
@@ -77,7 +76,6 @@ const SymptomBox = ({
 }
 
 SymptomBox.propTypes = {
-  date: PropTypes.string.isRequired,
   symptom: PropTypes.string.isRequired,
   symptomData: PropTypes.object,
   symptomDataToDisplay: PropTypes.string,
@@ -128,10 +126,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-export default connect(mapStateToProps, null)(SymptomBox)
+export default SymptomBox

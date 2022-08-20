@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 
-import { navigate } from '../../../slices/navigation'
+import PropTypes from 'prop-types'
 
 import { changeDbEncryption } from '../../../db'
 
@@ -16,88 +14,56 @@ import DeletePassword from './delete'
 
 import { hasEncryptionObservable } from '../../../local-storage'
 import labels from '../../../i18n/en/settings'
+import { useNavigation } from '../../../hooks/useNavigation'
 
-class PasswordSetting extends Component {
-  static propTypes = {
-    navigate: PropTypes.func,
-    restartApp: PropTypes.func,
-  }
-  constructor(props) {
-    super(props)
+const PasswordSettings = ({ restartApp }) => {
+  const { navigate } = useNavigation()
+  const isPasswordSet = hasEncryptionObservable.value
+  const [isChangingPassword, setIsChangingPassword] = useState(false)
+  const [isDeletingPassword, setIsDeletingPassword] = useState(false)
 
-    this.state = {
-      isPasswordSet: hasEncryptionObservable.value,
-      isChangingPassword: false,
-      isDeletingPassword: false,
-    }
-  }
+  const { title, explainerEnabled, explainerDisabled } = labels.passwordSettings
 
-  onChangingPassword = () => {
-    this.setState({ isChangingPassword: true })
-  }
-
-  onCancelChangingPassword = () => {
-    this.setState({ isChangingPassword: false })
-  }
-
-  onDeletingPassword = () => {
-    this.setState({ isDeletingPassword: true })
-  }
-
-  onCancelDeletingPassword = () => {
-    this.setState({ isDeletingPassword: false })
-  }
-
-  changeEncryptionAndRestart = async (hash) => {
+  const changeEncryptionAndRestart = async (hash) => {
     await changeDbEncryption(hash)
-    await this.props.restartApp()
-    this.props.navigate('Home')
+    await restartApp()
+    navigate('Home')
   }
 
-  render() {
-    const { isPasswordSet, isChangingPassword, isDeletingPassword } = this.state
+  return (
+    <AppPage>
+      <Segment title={title} last>
+        <AppText>
+          {isPasswordSet ? explainerEnabled : explainerDisabled}
+        </AppText>
 
-    const { title, explainerEnabled, explainerDisabled } =
-      labels.passwordSettings
+        {!isPasswordSet && (
+          <CreatePassword
+            changeEncryptionAndRestart={changeEncryptionAndRestart}
+          />
+        )}
 
-    return (
-      <AppPage>
-        <Segment title={title} last>
-          <AppText>
-            {isPasswordSet ? explainerEnabled : explainerDisabled}
-          </AppText>
+        {isPasswordSet && !isDeletingPassword && (
+          <ChangePassword
+            onStartChange={() => setIsChangingPassword(true)}
+            onCancelChange={() => setIsChangingPassword(false)}
+            changeEncryptionAndRestart={changeEncryptionAndRestart}
+          />
+        )}
 
-          {!isPasswordSet && (
-            <CreatePassword
-              changeEncryptionAndRestart={this.changeEncryptionAndRestart}
-            />
-          )}
-
-          {isPasswordSet && !isDeletingPassword && (
-            <ChangePassword
-              onStartChange={this.onChangingPassword}
-              onCancelChange={this.onCancelChangingPassword}
-              changeEncryptionAndRestart={this.changeEncryptionAndRestart}
-            />
-          )}
-
-          {isPasswordSet && !isChangingPassword && (
-            <DeletePassword
-              onStartDelete={this.onDeletingPassword}
-              onCancelDelete={this.onCancelDeletingPassword}
-              changeEncryptionAndRestart={this.changeEncryptionAndRestart}
-            />
-          )}
-        </Segment>
-      </AppPage>
-    )
-  }
+        {isPasswordSet && !isChangingPassword && (
+          <DeletePassword
+            onStartDelete={() => setIsDeletingPassword(true)}
+            onCancelDelete={() => setIsDeletingPassword(false)}
+            changeEncryptionAndRestart={changeEncryptionAndRestart}
+          />
+        )}
+      </Segment>
+    </AppPage>
+  )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    navigate: (page) => dispatch(navigate(page)),
-  }
+PasswordSettings.propTypes = {
+  restartApp: PropTypes.func,
 }
-
-export default connect(null, mapDispatchToProps)(PasswordSetting)
+export default PasswordSettings

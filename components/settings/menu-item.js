@@ -6,12 +6,11 @@ import AppIcon from '../common/app-icon'
 import AppText from '../common/app-text'
 import Segment from '../common/segment'
 
-import { connect } from 'react-redux'
-import { navigate } from '../../slices/navigation'
-
 import { Colors, Containers, Sizes } from '../../styles'
+import { useNavigation } from '../../hooks/useNavigation'
 
-const MenuItem = ({ item, last, navigate }) => {
+const MenuItem = ({ item, last }) => {
+  const { navigate } = useNavigation()
   return (
     <Segment last={last}>
       <TouchableOpacity
@@ -23,7 +22,7 @@ const MenuItem = ({ item, last, navigate }) => {
           <AppText style={styles.title}>{item.name}</AppText>
           {item.text.length > 0 && <AppText>{item.text}</AppText>}
         </View>
-        <AppIcon name='chevron-right' color={Colors.orange}/>
+        <AppIcon name="chevron-right" color={Colors.orange} />
       </TouchableOpacity>
     </Segment>
   )
@@ -32,26 +31,16 @@ const MenuItem = ({ item, last, navigate }) => {
 MenuItem.propTypes = {
   item: PropTypes.object.isRequired,
   last: PropTypes.bool.isRequired,
-  navigate: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...Containers.rowContainer
+    ...Containers.rowContainer,
   },
   title: {
     color: Colors.purple,
-    fontSize: Sizes.subtitle
-  }
+    fontSize: Sizes.subtitle,
+  },
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return({
-    navigate: (page) => dispatch(navigate(page)),
-  })
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(MenuItem)
+export default MenuItem

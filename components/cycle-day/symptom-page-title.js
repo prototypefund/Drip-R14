@@ -5,14 +5,13 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import AppIcon from '../common/app-icon'
 import AppText from '../common/app-text'
 
-import { connect } from 'react-redux'
-import { getDate, setDate } from '../../slices/date'
-
 import { nextDate, prevDate } from '../helpers/cycle-day'
 import { Colors, Containers, Spacing, Typography } from '../../styles'
 import { HIT_SLOP } from '../../config'
+import { useDate } from '../../hooks/useDate'
 
-const SymptomPageTitle = ({ date, setDate, subtitle, title }) => {
+const SymptomPageTitle = ({ subtitle, title }) => {
+  const { date, setDate } = useDate()
   const navigate = (isForward) => {
     const newDate = isForward ? nextDate(date) : prevDate(date)
     setDate(newDate)
@@ -37,8 +36,6 @@ const SymptomPageTitle = ({ date, setDate, subtitle, title }) => {
 }
 
 SymptomPageTitle.propTypes = {
-  date: PropTypes.string.isRequired,
-  setDate: PropTypes.func.isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string,
 }
@@ -58,16 +55,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setDate: (date) => dispatch(setDate(date)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SymptomPageTitle)
+export default SymptomPageTitle

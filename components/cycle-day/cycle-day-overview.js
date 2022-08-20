@@ -6,9 +6,6 @@ import AppPage from '../common/app-page'
 import SymptomBox from './symptom-box'
 import SymptomPageTitle from './symptom-page-title'
 
-import { connect } from 'react-redux'
-import { getDate } from '../../slices/date'
-
 import cycleModule from '../../lib/cycle'
 import { dateToTitle } from '../helpers/format-date'
 import { getCycleDay } from '../../db'
@@ -17,8 +14,10 @@ import { getData } from '../helpers/cycle-day'
 import { general as labels } from '../../i18n/en/cycle-day'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
+import { useDate } from '../../hooks/useDate'
 
-const CycleDayOverView = ({ date, isTemperatureEditView }) => {
+const CycleDayOverView = ({ isTemperatureEditView }) => {
+  const { date } = useDate()
   const cycleDay = getCycleDay(date)
 
   const { getCycleDayNumber } = cycleModule()
@@ -54,7 +53,6 @@ const CycleDayOverView = ({ date, isTemperatureEditView }) => {
 
 CycleDayOverView.propTypes = {
   cycleDay: PropTypes.object,
-  date: PropTypes.string,
   isTemperatureEditView: PropTypes.bool,
 }
 
@@ -67,10 +65,4 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state) => {
-  return {
-    date: getDate(state),
-  }
-}
-
-export default connect(mapStateToProps, null)(CycleDayOverView)
+export default CycleDayOverView
