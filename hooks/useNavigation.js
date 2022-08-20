@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { pages } from '../components/pages'
 
-export const NavigationContext = createContext()
+const NavigationContext = createContext()
 
 const NavigationProvider = (props) => {
   const [currentPage, setCurrentPage] = useState('Home')
