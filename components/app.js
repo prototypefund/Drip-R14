@@ -16,7 +16,7 @@ import useSetupNotifications from '../lib/notifications'
 const App = ({ restartApp }) => {
   useSetupNotifications()
   const { date } = useDate()
-  const { currentPage, goBack } = useNavigation()
+  const { currentPage, navigateBack } = useNavigation()
   const Page = viewsList[currentPage]
   const title = headerTitles[currentPage]
 
@@ -25,7 +25,7 @@ const App = ({ restartApp }) => {
 
   const headerProps = {
     title,
-    handleBack: isSettingsSubView ? goBack : null,
+    handleBack: isSettingsSubView ? navigateBack : null,
   }
 
   const pageProps = {
@@ -49,7 +49,7 @@ const App = ({ restartApp }) => {
       closeDb()
       BackHandler.exitApp()
     } else {
-      goBack()
+      navigateBack()
     }
 
     return true

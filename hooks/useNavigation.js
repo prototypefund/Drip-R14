@@ -9,13 +9,13 @@ const NavigationProvider = (props) => {
 
   const navigate = setCurrentPage
 
-  const goBack = () => {
+  const navigateBack = () => {
     const page = pages.find((p) => p.component === currentPage)
     setCurrentPage(page.parent)
   }
 
   return (
-    <NavigationContext.Provider value={{ currentPage, navigate, goBack }}>
+    <NavigationContext.Provider value={{ currentPage, navigate, navigateBack }}>
       {props.children}
     </NavigationContext.Provider>
   )
