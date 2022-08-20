@@ -50,7 +50,7 @@ export default function AppWrapper() {
       {isDbEncrypted ? (
         <PasswordPrompt enableShowApp={() => setIsDbEncrypted(false)} />
       ) : (
-        <App restartApp={() => checkIsDbEncrypted()} />
+        <App restartApp={checkIsDbEncrypted} />
       )}
     </Provider>
   )
