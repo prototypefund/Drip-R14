@@ -8,10 +8,10 @@ import { LocalDate } from '@js-joda/core'
 
 import labels from '../i18n/en/settings'
 import { getBleedingDaysSortedByDate } from '../db'
-import cycleModule from './cycle'
+import cycleModule from '../lib/cycle'
 import nothingChanged from '../db/db-unchanged'
-import { useDate } from '../hooks/useDate'
-import { useNavigation } from '../hooks/useNavigation'
+import { useDate } from './useDate'
+import { useNavigation } from './useNavigation'
 import { useEffect } from 'react'
 
 export default function useSetupNotifications() {

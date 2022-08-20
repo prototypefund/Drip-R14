@@ -11,7 +11,7 @@ import { headerTitles } from '../i18n/en/labels'
 import { getCycleDay, closeDb } from '../db'
 import { useDate } from '../hooks/useDate'
 import { useNavigation } from '../hooks/useNavigation'
-import useSetupNotifications from '../lib/notifications'
+import useSetupNotifications from '../hooks/useNotifications'
 
 const App = ({ restartApp }) => {
   useSetupNotifications()

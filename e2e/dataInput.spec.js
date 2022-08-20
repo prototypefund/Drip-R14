@@ -1,12 +1,7 @@
 const LocalTime = require('js-joda').LocalTime
 const ChronoUnit = require('js-joda').ChronoUnit
 
-const {
-  symptomValues,
-  reloadApp,
-  goToHomePage,
-  navigateBack,
-} = require('./helpers')
+const { symptomValues, reloadApp, goToHomePage, goBack } = require('./helpers')
 
 const minutes = ChronoUnit.MINUTES
 let currentTime
@@ -109,7 +104,7 @@ describe('Symptom Data Input', () => {
             'This test a bit flaky. console.log apparently helps to fix it.'
           )
 
-          await navigateBack()
+          await goBack()
           await expect(element(by.text(expectedSymptomSummary))).toExist()
 
           // Testing here additionally the deletion of data
@@ -135,7 +130,7 @@ describe('Symptom Data Input', () => {
           expectedSymptomSummary = formExpectedSymptomSummary(symptom)
       }
 
-      await navigateBack()
+      await goBack()
 
       await expect(element(by.text(expectedSymptomSummary))).toExist()
     })
