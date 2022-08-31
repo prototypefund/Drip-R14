@@ -2,25 +2,25 @@
     "settings": {
         "license": {
             "text": "Copyright (C) {{currentYear}} Bloody Health GbR\n\nAquest programa es distribueix amb l'esperança que sigui útil, però SENSE CAP GARANTIA; ni tan sols la garantia implícita de COMERCIALITZACIÓ o ADEQUACIÓ PER A UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU per a més detalls: https://www.gnu.org/licenses/gpl-3.0.html\n\nPodeu contactar amb nosaltres (en anglès) a drip@mailbox.org.",
-            "title": "drip, una aplicació de codi obert per al seguiment del cicle menstrual"
+            "title": "drip. és una aplicació de codi obert per al seguiment del cicle menstrual"
         },
         "privacyPolicy": {
             "title": "Normes de confidencialitat",
             "intro": {
                 "title": "Introducció",
-                "text": "Aquestes normes de confidencialitat estableixen com l'aplicació d'iOS «drip» usa i protegeix les vostres dades personals que genereu i emmagatzemeu en l'aplicació."
+                "text": "Aquestes normes de confidencialitat estableixen com l'aplicació d'iOS «drip.» usa i protegeix les vostres dades personals que genereu i emmagatzemeu en l'aplicació."
             },
             "dataUse": {
                 "title": "Ús de les dades",
-                "text": "Drip respecta i celebra la vostra privadesa. No hi ha recol·lecció de l'ús d'informació personal, ni anuncis ni programari espia. Drip pot emmagatzemar dades relacionades amb la salut menstrual localment en el vostre aparell.\n\nAixò inclou:\n• configuració\n• dades de seguiment del cicle menstrual\n\nLes dades s'usen per a mostrar estadístiques i aplicar regles informatives sobre fertilitat. Altres aplicacions no poden accedir a aquestes dades.\n\nSi voleu esborrar totes les dades de l'aplicació, podeu fer-ho anant a Configuració, Dades i Esborra les dades de l'aplicació. Això també es pot fer desinstal·lant l'aplicació."
+                "text": "Drip. respecta i celebra la vostra privadesa. No hi ha recol·lecció de l'ús d'informació personal, ni anuncis ni programari espia. Drip. pot emmagatzemar dades relacionades amb la salut menstrual localment en el vostre aparell.\n\nAixò inclou:\n• configuració\n• dades de seguiment del cicle menstrual\n\nLes dades s'usen per a mostrar estadístiques i aplicar regles informatives sobre fertilitat. Altres aplicacions no poden accedir a aquestes dades.\n\nSi voleu esborrar totes les dades de l'aplicació, podeu fer-ho anant a Configuració, Dades i Esborra les dades de l'aplicació. Això també es pot fer desinstal·lant l'aplicació."
             },
             "permissions": {
                 "title": "Permisos",
-                "text": "Per a usar els recordatoris en drip, cal que autoritzeu les notificacions push. Si no voleu fer ús d'aquesta característica, simplement no permeteu les notificacions de l'aplicació."
+                "text": "Per a usar els recordatoris en drip., cal que autoritzeu les notificacions «push». Si no voleu fer ús d'aquesta característica, simplement no permeteu les notificacions de l'aplicació."
             },
             "transparency": {
                 "title": "Transparència",
-                "text": "Podeu llegir sobre el codi font de drip per a assegurar-vos que la informació donada és correcta. El codi font és com una recepta: us diu quants i quina mena d'ingredients necessiteu, i com s'han de preparar per a cuina una menja saborosa o programar una divertida aplicació.\n\nBon profit!"
+                "text": "Podeu llegir sobre el codi font de drip. per a assegurar-vos que la informació donada és correcta. El codi font és com una recepta: us diu quants i quina mena d'ingredients necessiteu, i com s'han de preparar per a cuina una menja saborosa o programar una divertida aplicació.\n\nBon profit!"
             }
         }
     },
@@ -31,7 +31,7 @@
             "addDataForToday": "afegeix dades d'avui"
         },
         "bleedingPrediction": {
-            "noPrediction": "Quan hàgiu fet seguiment de 3 cicles menstruals, drip farà prediccions per als següents."
+            "noPrediction": "Quan hàgiu fet seguiment de 3 cicles menstruals, drip. farà prediccions per als següents."
         },
         "shared": {
             "ok": "D'acord",
