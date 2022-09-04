@@ -33,7 +33,7 @@ const Temperature = ({ data, date, save }) => {
     if (temperature) {
       save(temperature, 'value')
     }
-  }, [])
+  }, [temperature, save])
 
   function onChangeTemperature(value) {
     const formattedValue = value.replace(',', '.').trim()
