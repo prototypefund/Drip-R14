@@ -37,14 +37,14 @@ const AboutSection = () => {
       <Segment title={t('credits.title')}>
         <AppText>
           {t('credits.text')}{' '}
-          <AppLink link={links.flaticon.url}>flaticon</AppLink>.{' '}
+          <AppLink url={links.flaticon.url}>flaticon</AppLink>.{' '}
         </AppText>
         <AppText>
           {t('credits.madeBy')}{' '}
-          <AppLink link={links.smashicons.url}>smashicons</AppLink>,{' '}
-          <AppLink link={links.pause08.url}>pause08</AppLink>,{' '}
-          <AppLink link={links.kazachek.url}>kazachek</AppLink>,{' '}
-          <AppLink link={links.freepik.url}>freepik</AppLink>.
+          <AppLink url={links.smashicons.url}>smashicons</AppLink>,{' '}
+          <AppLink url={links.pause08.url}>pause08</AppLink>,{' '}
+          <AppLink url={links.kazachek.url}>kazachek</AppLink>,{' '}
+          <AppLink url={links.freepik.url}>freepik</AppLink>.
         </AppText>
       </Segment>
       <Segment title={t('donate.title')}>

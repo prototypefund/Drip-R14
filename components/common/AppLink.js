@@ -4,9 +4,9 @@ import { StyleSheet, Text, Linking } from 'react-native'
 
 import { Colors, Typography } from '../../styles'
 
-const AppLink = ({ children, link, ...props }) => {
+const AppLink = ({ children, url, ...props }) => {
   return (
-    <Text style={styles.link} {...props} onPress={() => Linking.openURL(link)}>
+    <Text style={styles.link} {...props} onPress={() => Linking.openURL(url)}>
       {children}
     </Text>
   )
@@ -14,7 +14,7 @@ const AppLink = ({ children, link, ...props }) => {
 
 AppLink.propTypes = {
   children: PropTypes.node,
-  link: PropTypes.string,
+  url: PropTypes.string,
 }
 
 const styles = StyleSheet.create({

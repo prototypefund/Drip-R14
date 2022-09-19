@@ -15,7 +15,7 @@ const License = ({ children }) => {
     <AppPage title={t('title')}>
       <Segment last>
         <AppText>{t('text', { currentYear })}</AppText>
-        <AppLink link={link}>{link}</AppLink>
+        <AppLink url={link}>{link}</AppLink>
         {children}
       </Segment>
     </AppPage>
