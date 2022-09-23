@@ -1,1 +1,42 @@
-{}
+{
+    "labels": {
+        "home": {
+            "cycleDay": " Zyklustag",
+            "cyclePhase": " Zyklusphase - ",
+            "addDataForToday": "Daten für heute hinzufügen"
+        },
+        "bleedingPrediction": {
+            "noPrediction": "Sobald Du 3 Menstruationszyklen eingegeben hast, wird drip. Vorhersagen für die Nächsten machen."
+        },
+        "shared": {
+            "cancel": "Abbrechen",
+            "ok": "OK",
+            "dateTimePickerTitle": "Wähle eine Zeit"
+        }
+    },
+    "settings": {
+        "license": {
+            "title": "drip. ist eine quelloffene Perioden-Tracker-App",
+            "text": "Copyright © {{currentYear}} Heart of Code e.V.\n\nDieses Programm wird in der Hoffnung verteilt, dass es nützlich ist, aber OHNE JEGLICHE GARANTIE; auch ohne die implizierte Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public\nLicense: https://www.gnu.org/licenses/gpl-3.0.html\n\nSie können uns über drip@mailbox.org kontaktieren."
+        },
+        "privacyPolicy": {
+            "title": "Datenschutz-Bestimmungen",
+            "intro": {
+                "title": "Einführung",
+                "text": "Diese Datenschutzbestimmung legt fest, wie die iOS-App \"drip.\" deine persönlichen Daten, die du in die App eingibst, nutzt und schützt."
+            },
+            "dataUse": {
+                "title": "Datennutzung",
+                "text": "Drip. respektiert und feiert deine Privatspähre. Es finde keine Sammlung von Nutzungsdaten, persönlicher Information statt. Es gibt keine Werbung und keine Spyware. Drip. kann Daten mir Bezug zur Menstruationsgesundheit lokal auf deinem Gerät speichern. \n\nDas beinhaltet:\n• Einstellungen\n• Zyklusdaten\n\nDie Daten werden genutzt um Statistiken anzuzeigen und Fruchtbarkeitsregeln anzuwenden. Die Daten können nicht von anderen Apps genutzt werden.\n\nWenn du alle deine App Daten löschen willst kannst du das tun indem du auf Einstellungen, Daten und Appdaten löschen gehst. Ebenso kannst du die App deinstallieren."
+            },
+            "permissions": {
+                "title": "Berechtigungen",
+                "text": "Um Erinnerungen in drip. zu verwenden, musst du Push-Benachrichtigungen zulassen. Wenn du diese Funktion nicht nutzen möchtest, lasse einfach keine Benachrichtigungen für die App zu."
+            },
+            "transparency": {
+                "title": "Transparenz",
+                "text": "Um sicher zu sein, dass die angegebenen Informationen stimmen kann man den Quellcode von drip. lesen. Der Quellcode ist wie ein Rezept: Er beschreibt wie viel und welche Art von Zuaten nötig sind und wie man aus diesen eine leckere Mahlzeit kocht oder eine coole App programmiert. \n\nBuon appetito!"
+            }
+        }
+    }
+}
