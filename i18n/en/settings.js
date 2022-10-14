@@ -19,18 +19,6 @@ export default {
       text: '',
     },
   },
-  export: {
-    errors: {
-      noData: 'There is no data to export',
-      couldNotConvert: 'Could not convert data to CSV',
-      problemSharing: 'There was a problem sharing the data export file',
-    },
-    title: 'My drip. data export',
-    subject: 'My drip. data export',
-    button: 'Export data',
-    segmentExplainer:
-      'Export data in CSV format for backup or so you can use it elsewhere',
-  },
   deleteSegment: {
     title: 'Delete app data',
     explainer: 'Delete app data from this phone',
