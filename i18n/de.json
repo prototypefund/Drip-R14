@@ -1,1 +1,132 @@
-{}
+{
+  "bottomMenu": {
+    "calendar": "Kalender",
+    "chart": "Diagramm",
+    "stats": "Statistiken"
+  },
+  "cycleDay": {
+    "symptomBox": {
+      "bleeding": "Blutung",
+      "temperature": "Temperatur",
+      "mucus": "Zervixschleim",
+      "cervix": "Zervix",
+      "note": "Notiz",
+      "desire": "Verlangen",
+      "sex": "Sex",
+      "pain": "Schmerz",
+      "mood": "Stimmung"
+    }
+  },
+  "labels": {
+    "bleedingPrediction": {
+      "noPrediction": "Sobald du drei Menstruationszyklen aufgezeichnet hast, wird drip. Vorhersagen für die Nächsten treffen."
+    },
+    "home": {
+      "cycleDay": " Zyklustag",
+      "cyclePhase": " Zyklusphase - ",
+      "addDataForToday": "Daten für heute eintragen"
+    },
+    "shared": {
+      "cancel": "Abbrechen",
+      "ok": "OK"
+    }
+  },
+  "hamburgerMenu": {
+    "about": {
+      "credits": {
+        "title": "Credits",
+        "text": "Wir lieben das drip.-Team. Danke und jede Menge <3 an alle unsere Mitwirkenden. Danke an Paula Härtel für die Symptom-Icons. Alle anderen Icons von:",
+        "madeBy": "Gemacht von:"
+      },
+      "donate": {
+        "button": "Hier spenden",
+        "title": "Unterstütze uns",
+        "text": "Die drips entwickeln diese App auf freiwilliger Basis. Wir sind immer dankbar für Unterstützung. Das kann bedeuten, dass du am Code mitarbeitest, Feedback gibst, Verbesserungen oder Funktionen vorschlägst, testest oder spendest. Es hilft und motiviert uns, diese App zu pflegen und neue Funktionen zu entwickeln. Vielen Dank für Ihre Unterstützung!"
+      },
+      "intro": {
+        "text": "Bitte beachten Sie, dass Ihre Daten lokal auf Ihrem Telefon und nicht auf einem Server gespeichert werden. Das bedeutet, dass Ihre Daten von niemandem gelesen werden können, es sei denn, er hat Zugang zu Ihrem Telefon. Wir möchten sicherstellen, dass Sie die Kontrolle über Ihre eigenen Daten behalten. Wenn Sie Ihr Telefon austauschen oder zurücksetzen möchten, denken Sie bitte daran, Ihre Daten vorher zu exportieren. Sie können die App anschließend neu installieren und Ihre Daten importieren.\n\nSollten Sie auf technische Probleme stoßen, zögern Sie nicht, uns per E-Mail zu kontaktieren. Sie können auch zur Codebasis auf Gitlab beitragen und unsere Website besuchen."
+      },
+      "philosophy": {
+        "title": "Vergiss nicht, an dich selbst zu denken",
+        "text": "drip. macht Periodenvorhersagen für dich und hilft dir, die NFP-Regeln zur Fruchtbarkeit anzuwenden. Aber denken Sie bitte daran, dass diese App von Menschen gemacht wird, und Menschen machen Fehler. Denken Sie immer selbst nach: \"Ergibt das Sinn?\" Denken Sie daran: Sie brauchen keine App, um Ihren Zyklus zu verstehen! Aber drip. möchte dich unterstützen und die Verfolgung deiner Periode einfacher, transparenter und sicherer machen."
+      },
+      "title": "Über",
+      "version": {
+        "title": "Version"
+      }
+    },
+    "license": {
+      "title": "drip. eine Open-Source App zur Zyklusaufzeichnung",
+      "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nDieses Programm wird in der Hoffnung verteilt, dass es nützlich ist, aber OHNE JEGLICHE GARANTIE; sogar ohne die implizite Garantie der MARKTREIFE oder der EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Details:"
+    },
+    "menuMain": {
+      "about": "Über",
+      "license": "Lizenz",
+      "settings": "Einstellungen",
+      "privacyPolicy": "Datenschutzbestimmungen"
+    },
+    "privacyPolicy": {
+      "title": "Datenschutzbestimmungen",
+      "intro": {
+        "title": "Einführung",
+        "text": "In dieser Datenschutzerklärung wird dargelegt, wie die App drip. deine persönlichen Daten, die du innerhalb der App generierst und speicherst, nutzt und schützt."
+      },
+      "dataUse": {
+        "title": "Datenverwendung",
+        "text": "Drip. respektiert und schätzt deine Privatsphäre. Es gibt keine Sammlung von Nutzungsdaten oder persönlichen Informationen, keine Werbung und keine Spyware. Drip. kann Daten zur Menstruationsgesundheit lokal auf deinem Gerät speichern.\n\nDazu gehören:\n- Einstellungen\n- Daten zur Aufzeichnung des Menstruationszyklus\n\nDie Daten werden zur Anzeige von Statistiken und zur Anwendung von Fruchtbarkeitsregeln verwendet. Auf diese Daten können andere Apps nicht zugreifen.\n\nWenn Sie alle Ihre App-Daten löschen möchten, können Sie dies tun, indem Sie zu Einstellungen, Daten und App-Daten löschen navigieren. Dies kann auch durch Deinstallation der App geschehen."
+      },
+      "permissions": {
+        "title": "Berechtigungen",
+        "text": "Um Erinnerungen in drip. zu verwenden, musst du Push-Benachrichtigungen zulassen. Wenn du diese Funktion nicht nutzen möchtest, erlaubst du einfach keine Benachrichtigungen für die App."
+      },
+      "transparency": {
+        "title": "Transparenz",
+        "text": "Du kannst den Quellcode von drip. durchlesen, um sicherzustellen, dass die angegebenen Informationen korrekt sind. Der Quellcode ist wie ein Rezept: Er sagt dir, wie viel und welche Art von Zutaten du brauchst und wie du sie zubereitest, um eine leckere Mahlzeit zu kochen oder eine abgefahrene App zu programmieren.\n\nBuon appetito!"
+      }
+    },
+    "settings": {
+      "menuItem": {
+        "dataManagement": {
+          "name": "Daten",
+          "text": "Daten importieren, exportieren oder löschen"
+        },
+        "nfpSettings": {
+          "name": "NFP Einstellungen",
+          "text": "Definiere, wie du NFP nutzen willst"
+        },
+        "password": {
+          "name": "Passwort",
+          "text": ""
+        },
+        "reminders": {
+          "name": "Erinnerungen",
+          "text": "Erinnerungen ein-/ausschalten"
+        }
+      },
+      "title": "Einstellungen"
+    }
+  },
+  "stats": {
+    "noData": "Es ist mindestens ein abgeschlossener Zyklus erforderlich, um die Statistiken anzuzeigen.",
+    "intro": "Grundlegende Statistiken über die Länge Ihrer Zyklen.",
+    "overview": {
+      "average": "Durchschnittlicher Zyklus",
+      "days": "Tage",
+      "min": "Kürzester",
+      "max": "Längster",
+      "standardDeviation": "Standard-\nabweichung",
+      "completedCycles": "Abgeschlossene\nZyklen"
+    },
+    "showStats": "Details zur Periode anzeigen",
+    "details": {
+      "cycleStart": "Zyklusbeginn",
+      "cycleLength": "Zykluslänge",
+      "bleedingDays": "Blutung"
+    },
+    "footnote": "Basierend auf der Standardabweichung aller von dir erfassten Perioden berechnet drip. einen Bereich für den Starttag der nächsten 3 Perioden. Die Spanne beträgt 3 Tage, wenn Ihre Standardabweichung kleiner als 1,5 ist, und 5 Tage, wenn der Wert größer ist. Die Standardabweichung gibt an, wie stark die Länge deiner Perioden variiert. 0 bedeutet, dass alle deine Perioden genau gleich lang sind, und je größer der Wert ist, desto stärker variiert die Periodenlänge."
+  },
+  "plurals": {
+    "day": "{{count}} Tag",
+    "day_plural": "{{count}} Tage"
+  }
+}
