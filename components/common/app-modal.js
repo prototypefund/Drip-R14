@@ -12,7 +12,7 @@ import CloseIcon from './close-icon'
 
 import { Sizes, Spacing } from '../../styles'
 
-const AppModal = ({ children, onClose }) => (
+const AppModal = ({ children, onClose, modalActions }) => (
   <Modal
     animationType="fade"
     onRequestClose={onClose}
@@ -25,6 +25,7 @@ const AppModal = ({ children, onClose }) => (
         <CloseIcon onClose={onClose} />
       </View>
       {children}
+      <View style={styles.footerContainer}>{modalActions}</View>
     </View>
   </Modal>
 )
@@ -32,6 +33,7 @@ const AppModal = ({ children, onClose }) => (
 AppModal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
+  modalActions: PropTypes.node,
 }
 
 const styles = StyleSheet.create({
@@ -45,22 +47,34 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingTop: Spacing.base,
     paddingHorizontal: Spacing.base,
-    position: 'absolute',
     width: '100%',
     zIndex: 3, // works on ios
     elevation: 3, // works on android
+    flex: 1,
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingHorizontal: Spacing.base,
+    width: '100%',
+    // zIndex: 3, // works on ios
+    // elevation: 3, // works on android
+    flex: 1,
+    paddingVertical: Spacing.tiny * 2,
   },
   modalWindow: {
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
     marginTop: Sizes.huge * 2,
-    paddingVertical: Spacing.large * 2,
     position: 'absolute',
-    maxHeight: Dimensions.get('window').height * 0.7,
+    maxHeight: Dimensions.get('window').height * 0.8,
     zIndex: 2, // works on ios
     elevation: 2, // works on android
-    minWidth: '80%',
+    minWidth: '90%',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 })
 

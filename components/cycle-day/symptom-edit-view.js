@@ -6,7 +6,7 @@ import AppModal from '../common/app-modal'
 import AppSwitch from '../common/app-switch'
 import AppText from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
-import Button from '../common/button'
+import Button, { ButtonTypes } from '../common/button'
 import Segment from '../common/segment'
 import SelectBoxGroup from './select-box-group'
 import SelectTabGroup from './select-tab-group'
@@ -116,8 +116,24 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     textAlignVertical: 'top',
   }
 
+  const modalActions = (
+    <View style={styles.dialogActions}>
+      <Button isSmall buttonStyle={ButtonTypes.ACTION} onPress={onRemove}>
+        {sharedLabels.remove}
+      </Button>
+      <Button
+        isSmall
+        isCTA
+        buttonStyle={ButtonTypes.ACTION_CTA}
+        onPress={onSave}
+      >
+        {sharedLabels.save}
+      </Button>
+    </View>
+  )
+
   return (
-    <AppModal onClose={onSave}>
+    <AppModal onClose={onSave} modalActions={modalActions}>
       <ScrollView
         contentContainerStyle={styles.modalContainer}
         keyboardDismissMode="on-drag"
@@ -193,12 +209,6 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           <Button iconName={iconName} isSmall onPress={onPressLearnMore}>
             {sharedLabels.learnMore}
           </Button>
-          <Button isSmall onPress={onRemove}>
-            {sharedLabels.remove}
-          </Button>
-          <Button isCTA isSmall onPress={onSave}>
-            {sharedLabels.save}
-          </Button>
         </View>
         {shouldShowInfo && (
           <Segment last style={styles.segmentBorder}>
@@ -222,6 +232,9 @@ const styles = StyleSheet.create({
     ...Containers.rowContainer,
     paddingHorizontal: Spacing.base,
     paddingBottom: Spacing.base,
+  },
+  dialogActions: {
+    ...Containers.rowContainer,
   },
   input: {
     height: Sizes.base * 5,
