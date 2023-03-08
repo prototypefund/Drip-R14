@@ -5,10 +5,12 @@ import Slider from '@ptomasroos/react-native-multi-slider'
 import alertError from '../common/alert-error'
 import SliderLabel from './slider-label'
 
+import { Settings as UnitSettings } from '../units'
+
 import { scaleObservable, saveTempScale } from '../../../local-storage'
 import { Colors, Sizes } from '../../../styles'
 import labels from '../../../i18n/en/settings'
-import { TEMP_MIN, TEMP_MAX, TEMP_SLIDER_STEP } from '../../../config'
+import { TEMP_MIN_F, TEMP_MAX_F, TEMP_MIN_C, TEMP_MAX_C, TEMP_SLIDER_STEP } from '../../../config'
 
 const TemperatureSlider = () => {
   const savedValue = scaleObservable.value
@@ -32,8 +34,8 @@ const TemperatureSlider = () => {
         enableLabel={true}
         markerStyle={styles.marker}
         markerOffsetY={Sizes.tiny}
-        max={TEMP_MAX}
-        min={TEMP_MIN}
+        max={UnitSettings.shouldUseImperial ? TEMP_MAX_F : TEMP_MAX_C}
+        min={UnitSettings.shouldUseImperial ? TEMP_MIN_F : TEMP_MIN_C}
         onValuesChange={onTemperatureSliderChange}
         selectedStyle={styles.sliderAccentBackground}
         step={TEMP_SLIDER_STEP}

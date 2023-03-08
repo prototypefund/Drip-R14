@@ -1,11 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Observable from 'obv'
-import { TEMP_SCALE_MIN, TEMP_SCALE_MAX, TEMP_SCALE_UNITS } from './config'
+import { Settings as UnitsSettings } from './components/settings/units'
+import { TEMP_SCALE_MIN_C, TEMP_SCALE_MAX_C, TEMP_SCALE_MIN_F, TEMP_SCALE_MAX_F, TEMP_SCALE_UNITS } from './config'
 
 export const scaleObservable = Observable()
+
 setObvWithInitValue('tempScale', scaleObservable, {
-  min: TEMP_SCALE_MIN,
-  max: TEMP_SCALE_MAX,
+  min: UnitsSettings.shouldUseImperial ? TEMP_SCALE_MIN_F : TEMP_SCALE_MIN_C,
+  max: UnitsSettings.shouldUseImperial ? TEMP_SCALE_MAX_F : TEMP_SCALE_MAX_C,
 })
 
 export const unitObservable = Observable()
