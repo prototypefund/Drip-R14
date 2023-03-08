@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
 
 import AppPage from '../../common/app-page'
 import AppSwitch from '../../common/app-switch'
 import Segment from '../../common/segment'
 
-import { Spacing, Typography } from '../../../styles'
+import { useImperialObservable, saveUseImperial } from '../../../local-storage'
+
 import labels from '../../../i18n/en/settings'
 
 const Settings = () => {
@@ -15,7 +15,7 @@ const Settings = () => {
 
   const onImperialToggle = (value) => {
     setShouldUseImperial(value)
-    shouldUseImperial(value)
+    saveUseImperial(value)
   }
 
   const imperialText = shouldUseImperial
@@ -36,16 +36,3 @@ const Settings = () => {
 }
 
 export default Settings
-
-const styles = StyleSheet.create({
-  icon: {
-    marginRight: Spacing.base,
-  },
-  line: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    ...Typography.subtitle,
-  },
-})

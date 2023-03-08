@@ -1,13 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Observable from 'obv'
-import { Settings as UnitsSettings } from './components/settings/units'
-import { TEMP_SCALE_MIN_C, TEMP_SCALE_MAX_C, TEMP_SCALE_MIN_F, TEMP_SCALE_MAX_F, TEMP_SCALE_UNITS } from './config'
+import {
+  TEMP_SCALE_MIN_C,
+  TEMP_SCALE_MAX_C,
+  TEMP_SCALE_MIN_F,
+  TEMP_SCALE_MAX_F,
+  TEMP_SCALE_UNITS,
+} from './config'
 
 export const scaleObservable = Observable()
 
 setObvWithInitValue('tempScale', scaleObservable, {
-  min: UnitsSettings.shouldUseImperial ? TEMP_SCALE_MIN_F : TEMP_SCALE_MIN_C,
-  max: UnitsSettings.shouldUseImperial ? TEMP_SCALE_MAX_F : TEMP_SCALE_MAX_C,
+  min: useImperialObservable ? TEMP_SCALE_MIN_F : TEMP_SCALE_MIN_C,
+  max: useImperialObservable ? TEMP_SCALE_MAX_F : TEMP_SCALE_MAX_C,
 })
 
 export const unitObservable = Observable()
@@ -52,6 +57,14 @@ setObvWithInitValue('useCervix', useCervixObservable, false)
 export async function saveUseCervix(bool) {
   await AsyncStorage.setItem('useCervix', JSON.stringify(bool))
   useCervixObservable.set(bool)
+}
+
+export const useImperialObservable = Observable()
+setObvWithInitValue('useImperial', useImperialObservable, false)
+
+export async function saveUseImperial(bool) {
+  await AsyncStorage.setItem('useImperial', JSON.stringify(bool))
+  useImperialObservable.set(bool)
 }
 
 export const hasEncryptionObservable = Observable()
