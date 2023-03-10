@@ -11,9 +11,10 @@ import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
+import { checkImperial } from '../../local-storage'
 
 const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
-  const cycleDay = getCycleDay(date)
+  const cycleDay = checkImperial(getCycleDay(date))
 
   const [editedSymptom, setEditedSymptom] = useState(
     isTemperatureEditView ? 'temperature' : ''

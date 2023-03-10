@@ -6,17 +6,15 @@ import {
   TEMP_SCALE_MIN_F,
   TEMP_SCALE_MAX_F,
   TEMP_SCALE_UNITS,
+  TEMP_MIN_F,
+  TEMP_MAX_C,
 } from './config'
 
 export const scaleObservable = Observable()
-
 setObvWithInitValue('tempScale', scaleObservable, {
-  min: useImperialObservable ? TEMP_SCALE_MIN_F : TEMP_SCALE_MIN_C,
-  max: useImperialObservable ? TEMP_SCALE_MAX_F : TEMP_SCALE_MAX_C,
+  min: TEMP_SCALE_MIN_C,
+  max: TEMP_SCALE_MAX_C,
 })
-
-export const unitObservable = Observable()
-unitObservable.set(TEMP_SCALE_UNITS)
 scaleObservable((scale) => {
   const scaleRange = scale.max - scale.min
   if (scaleRange <= 1.5) {
@@ -25,6 +23,9 @@ scaleObservable((scale) => {
     unitObservable.set(0.5)
   }
 })
+
+export const unitObservable = Observable()
+unitObservable.set(TEMP_SCALE_UNITS)
 
 export async function saveTempScale(scale) {
   await AsyncStorage.setItem('tempScale', JSON.stringify(scale))
@@ -59,12 +60,57 @@ export async function saveUseCervix(bool) {
   useCervixObservable.set(bool)
 }
 
+const translateTemperature = (temperature, to_f) => {
+  if (to_f && temperature < TEMP_MIN_F) {
+    temperature = 1.8 * temperature + 32
+  }
+
+  if (!to_f && temperature > TEMP_MAX_C) {
+    temperature = (5 / 9) * (temperature - 32.0)
+  }
+  return temperature
+}
+
+export const checkImperialArray = (data) => {
+  if (data) {
+    const new_data = JSON.parse(JSON.stringify(data))
+    for (const row of new_data) {
+      if (row.temperature?.value) {
+        row.temperature.value = translateTemperature(
+          row.temperature.value,
+          useImperialObservable.value
+        )
+      }
+    }
+    return JSON.stringify(new_data)
+  }
+  return data
+}
+
+export const checkImperial = (data) => {
+  if (data) {
+    const new_data = JSON.parse(JSON.stringify(data))
+    if (new_data?.temperature?.value) {
+      new_data.temperature.value = translateTemperature(
+        new_data.temperature.value,
+        useImperialObservable.value
+      )
+    }
+    return new_data
+  }
+  return data
+}
+
 export const useImperialObservable = Observable()
 setObvWithInitValue('useImperial', useImperialObservable, false)
 
 export async function saveUseImperial(bool) {
   await AsyncStorage.setItem('useImperial', JSON.stringify(bool))
   useImperialObservable.set(bool)
+  saveTempScale({
+    min: useImperialObservable.value ? TEMP_SCALE_MIN_F : TEMP_SCALE_MIN_C,
+    max: useImperialObservable.value ? TEMP_SCALE_MAX_F : TEMP_SCALE_MAX_C,
+  })
 }
 
 export const hasEncryptionObservable = Observable()

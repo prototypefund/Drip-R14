@@ -5,11 +5,11 @@ import {
   saveSymptom,
   mapRealmObjToJsObj,
 } from '../../db'
-import { scaleObservable } from '../../local-storage'
+import { scaleObservable, useImperialObservable } from '../../local-storage'
 
 import * as labels from '../../i18n/en/cycle-day'
 import { getLabelsList } from './labels'
-import { TEMP_MAX, TEMP_MIN } from '../../config'
+import { TEMP_MAX_C, TEMP_MIN_C, TEMP_MAX_F, TEMP_MIN_F } from '../../config'
 
 import computeNfpValue from '../../lib/nfp-mucus'
 
@@ -45,7 +45,10 @@ export const getTemperatureOutOfRangeMessage = (temperature) => {
   const value = Number(temperature)
   const scale = scaleObservable.value
 
-  return value < TEMP_MIN || value > TEMP_MAX
+  const temp_min = useImperialObservable.value ? TEMP_MIN_F : TEMP_MIN_C
+  const temp_max = useImperialObservable.value ? TEMP_MAX_F : TEMP_MAX_C
+
+  return value < temp_min || value > temp_max
     ? labels.temperature.outOfAbsoluteRangeWarning
     : value < scale.min || value > scale.max
     ? labels.temperature.outOfRangeWarning
@@ -333,7 +336,7 @@ const label = {
   },
   temperature: ({ value, time, exclude }) => {
     if (isNumber(value)) {
-      let temperatureLabel = `${value} °C`
+      let temperatureLabel = `${value} °${useImperialObservable ? 'F' : 'C'}`
       if (time) {
         temperatureLabel += ` - ${time}`
       }
