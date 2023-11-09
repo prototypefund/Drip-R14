@@ -1,0 +1,158 @@
+{
+  "bottomMenu": {
+    "calendar": "日历",
+    "chart": "图表",
+    "stats": "状态"
+  },
+  "chart": {
+    "tutorial": "你可以滑动图表来查看以往日期。"
+  },
+  "cycleDay": {
+    "symptomBox": {
+      "bleeding": "出血情况",
+      "temperature": "体温",
+      "mucus": "宫颈粘液情况",
+      "cervix": "宫颈情况",
+      "note": "记录",
+      "desire": "欲望",
+      "sex": "性生活",
+      "pain": "疼痛",
+      "mood": "心情"
+    }
+  },
+  "labels": {
+    "bleedingPrediction": {
+      "noPrediction": "只要你记录了3个月经周期，drip就会对接下来的月经周期进行预测。"
+    },
+    "home": {
+      "cycleDay": " 周期日",
+      "cyclePhase": "周期阶段-",
+      "addDataForToday": "添加今日数据"
+    },
+    "shared": {
+      "cancel": "取消",
+      "ok": "确定"
+    }
+  },
+  "hamburgerMenu": {
+    "about": {
+      "credits": {
+        "title": "Credits",
+        "text": "We love the drip. team. Thanks and lots of <3 to all of our condriputors. Thanks to Paula Härtel for the symptom tracking icons. All the other icons from:",
+        "madeBy": "Made by:"
+      },
+      "donate": {
+        "button": "Donate here",
+        "title": "Support us",
+        "text": "The drips are developing this app on a volunteer basis. We are always grateful for support. This could mean condriputing to the code, giving feedback, suggesting improvements or features, testing or donating. It helps and motivates us maintaining this app and developing new features. Thank you for your support!"
+      },
+      "intro": {
+        "text": "Please note that your data is stored locally on your phone and not on a server. This means your data cannot be read by anyone else unless they have access to your phone. We want to ensure that you stay in control of your own data. If you are planning to switch or reset your phone, please remember to export your data before doing so. You can reinstall the app afterwards and import your data.\n\nIf you encounter any technical issues, don't hesitate to contact us via email. You can also contribute to the code base on Gitlab and visit our website."
+      },
+      "philosophy": {
+        "title": "Remember to think for yourself",
+        "text": "drip. makes period predictions for you and helps you apply NFP fertility awareness rules. But please remember that this app is made by humans, and humans make mistakes. Always think for yourself: \"Does this make sense?\" Remember, you don't need an app to understand your cycle! However, drip. wants to support you and make period tracking easier, more transparent and secure."
+      },
+      "title": "About",
+      "version": {
+        "title": "Version"
+      }
+    },
+    "license": {
+      "title": "drip. an open-source cycle tracking app",
+      "text": "Copyright (C) {{currentYear}} Heart of Code e.V.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details:"
+    },
+    "menuMain": {
+      "about": "关于",
+      "license": "许可证",
+      "settings": "设置",
+      "privacyPolicy": "隐私政策"
+    },
+    "privacyPolicy": {
+      "title": "隐私政策",
+      "intro": {
+        "title": "介绍",
+        "text": "本隐私政策规定了应用程序如何使用和保护您生成和存储在应用程序中的个人数据。"
+      },
+      "dataUse": {
+        "title": "数据使用",
+        "text": "Drip 尊重你的隐私和数据，没有收集使用数据或个人信息，也没有广告，也没有间谍软件。只会在本地存储你的月经数据，这些数据用于显示统计数据和作为自行评估何时生育，其他应用程序无法访问这些数据，如果你希望删除这些数据，请在设置里自行删除应用数据或直接卸载APP。
+      },
+      "permissions": {
+        "title": "通知权限",
+        "text": "为了Drip能够提醒你，需要你允许它推送通知，不开启通知也没关系。这取决于你"
+      },
+      "transparency": {
+        "title": "程序透明度",
+        "text": "你可以获取drip.的源代码，弄明白它们是怎么运行的，怎么说呢？源代码就像一本食谱书，它会告诉你你该准备什么，需要什么样的材料。以及制作步骤。这样你就能搞出一顿好吃的饭菜或者是编译出一个能用的程序。"
+      }
+    },
+    "设置": {
+      "数据": {
+        "导出": {
+          "button": "导出",
+          "dialog": {
+            "cancel": "取消",
+            "delete": "导出并删除数据",
+            "message": "注意：导入有两个选项 1.保留现有的周期天数，只替换导入文件中的周期天数。2.删除所有现有的周期天数并从文件中导入周期天数",
+            "replace": "导入并覆盖",
+            "title": "保存现有数据？"
+          },
+          "error": {
+            "couldNotOpenFile": "没有打开文件",
+            "futureEdit": "未来的日期可能只包含备注，不包含其他数据。",
+            "incorrectColumns": "Expected CSV column titles to be {{incorrectColumns}}",
+            "noDataImported": "{{message}}\n\n没有导入数据或备份"
+          },
+          "segmentExplainer": "导入CSV的格式的数据",
+          "success": {
+            "message": "数据导出成功",
+            "title": "成功"
+          }
+        }
+      },
+      "menuItem": {
+        "dataManagement": {
+          "name": "数据",
+          "text": "导出、导入和删除你的数据"
+        },
+        "nfpSettings": {
+          "name": "NFP 设置",
+          "text": "自定义NFP"
+        },
+        "password": {
+          "name": "密码",
+          "text": ""
+        },
+        "reminders": {
+          "name": "提醒",
+          "text": "提醒开关"
+        }
+      },
+      "title": "设置"
+    }
+  },
+  "stats": {
+    "noData": "至少需要一个完整的周期来显示统计数据。",
+    "intro": "关于周期长度的基本统计。",
+    "overview": {
+      "average": "平均周期",
+      "days": "天数",
+      "min": "最短",
+      "max": "最长",
+      "standardDeviation": "正常值",
+      "completedCycles": "正常的周期"
+    },
+    "showStats": "周期详情",
+    "details": {
+      "cycleStart": "统计开始",
+      "cycleLength": "周期长度",
+      "bleedingDays": "月经开始日"
+    },
+    "footnote": "根据你的月经周期的标准偏差，计算下一次月经开始的范围，如果标准偏差小于1.5，范围为3天，如果数值大于1.5，范围为5天。\n\n标准偏差告诉你周期的长度变化有多大，0表示所有周期的长度完全相同，数值越大周期长度变化越大."
+  },
+  "plurals": {
+    "day": "{{count}} 天",
+    "day_plural": "{{count}} 天数"
+  }
+}
