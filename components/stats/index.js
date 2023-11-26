@@ -16,7 +16,7 @@ import { Containers, Sizes, Spacing, Typography } from '../../styles'
 
 const image = require('../../assets/cycle-icon.png')
 
-const Stats = () => {
+const Stats = (props) => {
   const [isStatsVisible, setIsStatsVisible] = useState(false)
 
   const { t } = useTranslation(null, { keyPrefix: 'stats' })
@@ -75,7 +75,10 @@ const Stats = () => {
               {t('showStats')}
             </Button>
             {isStatsVisible && (
-              <PeriodDetailsModal onClose={() => setIsStatsVisible(false)} />
+              <PeriodDetailsModal
+                onClose={() => setIsStatsVisible(false)}
+                navigate={props.navigate}
+              />
             )}
             <Footnote>{t('footnote')}</Footnote>
           </>

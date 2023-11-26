@@ -47,6 +47,7 @@ const App = ({ restartApp }) => {
     setDate,
     isTemperatureEditView,
     navigate: setCurrentPage,
+    targetDate,
   }
 
   return (
