@@ -15,6 +15,8 @@ import { closeDb } from '../db'
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
   const [currentPage, setCurrentPage] = useState('Home')
+  const [targetDate, setTargetDate] = useState(null)
+
   const goBack = () => {
     if (currentPage === 'Home') {
       closeDb()
@@ -39,6 +41,12 @@ const App = ({ restartApp }) => {
 
   useEffect(() => setupNotifications(setCurrentPage, setDate), [])
 
+  const navigateWithDate = (page, date) => {
+    setCurrentPage(page)
+    if (date) {
+      setTargetDate(date)
+    }
+  }
   const Page = viewsList[currentPage]
   const isTemperatureEditView = currentPage === 'TemperatureEditView'
   const headerProps = { navigate: setCurrentPage }
@@ -46,8 +54,9 @@ const App = ({ restartApp }) => {
     date,
     setDate,
     isTemperatureEditView,
-    navigate: setCurrentPage,
+    navigate: navigateWithDate,
     targetDate,
+    setTargetDate,
   }
 
   return (

@@ -9,12 +9,10 @@ const MainGrid = (props) => {
   const [endReached, setEndReached] = useState(false)
 
   const jumpToDate = (date) => {
-    const index = Math.min(
-      props.data.findIndex((item) => item == date.date) - 7,
-      0
-    )
+    let index = props.data.findIndex((item) => item == date)
     //TO-DO: Replace 7 with initial numtorender ?
     if (index !== -1) {
+      index = Math.max(0, index - 7)
       flatListRef.current.scrollToIndex({ animated: false, index })
     }
   }
@@ -23,7 +21,7 @@ const MainGrid = (props) => {
     if (props.targetDate) {
       jumpToDate(props.targetDate)
     }
-    targetDate = null
+    props.setTargetDate(null)
   }, [props.targetDate])
 
   return (
@@ -37,11 +35,12 @@ const MainGrid = (props) => {
       onEndReached={() => setEndReached(true)}
       ListFooterComponent={<LoadingMoreView end={endReached} />}
       updateCellsBatchingPeriod={800}
-      getItemLayout={(data, index) => ({
-        length: 32,
-        offset: 32 * index,
-        index,
-      }) //TO-DO: Replace with item width
+      getItemLayout={
+        (data, index) => ({
+          length: 32,
+          offset: 32 * index,
+          index,
+        }) //TO-DO: Replace with item width
       }
       {...props}
     />

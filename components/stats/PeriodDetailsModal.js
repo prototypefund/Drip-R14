@@ -10,7 +10,7 @@ import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 
-const Item = ({ data, navigate, setDate }) => {
+const Item = ({ data, navigate, setDate, setTargetDate }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
 
   if (!data) return false
@@ -19,7 +19,7 @@ const Item = ({ data, navigate, setDate }) => {
 
   const jumpToDate = () => {
     console.log('Date text clicked:', date)
-    navigate('Chart', (targetDate = { date }))
+    navigate('Chart', date)
   }
   return (
     <View style={styles.row}>
@@ -40,8 +40,10 @@ Item.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-const PeriodDetailsModal = ({ onClose, navigate, setDate }) => {
-  const renderItem = ({ item }) => <Item data={item} navigate={navigate} />
+const PeriodDetailsModal = ({ onClose, navigate, setDate, setTargetDate }) => {
+  const renderItem = ({ item }) => (
+    <Item data={item} navigate={navigate} setTargetDate={setTargetDate} />
+  )
   const data = cycleModule().getStats()
 
   if (!data || data.length === 0) return false

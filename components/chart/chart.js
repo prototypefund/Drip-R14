@@ -28,7 +28,7 @@ import { Spacing } from '../../styles'
 const getSymptomsFromCycleDays = (cycleDays) =>
   SYMPTOMS.filter((symptom) => cycleDays.some((cycleDay) => cycleDay[symptom]))
 
-const CycleChart = ({ navigate, setDate, targetDate }) => {
+const CycleChart = ({ navigate, setDate, targetDate, setTargetDate }) => {
   const [shouldShowHint, setShouldShowHint] = useState(false)
   useEffect(() => {
     let isMounted = true
@@ -124,6 +124,7 @@ const CycleChart = ({ navigate, setDate, targetDate }) => {
             initialNumToRender={numberOfColumnsToRender}
             contentContainerStyle={{ height: chartHeight }}
             targetDate={targetDate}
+            setTargetDate={setTargetDate}
           />
           {shouldShowTemperatureColumn && (
             <HorizontalGrid height={columnHeight} />
