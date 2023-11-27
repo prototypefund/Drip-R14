@@ -12,7 +12,12 @@ import { general as labels } from '../../i18n/en/cycle-day'
 import { Colors, Containers, Spacing, Typography } from '../../styles'
 import { HIT_SLOP } from '../../config'
 
-const SymptomPageTitle = ({ date, onNextCycleDay, onPrevCycleDay }) => {
+const SymptomPageTitle = ({
+  date,
+  onNextCycleDay,
+  onPrevCycleDay,
+  navigate,
+}) => {
   const title = dateToTitle(date)
 
   const { getCycleDayNumber } = cycleModule()
@@ -22,6 +27,9 @@ const SymptomPageTitle = ({ date, onNextCycleDay, onPrevCycleDay }) => {
   const formattedTitle =
     title.length > 21 ? title.substring(0, 18) + '...' : title
 
+  const jumpToDate = () => {
+    navigate('Chart', date)
+  }
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPrevCycleDay} hitSlop={HIT_SLOP}>
@@ -30,6 +38,9 @@ const SymptomPageTitle = ({ date, onNextCycleDay, onPrevCycleDay }) => {
       <View style={styles.textContainer}>
         <AppText style={styles.title}>{formattedTitle}</AppText>
         {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
+        <TouchableOpacity style={styles.textContainer} onPress={jumpToDate}>
+          <AppText style={styles.subtitle}> View in chart </AppText>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={onNextCycleDay} hitSlop={HIT_SLOP}>
         <AppIcon name="chevron-right" color={Colors.orange} />
