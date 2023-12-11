@@ -177,8 +177,17 @@ export function tryToImportWithoutDelete(cycleDays) {
   db.write(() => {
     cycleDays.forEach((day, i) => {
       const existing = getCycleDay(day.date)
-      if (existing) db.delete(existing)
-      tryToCreateCycleDayFromImport(day, i)
+      if (existing) {
+        for (const entry in day) {
+          if (entry === 'note' && existing[entry]) {
+            existing[entry]['value'] += ' ' + day[entry]['value']
+          } else {
+            existing[entry] = day[entry]
+          }
+        }
+      } else {
+        tryToCreateCycleDayFromImport(day, i)
+      }
     })
   })
 }
