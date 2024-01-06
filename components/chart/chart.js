@@ -13,7 +13,7 @@ import Tutorial from './Tutorial'
 import YAxis from './y-axis'
 
 import { getCycleDaysSortedByDate } from '../../db'
-import { getChartFlag, setChartFlag } from '../../local-storage'
+import { checkImperial, getChartFlag, setChartFlag } from '../../local-storage'
 import { makeColumnInfo } from '../helpers/chart'
 
 import {
@@ -53,7 +53,7 @@ const CycleChart = ({ navigate, setDate }) => {
     setChartFlag()
   }
 
-  const cycleDaysSortedByDate = getCycleDaysSortedByDate()
+  const cycleDaysSortedByDate = checkImperial(getCycleDaysSortedByDate())
 
   const chartSymptoms = getSymptomsFromCycleDays(cycleDaysSortedByDate)
   const symptomRowSymptoms = chartSymptoms.filter(

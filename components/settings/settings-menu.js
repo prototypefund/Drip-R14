@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 const menuItems = [
   { label: 'reminders', componentName: 'Reminders' },
   { label: 'nfpSettings', componentName: 'NfpSettings' },
+  { label: 'units', componentName: 'Units' },
   { label: 'dataManagement', componentName: 'DataManagement' },
   { label: 'password', componentName: 'Password' },
 ]

@@ -58,6 +58,11 @@ export default {
     cervixModeOff:
       'By default, cervical mucus values are being used for symptothermal fertility detection. You can switch here to use cervix values for symptothermal fertility detection',
   },
+  useImperial: {
+    title: 'Metric / Imperial',
+    imperialModeOn: 'Use Fahrenheit',
+    imperialModeOff: 'Use Celcius',
+  },
   passwordSettings: {
     title: 'App password',
     explainerDisabled:

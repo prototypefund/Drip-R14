@@ -120,6 +120,10 @@
           "name": "NFP settings",
           "text": "define how you want to use NFP"
         },
+        "units": {
+          "name": "Units",
+          "text": "specify a prefered unit of measurment"
+        },
         "password": {
           "name": "Password",
           "text": ""

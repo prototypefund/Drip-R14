@@ -26,11 +26,15 @@ export const CHART_XAXIS_HEIGHT_RATIO = scale(0.1)
 export const CHART_YAXIS_WIDTH = scale(32)
 export const CHART_TICK_WIDTH = scale(44)
 
-export const TEMP_SCALE_MAX = 37.5
-export const TEMP_SCALE_MIN = 35.5
+export const TEMP_SCALE_MAX_C = 37.5
+export const TEMP_SCALE_MIN_C = 35.5
+export const TEMP_SCALE_MAX_F = 99.5
+export const TEMP_SCALE_MIN_F = 95.9
 export const TEMP_SCALE_UNITS = 0.1
-export const TEMP_MAX = 39
-export const TEMP_MIN = 35
+export const TEMP_MAX_C = 39
+export const TEMP_MIN_C = 35
+export const TEMP_MAX_F = 102.2
+export const TEMP_MIN_F = 95
 export const TEMP_SLIDER_STEP = 0.5
 
 export const HIT_SLOP = {

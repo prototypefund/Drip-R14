@@ -5,6 +5,7 @@ import { Keyboard } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
+import { useImperialObservable } from '../../local-storage'
 
 import AppText from '../common/app-text'
 import AppTextInput from '../common/app-text-input'
@@ -73,7 +74,7 @@ const Temperature = ({ data, date, save }) => {
             testID="temperatureInput"
             underlineColorAndroid="transparent"
           />
-          <AppText>°C</AppText>
+          <AppText>°{useImperialObservable.value ? 'F' : 'C'}</AppText>
         </View>
         {!!outOfRangeWarning && (
           <View style={styles.hintContainer}>
