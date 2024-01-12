@@ -175,21 +175,87 @@ export function tryToImportWithDelete(cycleDays) {
 
 export function tryToImportWithoutDelete(cycleDays) {
   db.write(() => {
-    cycleDays.forEach((day, i) => {
-      const existing = getCycleDay(day.date)
-      if (existing) {
-        for (const entry in day) {
-          if (entry === 'note' && existing[entry]) {
-            existing[entry]['value'] += ' ' + day[entry]['value']
-          } else {
-            existing[entry] = day[entry]
-          }
-        }
-      } else {
-        tryToCreateCycleDayFromImport(day, i)
-      }
-    })
+    cycleDays.forEach(processCycleDay)
   })
+}
+
+/* Processes each cycle day and updates existing data or creates new db entry
+ *
+ * @param {Object} day - the imported cycle day
+ * @param {number} i - the index of the imported cycle day in the array
+ */
+function processCycleDay(day, i) {
+  const existing = getCycleDay(day.date)
+
+  if (existing) {
+    updateExistingCycleDay(existing, day)
+  } else {
+    tryToCreateCycleDayFromImport(day, i)
+  }
+}
+
+/* Compares entries for each cycle day.
+ *  If no conflicts found, uses imported data. Otherwise handles conflicts.
+ *
+ * @param {Object} existing - the corresponding cycle day from db
+ * @param {Object} day - the imported cycle day
+ */
+function updateExistingCycleDay(existing, day) {
+  for (const entry in day) {
+    if (existing[entry]) {
+      updateEntry(existing, day, entry)
+    } else {
+      existing[entry] = day[entry]
+    }
+  }
+}
+/* Updates individual entries in case of an import conflict
+ *
+ * The symptoms behave differently when encountering a conflict.
+ * For note the import note is appended
+ * Bleeding uses the updated value and sets "exclude" if at least one of the two has "exclude" set.
+ * For sex, pain and mood the entries for the symptoms are simply merged.
+ * For cervix, mucus, temperature & desire, merging does not make sense, therefore the default of the imported value overwriting the "old" one is used.
+ *
+ * @param {Object} existing - the corresponding cycle day from db
+ * @param {Object} day - the imported cycle day
+ * @param {string} entry - the name of specific entry/symptom (sex, bleeding etc.)
+ */
+function updateEntry(existing, day, entry) {
+  switch (entry) {
+    case 'note':
+      existing[entry]['value'] += ' ' + day[entry]['value']
+      break
+    case 'bleeding':
+      existing[entry]['value'] = day[entry]['value']
+      existing[entry]['exclude'] =
+        existing[entry]['exclude'] || day[entry]['exclude']
+      break
+    case 'sex':
+    case 'pain':
+    case 'mood':
+      mergeSubEntries(existing[entry], day[entry])
+      break
+    default:
+      existing[entry] = day[entry]
+  }
+}
+/* Merges sub-entries in symptoms.
+ *
+ * ATTENTION: This only makes sense in the case of symptoms where the schema is {"a": bool, "b": bool, ..., "note": string}
+ *
+ * @param {Object} existingEntry - the existing symptom entry for a given day
+ * @param {Object} dayEntry - symptom entry to be merged (same symptom!)
+ */
+function mergeSubEntries(existingEntry, dayEntry) {
+  for (const data in dayEntry) {
+    if (data == 'note') {
+      existingEntry[data] =
+        (existingEntry[data] ? existingEntry[data] : ' ') + dayEntry[data]
+    } else {
+      existingEntry[data] = existingEntry[data] || dayEntry[data]
+    }
+  }
 }
 
 export async function changeDbEncryption(hash) {
