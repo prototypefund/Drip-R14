@@ -51,7 +51,7 @@ export const bleedingPrediction = {
 
 export const passwordPrompt = {
   title: 'Alkalmazás feloldása',
-  enterPassword: 'Írja be ide a jelszót',
+  enterPassword: 'Írd be ide a jelszavadat',
   deleteDatabaseExplainer:
     "Ha elfelejtetted a jelszavadat, sajnos mi nem tehetünk semmit az adatok visszaállítása érdekében, mert azok titkosítva vannak azzal a jelszóval, amelyet csak Te ismersz. Törölheted azonban az összes titkosított adatot, és újrakezdheted. Az összes adat törlése után, ha akarod, új jelszót állíthatsz be a beállításokban.",
   forgotPassword: 'Elfelejtetted a jelszavadat?',
