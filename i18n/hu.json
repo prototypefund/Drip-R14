@@ -1,0 +1,165 @@
+{
+  "bottomMenu": {
+    "calendar": "Naptár",
+    "chart": "Diagram",
+    "stats": "Statisztikák"
+  },
+  "chart": {
+    "tutorial": "További dátumok megtekintéséhez csúsztasd el a diagramot."
+  },
+  "cycleDay": {
+    "symptomBox": {
+      "bleeding": "vérzés",
+      "temperature": "hőmérséklet",
+      "mucus": "méhnyakváladék",
+      "cervix": "méhnyak",
+      "note": "jegyzet",
+      "desire": "vágy",
+      "sex": "szex",
+      "pain": "fájdalom",
+      "mood": "hangulat"
+    }
+  },
+  "labels": {
+    "bleedingPrediction": {
+      "noPrediction": "Amint nyomon követsz 3 menstruációs ciklust, a drip. előrejelzéseket készít a következő ciklusokra vonatkozóan."
+    },
+    "home": {
+      "cycleDay": " ciklusod napja",
+      "cyclePhase": " ciklus szakasz - ",
+      "addDataForToday": "a mai napra vonatkozó adatok hozzáadása"
+    },
+    "shared": {
+      "cancel": "Mégse",
+      "ok": "OK"
+    }
+  },
+  "hamburgerMenu": {
+    "about": {
+      "credits": {
+        "title": "Készítők",
+        "text": "Szeretjük a drip. csapatát. Köszönet és sok <3 minden közreműködőnknek. Köszönjük Paula Härtelnek a tünetkövető ikonokat. Az összes többi ikon innen:",
+        "madeBy": "Készítette:"
+      },
+      "donate": {
+        "button": "Adományozás itt",
+        "title": "Támogass bennünket",
+        "text": "A drip. fejlesztői önkéntes alapon készítik ezt az alkalmazást. A támogatásért mindig hálásak vagyunk. Ez jelentheti a kódhoz való hozzájárulást, visszajelzést, javítási javaslatokat, vagy funkciókat, tesztelést, vagy adományozást. Ez segít és motivál bennünket az alkalmazás fenntartásában és az új funkciók fejlesztésében. Köszönjük a támogatást!"
+      },
+      "intro": {
+        "text": "Felhívjuk figyelmedet, hogy az adataid helyben a telefonon, nem pedig egy szerveren kerülnek tárolásra. Ez azt jelenti, hogy az adataidat senki más nem olvashatja, kivéve, ha más is hozzáféréssel rendelkezik a telefonodhoz. Szeretnénk biztosítani, hogy Te továbbra is ura maradj a saját adataidnak. Ha a telefonodat lecseréled, vagy vissza akarod állítani alaphelyzetbe, kérjük, ne feledd, hogy előtte exportáld az adataidat egy fájlba. Utána újra telepítheted az alkalmazást és vissza importálhatod az adataidat a drip.-be.\n\nHa bármilyen technikai problémád merülne fel, ne habozz kapcsolatba lépni velünk e-mailben. Hozzájárulhatsz a kódbázis fejlesztéséhez a Gitlabon, és meglátogathatod a weboldalunkat is."
+      },
+      "philosophy": {
+        "title": "Ne felejts el magadra gondolni",
+        "text": "A drip. időszakos előrejelzéseket készít neked és segít az NFP termékenységtudatossági szabályok alkalmazásában. De ne feledd, hogy ezt az alkalmazást emberek készítik, és az emberek hibázhatnak. Mindig gondolj saját magadra: \"Van ennek értelme?\" Ne feledd, nincs szükséged egy alkalmazásra ahhoz, hogy megértsd a ciklusodat! A drip. azonban támogatni szeretne téged, és egyszerűbbé, átláthatóbbá és biztonságosabbá szeretné tenni a menstruációkövetésedet."
+      },
+      "title": "Rólunk",
+      "version": {
+        "title": "Verzió"
+      }
+    },
+    "license": {
+      "title": "A drip. egy nyílt forráskódú cikluskövető alkalmazás",
+      "text": "Szerzői jog (C) {{currentYear}} Heart of Code e.V.\n\nEzt a programot abban a reményben terjesztjük, hogy hasznos lesz, de MINDEN GARANCIA NÉLKÜL; továbbá az ELADHATÓSÁGRA, vagy a MEGHATÁROZOTT CÉLRA VALÓ ALKALMASSÁGRA vonatkozó hallgatólagos garancia nélkül. További részleteket lásd a GNU General Public License-t:"
+    },
+    "menuMain": {
+      "about": "Rólunk",
+      "license": "Licenc",
+      "settings": "Beállítások",
+      "privacyPolicy": "Adatvédelmi Szabályzat"
+    },
+    "privacyPolicy": {
+      "title": "Adatvédelmi Szabályzat",
+      "intro": {
+        "title": "Bevezető",
+        "text": "Ez az adatvédelmi szabályzat meghatározza, hogy a drip. alkalmazás hogyan használja és védi az általad létrehozott és tárolt személyes adataidat az alkalmazáson belül."
+      },
+      "dataUse": {
+        "title": "Adathasználat",
+        "text": "A drip. tiszteletben tartja és védi a magánéletedet. Nem gyűjtünk használati adatokat, vagy személyes információkat, nincsenek hirdetések, nincsenek kémprogramok. A drip. képes a menstruációs egészséggel kapcsolatos adatokat helyileg tárolni a készülékeden.\n\nEzek közé tartoznak:\n• beállítások\n• menstruációs cikluskövetési adatok\n\nAz adatokat statisztikák megjelenítésére és termékenység tudatossági szabályok alkalmazására használjuk. Ezekhez az adatokhoz más alkalmazások nem férhetnek hozzá.\n\nHa törölni szeretnéd az alkalmazás összes adatát, akkor ezt a Beállítások, Adatok és Alkalmazásadatok törlése menüpontban teheted meg. Ezt az alkalmazás eltávolításával is megteheted."
+      },
+      "permissions": {
+        "title": "Jogosultságok",
+        "text": "Az emlékeztetők használatához a drip.-ben engedélyezned kell a push értesítések használatát. Ha nem szeretnéd használni ezt a funkciót, egyszerűen ne engedélyezd az értesítéseket az alkalmazás számára."
+      },
+      "transparency": {
+        "title": "Átláthatóság",
+        "text": "Átolvashatod a drip. forráskódját, hogy megbizonyosodj a megadott információk helyességéről. A forráskód olyan, mint egy recept: Megmondja, hogy mennyi és milyen hozzávalóra van szükséged, és hogyan készítsd el őket egy finom étel elkészítéséhez, vagy egy klassz alkalmazás programozásához.\n\nJó étvágyat!"
+      }
+    },
+    "settings": {
+      "data": {
+        "import": {
+          "button": "Adatok importálása",
+          "dialog": {
+            "cancel": "Mégse",
+            "delete": "Importálás és meglévők törlése",
+            "message": "Az importáláshoz két lehetőség van:\n\n1. A meglévő ciklusnapok megtartása és csak az importfájlban lévő napok cseréje.\n\n2. Törölje az összes meglévő ciklusnapot, és importálja a ciklusnapokat a fájlból.",
+            "replace": "Importálás és csere",
+            "title": "Megőrzöd a meglévő adatokat?"
+          },
+          "error": {
+            "couldNotOpenFile": "Nem sikerült megnyitni a fájlt",
+            "futureEdit": "A jövőbeli dátumok csak egy megjegyzést tartalmazhatnak, más tünetet nem.",
+            "incorrectColumns": "A várt CSV-oszlopcímek: {{incorrectColumns}}",
+            "noDataImported": "{{message}}\n\nNincsenek importált, vagy módosított adatok"
+          },
+          "segmentExplainer": "CSV formátumú adatok importálása",
+          "success": {
+            "message": "Az adatok sikeresen importálva",
+            "title": "Sikeres"
+          }
+        }
+      },
+      "menuItem": {
+        "dataManagement": {
+          "name": "Adatok",
+          "text": "Importálhatod, exportálhatod, vagy törölheted az adataidat"
+        },
+        "customization": {
+          "name": "Testreszabás",
+          "text": "Határozd meg, hogyan szeretnéd használni a drip.-et"
+        },
+        "password": {
+          "name": "Jelszó",
+          "text": ""
+        },
+        "reminders": {
+          "name": "Emlékeztetők",
+          "text": "Emlékeztetők be/ki kapcsolása"
+        },
+        "info": {
+          "name": "Infó",
+          "text": "Tudj meg többet a drip. működéséről"
+        }
+      },
+      "title": "Beállítások"
+    },
+    "info": {
+      "title": "Infó"
+    }
+  },
+  "stats": {
+    "noData": "A statisztikák megjelenítéséhez legalább egy befejezett ciklusra van szükség.",
+    "intro": "Alapvető statisztikák a ciklusaid hosszáról.",
+    "overview": {
+      "average": "Átlagos ciklus",
+      "days": "Napok",
+      "min": "Legrövidebb",
+      "max": "Leghosszabb",
+      "standardDeviation": "Normál\neltérés",
+      "completedCycles": "Befejezett\nciklusok"
+    },
+    "showStats": "A periódusok részleteinek megjelenítése",
+    "details": {
+      "cycleStart": "Ciklus kezdet",
+      "cycleLength": "Ciklus hossz",
+      "bleedingDays": "Vérzés"
+    },
+    "footnote": "Az összes követett időszak normál eltérése alapján a drip. kiszámítja a következő 3 időszak kezdőnapját. A tartomány 3 nap lesz, ha a normál eltérés kevesebb, mint 1,5. Amennyiben a normál eltérés több mint 1,5 nap, akkor a tartomány 5 nap lesz.\n\nA normál eltérés megmutatja, hogy mennyire változik az időszakok hossza. A 0 azt jelenti, hogy az összes időszak pontosan ugyanolyan hosszú, és minél nagyobb az érték, annál jobban változik az időszakok hossza."
+  },
+  "plurals": {
+    "day": "{{count}} nap",
+    "day_plural": "{{count}} nap"
+  }
+}
