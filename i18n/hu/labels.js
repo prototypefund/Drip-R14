@@ -70,7 +70,7 @@ export const fertilityStatus = {
   unknown:
     'Nem tudunk semmilyen ciklusinformációt megjeleníteni, mivel nem adtál hozzá periódus adatokat.',
   preOvuText:
-    "Az NFP szabályai szerint a ciklus elején 5 napos meddőséget feltételezhet, feltéve, hogy nem észlelsz termékeny méhnyakváladékot vagy méhnyakértékeket.",
+    "Az NFP szabályai szerint a ciklus elején 5 napos terméketlenséget feltételezhetsz, feltéve, hogy nem észlelsz termékeny méhnyakváladékot vagy méhnyak értékeket.",
   periOvuText:
     'Nem tudtuk kimutatni sem a hőmérséklet-eltolódást, sem a méhnyak nyálkahártyát, sem a méhnyak eltolódását.',
   periOvuUntilEveningText: (tempRule) => {
