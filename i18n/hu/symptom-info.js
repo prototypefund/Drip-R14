@@ -1,7 +1,7 @@
 import links from './links'
 
 export const generalInfo = {
-  chartNfp: `A diagramon nyomon követheted a termékenységi jeleket. Ha érvényes hőmérséklet-eltolódást és méhnyak- vagy méhnyaknyálkahártya-eltolódást is észlelsz, a diagramon egy narancssárga vonal jelenik meg. Ez jelzi a peri-ovulációs szakasz végét és a posztovulációs szakasz kezdetét.`,
+  chartNfp: `A diagramon nyomon követheted a termékenységi jeleket. Ha érvényes hőmérséklet-eltolódást és méhnyak-, vagy méhnyaknyálkahártya-eltolódást is észlelsz, a diagramon egy narancssárga vonal jelenik meg. Ez jelzi az ovulációs szakasz végét és a posztovulációs szakasz kezdetét.`,
   curiousNfp: `Ha kíváncsi vagy a szimptotermikus módszerre, amelyet a termékenység nyomon követésére használunk az alkalmazáson belül, akkor látogass el a ${links.wiki.url} oldalra.`,
   cycleRelation: `Befolyásolhatja, vagy hatással lehet az Te menstruációs ciklusodra és annak hormonális változásaira.`,
   excludeExplainer: `Ezeket az értékeket kizárhatod, így nem lesz figyelembe véve a termékenységi számítás során.`,
