@@ -5,19 +5,19 @@ export default {
   },
   email: {
     url: 'mailto:drip@mailbox.org',
-    text: 'email',
+    text: 'e-mail',
   },
   wiki: {
     url: 'https://gitlab.com/bloodyhealth/drip/wikis/home',
-    text: 'our wiki',
+    text: 'drip. wiki',
   },
   website: {
     url: 'https://dripapp.org/',
-    text: 'Website',
+    text: 'Weboldal',
   },
   donate: {
     url: 'https://ko-fi.com/dripapp',
-    text: 'Donate here',
+    text: 'Támogatás',
   },
   smashicons: {
     url: 'https://smashicons.com/',
