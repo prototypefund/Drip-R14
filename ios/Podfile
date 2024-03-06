@@ -11,6 +11,9 @@ target 'drip' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
+end
 
   target 'dripTests' do
     inherit! :complete

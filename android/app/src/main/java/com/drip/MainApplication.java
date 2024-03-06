@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.facebook.react.ReactInstanceManager;
 import cl.json.ShareApplication;
 import com.facebook.react.ReactNativeHost;
