@@ -22,7 +22,7 @@ const resources = {
       label: {
         ...enLabels,
       },
-      settings: {
+      setting: {
         ...enSettings,
       },
       links: {

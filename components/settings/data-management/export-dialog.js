@@ -46,6 +46,7 @@ export async function exportCSV() {
 }
 
 export async function exportPDF(t) {
+  const labels = settings.export
   try {
     const pdf = await RNHTMLtoPDF.convert({
       html: generateOverview(t),
