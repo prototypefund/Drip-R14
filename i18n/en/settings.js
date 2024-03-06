@@ -10,8 +10,9 @@ export default {
     title: 'My drip. data export',
     subject: 'My drip. data export',
     button: 'Export data',
+    buttonPDF: 'Export PDF',
     segmentExplainer:
-      'Export data in CSV format for backup or so you can use it elsewhere',
+      'Export data in CSV format for backup or so you can use it elsewhere or as a printable PDF',
   },
   deleteSegment: {
     title: 'Delete app data',

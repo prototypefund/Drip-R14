@@ -448,7 +448,6 @@ const label = {
     }
   },
 }
-
 export const getData = (symptom, symptomData) => {
   return symptomData && label[symptom](symptomData)
 }
