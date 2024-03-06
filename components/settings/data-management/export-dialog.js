@@ -8,7 +8,6 @@ import { EXPORT_FILE_NAME } from './constants'
 import RNFS from 'react-native-fs'
 import RNHTMLtoPDF from 'react-native-html-to-pdf'
 import { generateOverview } from '../../../lib/import-export/export/make-pdf'
-import labels from '../../../i18n/en/settings'
 
 export async function exportCSV() {
   let data
