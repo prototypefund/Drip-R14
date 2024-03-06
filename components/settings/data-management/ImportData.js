@@ -28,9 +28,6 @@ export default function ImportData({
 
   async function getFileInfo(isCsv) {
     try {
-      const fileInfo = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.csv, 'text/comma-separated-values'],
-      })
       let fileInfo
       if (isCsv) {
         fileInfo = await DocumentPicker.pickSingle({
