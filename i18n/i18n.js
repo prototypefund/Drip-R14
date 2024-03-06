@@ -2,10 +2,34 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 // translation files
-import en from './en.json'
+import en from './en'
+import * as enCycleDay from './en/cycle-day'
+import enExport from './en/export'
+import enSettings from './en/settings'
+import enLinks from './en/links'
+import * as enLabels from './en/labels'
 
 const resources = {
-  en: { translation: en },
+  en: {
+    translation: {
+      ...en,
+      cycles: {
+        ...enCycleDay,
+      },
+      export: {
+        ...enExport,
+      },
+      label: {
+        ...enLabels,
+      },
+      setting: {
+        ...enSettings,
+      },
+      links: {
+        ...enLinks,
+      },
+    },
+  },
 }
 
 i18n
