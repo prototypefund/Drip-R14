@@ -6,11 +6,13 @@ import AppText from '../../common/app-text'
 import Button from '../../common/button'
 import Segment from '../../common/segment'
 
-import openShareDialogAndExport from './export-dialog'
+import { exportData, exportEncrypted } from './export-dialog'
 import DeleteData from './delete-data'
 
 import labels from '../../../i18n/en/settings'
 import ImportData from './ImportData'
+import { encryptData } from '../../../lib/import-export/export-encrypted'
+import BackUp from './BackUp'
 
 const DataManagement = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +20,12 @@ const DataManagement = () => {
 
   const startExport = () => {
     setIsDeletingData(false)
-    openShareDialogAndExport()
+    exportData()
+  }
+
+  const startEncryptedExport = () => {
+    exportEncrypted()
+    encryptData('all,the,date,is,here,all', 'thisispassword')
   }
 
   if (isLoading) return <AppLoadingView />
@@ -30,8 +37,15 @@ const DataManagement = () => {
         <Button isCTA onPress={startExport}>
           {labels.export.button}
         </Button>
+        <Button isCTA onPress={startEncryptedExport}>
+          {labels.export.button}
+        </Button>
       </Segment>
       <ImportData
+        resetIsDeletingData={() => setIsDeletingData(false)}
+        setIsLoading={setIsLoading}
+      />
+      <BackUp
         resetIsDeletingData={() => setIsDeletingData(false)}
         setIsLoading={setIsLoading}
       />
