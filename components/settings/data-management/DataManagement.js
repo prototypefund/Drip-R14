@@ -13,7 +13,7 @@ import labels from '../../../i18n/en/settings'
 import ImportData from './ImportData'
 import ImportMenu from './ImportMenu'
 
-const DataManagement = ({ restartApp, navigate }) => {
+const DataManagement = ({ navigate }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDeletingData, setIsDeletingData] = useState(false)
   const [isShowingImport, setIsShowingImport] = useState(false)

@@ -82,7 +82,10 @@ const ImportMenu = ({ onClose, navigate }) => {
               if (isConnected) {
                 try {
                   await importClue(email, password)
-                  Alert.alert(t('success.title'), t('success.message'))
+                  Alert.alert(
+                    t('hamburgerMenu.settings.data.import.success.title'),
+                    t('hamburgerMenu.settings.data.import.success.message')
+                  )
                 } catch (error) {
                   if (
                     error instanceof NetworkError ||

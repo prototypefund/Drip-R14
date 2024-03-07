@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import rnfs from 'react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
@@ -74,7 +74,7 @@ export default function ImportData({
     const fileContent = await getFileContent(false)
     if (!fileContent) return
     try {
-      importClueOffline(fileContent)
+      await importClueOffline(fileContent)
       setIsLoading(false)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
@@ -105,7 +105,7 @@ export default function ImportData({
 
   function openClueImport() {
     resetIsDeletingData()
-    Alert.alert(t('dialogClue.title'), t('dialogClue.message'), [
+    let buttons = [
       {
         text: t('dialog.cancel'),
         style: 'cancel',
@@ -119,7 +119,11 @@ export default function ImportData({
         text: t('dialogClue.web'),
         onPress: () => startClueImport(),
       },
-    ])
+    ]
+    if (Platform.OS === 'android') {
+      buttons = [buttons[0], buttons[2], buttons[1]]
+    }
+    Alert.alert(t('dialogClue.title'), t('dialogClue.message'), buttons)
   }
 
   function startClueImport() {
