@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Alert, Platform } from 'react-native'
+import { Alert } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import rnfs from 'react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
@@ -17,27 +17,37 @@ import settings from '../../../i18n/en/settings'
 import { getCycleDaysSortedByDate, mapRealmObjToJsObj } from '../../../db'
 import getDataAsCsvDataUri from '../../../lib/import-export/export-to-csv'
 import RNFS from 'react-native-fs'
-import { EXPORT_FILE_NAME } from './constants'
+import { EXPORT_ENCRYPTED } from './constants'
 import Share from 'react-native-share'
 
-export default function BackUp({ resetIsDeletingData, setIsLoading }) {
+export default function BackUp({ setIsLoading }) {
   const { t } = useTranslation(null, {
     keyPrefix: 'hamburgerMenu.settings.data.import',
   })
 
   async function startImport(shouldDeleteExistingData) {
     setIsLoading(true)
-    await importData(shouldDeleteExistingData)
+    const fileContent = await fetchData()
+    Alert.prompt(
+      'Enter password',
+      'Enter password that will decrypt & import your backup',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: (password) =>
+            importAndDecrypt(fileContent, password, shouldDeleteExistingData),
+        },
+      ],
+      'secure-text'
+    )
     setIsLoading(false)
   }
 
-  async function startExport() {
-    setIsLoading(true)
-    await exportEncrypted()
-    setIsLoading(false)
-  }
-
-  async function exportEncrypted() {
+  async function exportEncrypted(password) {
     let data
     const labels = settings.export
     const cycleDaysByDate = mapRealmObjToJsObj(getCycleDaysSortedByDate())
@@ -46,7 +56,7 @@ export default function BackUp({ resetIsDeletingData, setIsLoading }) {
 
     try {
       data = getDataAsCsvDataUri(cycleDaysByDate)
-      data = await encryptData(data, 'password')
+      data = await encryptData(data, password)
       if (!data) {
         return alertError(labels.errors.noData)
       }
@@ -56,7 +66,7 @@ export default function BackUp({ resetIsDeletingData, setIsLoading }) {
     }
 
     try {
-      const path = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
+      const path = `${RNFS.DocumentDirectoryPath}/${EXPORT_ENCRYPTED}`
       await RNFS.writeFile(path, data)
 
       await Share.open({
@@ -75,9 +85,7 @@ export default function BackUp({ resetIsDeletingData, setIsLoading }) {
 
   async function getFileInfo() {
     try {
-      const fileInfo = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.csv, 'text/comma-separated-values'],
-      })
+      const fileInfo = await DocumentPicker.pickSingle()
       return fileInfo
     } catch (error) {
       if (DocumentPicker.isCancel(error)) return // User cancelled the picker, exit any dialogs or menus and move on
@@ -97,12 +105,18 @@ export default function BackUp({ resetIsDeletingData, setIsLoading }) {
     }
   }
 
-  async function importData(shouldDeleteExistingData) {
-    let fileContent = await getFileContent()
+  async function fetchData() {
+    const fileContent = await getFileContent()
     if (!fileContent) return
-
+    return fileContent
+  }
+  async function importAndDecrypt(
+    fileContent,
+    password,
+    shouldDeleteExistingData
+  ) {
     try {
-      fileContent = await decryptData(fileContent, 'password')
+      fileContent = await decryptData(fileContent, password)
       await importCsv(fileContent, shouldDeleteExistingData)
       Alert.alert(t('success.title'), t('success.message'))
     } catch (err) {
@@ -114,14 +128,32 @@ export default function BackUp({ resetIsDeletingData, setIsLoading }) {
     const errorMessage = t('error.noDataImported', { message })
     alertError(errorMessage)
   }
-
   return (
     <Segment title="Backup">
       <AppText>Export backups</AppText>
       <Button isCTA onPress={() => startImport(false)}>
         {'Import encrypted'}
       </Button>
-      <Button isCTA onPress={() => startExport()}>
+      <Button
+        isCTA
+        onPress={() =>
+          Alert.prompt(
+            'Enter password',
+            'Enter password that will encrypt your backup',
+            [
+              {
+                text: 'Cancel',
+                style: 'cancel',
+              },
+              {
+                text: 'OK',
+                onPress: (password) => exportEncrypted(password),
+              },
+            ],
+            'secure-text'
+          )
+        }
+      >
         {'Export encrypted'}
       </Button>
     </Segment>
