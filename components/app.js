@@ -40,6 +40,7 @@ const App = ({ restartApp }) => {
 
   useEffect(() => setupNotifications(setCurrentPage, setDate), [])
 
+  // Replacement for simply "setCurrentPage()", but does the same if no date passed.
   const navigateWithDate = (page, date) => {
     setCurrentPage(page)
     if (date) {

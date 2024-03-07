@@ -41,7 +41,7 @@ const SymptomPageTitle = ({
         {subtitle && <AppText style={styles.subtitle}>{subtitle}</AppText>}
         <TouchableOpacity style={styles.jumpContainer} onPress={jumpToDate}>
           <Image resizeMode="contain" source={image} style={styles.tinyLogo} />
-          <AppText style={styles.subtitle}> View in chart </AppText>
+          <AppText style={styles.subtitle}> {labels.chartView} </AppText>
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={onNextCycleDay} hitSlop={HIT_SLOP}>
