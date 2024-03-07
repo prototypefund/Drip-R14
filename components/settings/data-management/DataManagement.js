@@ -12,6 +12,7 @@ import DeleteData from './delete-data'
 import labels from '../../../i18n/en/settings'
 import ImportData from './ImportData'
 import ImportMenu from './ImportMenu'
+import PropTypes from 'prop-types'
 
 const DataManagement = ({ navigate }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -57,6 +58,10 @@ const DataManagement = ({ navigate }) => {
       </AppPage>
     )
   }
+}
+
+DataManagement.propTypes = {
+  navigate: PropTypes.func.isRequired,
 }
 
 export default DataManagement
