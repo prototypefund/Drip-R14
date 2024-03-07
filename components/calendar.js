@@ -17,8 +17,7 @@ const CalendarView = ({ setDate, navigate }) => {
   const predictedMenses = cycleModule().getPredictedMenses()
 
   const passDateToDayView = ({ dateString }) => {
-    setDate(dateString)
-    navigate('CycleDay')
+    navigate('CycleDay', dateString)
   }
 
   const markedDates = Object.assign(

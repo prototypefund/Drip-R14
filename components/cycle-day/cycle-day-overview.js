@@ -67,6 +67,7 @@ CycleDayOverView.propTypes = {
   date: PropTypes.string,
   setDate: PropTypes.func,
   isTemperatureEditView: PropTypes.bool,
+  navigate: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

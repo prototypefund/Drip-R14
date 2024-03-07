@@ -13,6 +13,7 @@ import cycleModule from '../../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
+import PropTypes from 'prop-types'
 
 const image = require('../../assets/cycle-icon.png')
 
@@ -86,6 +87,10 @@ const Stats = (props) => {
       </ScrollView>
     </SafeAreaView>
   )
+}
+
+Stats.propTypes = {
+  navigate: PropTypes.func.isRequired,
 }
 
 const column = {

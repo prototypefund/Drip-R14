@@ -10,7 +10,7 @@ import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 
-const Item = ({ data, navigate, setDate, setTargetDate }) => {
+const Item = ({ data, navigate }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
 
   if (!data) return false
@@ -18,7 +18,6 @@ const Item = ({ data, navigate, setDate, setTargetDate }) => {
   const { date, cycleLength, bleedingLength } = data
 
   const jumpToDate = () => {
-    console.log('Date text clicked:', date)
     navigate('Chart', date)
   }
   return (
@@ -38,12 +37,11 @@ const Item = ({ data, navigate, setDate, setTargetDate }) => {
 
 Item.propTypes = {
   data: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired,
 }
 
-const PeriodDetailsModal = ({ onClose, navigate, setDate, setTargetDate }) => {
-  const renderItem = ({ item }) => (
-    <Item data={item} navigate={navigate} setTargetDate={setTargetDate} />
-  )
+const PeriodDetailsModal = ({ onClose, navigate }) => {
+  const renderItem = ({ item }) => <Item data={item} navigate={navigate} />
   const data = cycleModule().getStats()
 
   if (!data || data.length === 0) return false
@@ -68,6 +66,7 @@ const PeriodDetailsModal = ({ onClose, navigate, setDate, setTargetDate }) => {
 
 PeriodDetailsModal.propTypes = {
   onClose: PropTypes.func,
+  navigate: PropTypes.func.isRequired,
 }
 
 const ItemDivider = () => <View style={styles.divider} />

@@ -15,7 +15,6 @@ import { closeDb } from '../db'
 const App = ({ restartApp }) => {
   const [date, setDate] = useState(LocalDate.now().toString())
   const [currentPage, setCurrentPage] = useState('Home')
-  const [targetDate, setTargetDate] = useState(null)
 
   const goBack = () => {
     if (currentPage === 'Home') {
@@ -44,7 +43,7 @@ const App = ({ restartApp }) => {
   const navigateWithDate = (page, date) => {
     setCurrentPage(page)
     if (date) {
-      setTargetDate(date)
+      setDate(date)
     }
   }
   const Page = viewsList[currentPage]
@@ -55,8 +54,6 @@ const App = ({ restartApp }) => {
     setDate,
     isTemperatureEditView,
     navigate: navigateWithDate,
-    targetDate,
-    setTargetDate,
   }
 
   return (

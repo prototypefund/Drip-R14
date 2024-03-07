@@ -20,7 +20,6 @@ const DayColumn = ({
   dateString,
   chartSymptoms,
   columnHeight,
-  setDate,
   navigate,
   shouldShowTemperatureColumn,
   symptomHeight,
@@ -64,8 +63,7 @@ const DayColumn = ({
   )
 
   const onDaySelect = (date) => {
-    setDate(date)
-    navigate('CycleDay')
+    navigate('CycleDay', date)
   }
 
   return (
