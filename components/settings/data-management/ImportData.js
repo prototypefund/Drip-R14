@@ -86,21 +86,28 @@ export default function ImportData({
 
   function openImportDialog() {
     resetIsDeletingData()
-    Alert.alert(t('dialog.title'), t('dialog.message'), [
+
+    let buttons = [
       {
         text: t('dialog.cancel'),
         style: 'cancel',
         onPress: () => {},
       },
       {
-        text: t('dialog.delete'),
-        onPress: () => startImport(true),
-      },
-      {
         text: t('dialog.replace'),
         onPress: () => startImport(false),
       },
-    ])
+      {
+        text: t('dialog.delete'),
+        onPress: () => startImport(true),
+      },
+    ]
+
+    if (Platform.OS === 'android') {
+      buttons = [buttons[0], buttons[2], buttons[1]]
+    }
+
+    Alert.alert(t('dialog.title'), t('dialog.message'), buttons)
   }
 
   function openClueImport() {
