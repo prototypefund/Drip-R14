@@ -13,7 +13,16 @@ import Tutorial from './Tutorial'
 import YAxis from './y-axis'
 
 import { getCycleDaysSortedByDate } from '../../db'
-import { getChartFlag, setChartFlag } from '../../local-storage'
+import {
+  getChartFlag,
+  setChartFlag,
+  desireTrackingCategoryObservable,
+  moodTrackingCategoryObservable,
+  noteTrackingCategoryObservable,
+  painTrackingCategoryObservable,
+  sexTrackingCategoryObservable,
+  temperatureTrackingCategoryObservable,
+} from '../../local-storage'
 import { makeColumnInfo } from '../helpers/chart'
 
 import {
@@ -59,7 +68,27 @@ const CycleChart = ({ navigate, setDate, date }) => {
     (symptom) => symptom !== 'temperature'
   )
 
-  const shouldShowTemperatureColumn = chartSymptoms.indexOf('temperature') > -1
+  const symptomRowEnabledSymptoms = symptomRowSymptoms.filter((symptom) => {
+    if (symptom === 'sex') {
+      return sexTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'desire') {
+      return desireTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'pain') {
+      return painTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'mood') {
+      return moodTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'note') {
+      return noteTrackingCategoryObservable.value ? symptom : null
+    } else {
+      return symptom
+    }
+  })
+
+  const isTemperatureEnabled = temperatureTrackingCategoryObservable.value
+  const shouldShowTemperatureColumn =
+    isTemperatureEnabled && chartSymptoms.indexOf('temperature') > -1
+  const shouldShowNoDataWarning =
+    isTemperatureEnabled && chartSymptoms.indexOf('temperature') <= -1
 
   const { width, height } = Dimensions.get('window')
   const numberOfColumnsToRender = Math.round(width / CHART_COLUMN_WIDTH)
@@ -70,8 +99,9 @@ const CycleChart = ({ navigate, setDate, date }) => {
     remainingHeight * CHART_SYMPTOM_HEIGHT_RATIO
   )
   const symptomRowHeight =
-    PixelRatio.roundToNearestPixel(symptomRowSymptoms.length * symptomHeight) +
-    CHART_GRID_LINE_HORIZONTAL_WIDTH
+    PixelRatio.roundToNearestPixel(
+      symptomRowEnabledSymptoms.length * symptomHeight
+    ) + CHART_GRID_LINE_HORIZONTAL_WIDTH
   const columnHeight = remainingHeight - symptomRowHeight
 
   const chartHeight = shouldShowTemperatureColumn
@@ -88,7 +118,7 @@ const CycleChart = ({ navigate, setDate, date }) => {
         navigate={navigate}
         symptomHeight={symptomHeight}
         columnHeight={columnHeight}
-        symptomRowSymptoms={symptomRowSymptoms}
+        symptomRowSymptoms={symptomRowEnabledSymptoms}
         chartSymptoms={chartSymptoms}
         shouldShowTemperatureColumn={shouldShowTemperatureColumn}
         xAxisHeight={xAxisHeight}
@@ -109,11 +139,11 @@ const CycleChart = ({ navigate, setDate, date }) => {
     >
       <View style={styles.chartContainer}>
         {shouldShowHint && <Tutorial onClose={hideHint} />}
-        {!shouldShowTemperatureColumn && <NoTemperature />}
+        {shouldShowNoDataWarning && <NoTemperature />}
         <View style={styles.chartArea}>
           <YAxis
             height={columnHeight}
-            symptomsToDisplay={symptomRowSymptoms}
+            symptomsToDisplay={symptomRowEnabledSymptoms}
             symptomsSectionHeight={symptomRowHeight}
             shouldShowTemperatureColumn={shouldShowTemperatureColumn}
             xAxisHeight={xAxisHeight}

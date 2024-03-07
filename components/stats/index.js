@@ -11,6 +11,7 @@ import PeriodDetailsModal from './PeriodDetailsModal'
 
 import cycleModule from '../../lib/cycle'
 import { getCycleLengthStats as getCycleInfo } from '../../lib/cycle-length'
+import { formatDecimal } from '../helpers/cycle-day'
 
 import { Containers, Sizes, Spacing, Typography } from '../../styles'
 import PropTypes from 'prop-types'
@@ -28,6 +29,7 @@ const Stats = (props) => {
     numberOfCycles > 0
       ? getCycleInfo(cycleLengths)
       : { minimum: '—', maximum: '—', stdDeviation: '—' }
+
   const standardDeviation = cycleData.stdDeviation
     ? cycleData.stdDeviation
     : '—'
@@ -37,6 +39,10 @@ const Stats = (props) => {
     [standardDeviation, t('overview.standardDeviation')],
     [numberOfCycles, t('overview.completedCycles')],
   ]
+
+  if (cycleData.mean) {
+    cycleData.mean = formatDecimal(cycleData.mean, 1)
+  }
 
   return (
     <SafeAreaView style={styles.pageContainer}>

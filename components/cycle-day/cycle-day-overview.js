@@ -9,6 +9,14 @@ import SymptomPageTitle from './symptom-page-title'
 import { getCycleDay } from '../../db'
 import { getData, nextDate, prevDate } from '../helpers/cycle-day'
 
+import {
+  desireTrackingCategoryObservable,
+  moodTrackingCategoryObservable,
+  noteTrackingCategoryObservable,
+  painTrackingCategoryObservable,
+  sexTrackingCategoryObservable,
+  temperatureTrackingCategoryObservable,
+} from '../../local-storage'
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
@@ -32,6 +40,25 @@ const CycleDayOverView = ({
     setDate(prevDate(date))
   }
 
+  const allEnabledSymptoms = SYMPTOMS.map((symptom) => {
+    if (symptom === 'temperature') {
+      return temperatureTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'sex') {
+      return sexTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'desire') {
+      return desireTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'pain') {
+      return painTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'mood') {
+      return moodTrackingCategoryObservable.value ? symptom : null
+    } else if (symptom === 'note') {
+      return noteTrackingCategoryObservable.value ? symptom : null
+    } else {
+      return symptom
+    }
+  })
+  const cleanSymptoms = allEnabledSymptoms.filter(Boolean)
+
   return (
     <AppPage>
       <SymptomPageTitle
@@ -41,7 +68,7 @@ const CycleDayOverView = ({
         navigate={navigate}
       />
       <View style={styles.container}>
-        {SYMPTOMS.map((symptom) => {
+        {cleanSymptoms.map((symptom) => {
           const symptomData =
             cycleDay && cycleDay[symptom] ? cycleDay[symptom] : null
 
