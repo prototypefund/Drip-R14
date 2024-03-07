@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Alert } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
-import rnfs from 'react-native-fs'
 import importCsv from '../../../lib/import-export/import-from-csv'
 import alertError from '../common/alert-error'
 import Segment from '../../common/segment'
@@ -21,10 +20,9 @@ import { EXPORT_ENCRYPTED } from './constants'
 import Share from 'react-native-share'
 
 export default function BackUp({ setIsLoading }) {
-  const { t } = useTranslation(null, {
-    keyPrefix: 'hamburgerMenu.settings.data.import',
-  })
+  const { t } = useTranslation()
 
+  //TODO: i18n
   async function startImport(shouldDeleteExistingData) {
     setIsLoading(true)
     const fileContent = await fetchData()
@@ -82,11 +80,13 @@ export default function BackUp({ setIsLoading }) {
       return alertError(labels.errors.problemSharing)
     }
   }
+  //Splitting file handling & decrypting into two parts.
+  //We want the user to first pick a file and only then be prompted for the password.
 
+  //File handling
   async function getFileInfo() {
     try {
-      const fileInfo = await DocumentPicker.pickSingle()
-      return fileInfo
+      return await DocumentPicker.pickSingle()
     } catch (error) {
       if (DocumentPicker.isCancel(error)) return // User cancelled the picker, exit any dialogs or menus and move on
       showImportErrorAlert(error)
@@ -98,7 +98,7 @@ export default function BackUp({ setIsLoading }) {
     if (!fileInfo) return null
 
     try {
-      const fileContent = await rnfs.readFile(fileInfo.uri, 'utf8')
+      const fileContent = await RNFS.readFile(fileInfo.uri, 'utf8')
       return fileContent
     } catch (err) {
       return showImportErrorAlert(t('error.couldNotOpenFile'))
@@ -110,6 +110,9 @@ export default function BackUp({ setIsLoading }) {
     if (!fileContent) return
     return fileContent
   }
+
+  //Decryption
+  //TODO: Differentiate between parsing error & password error
   async function importAndDecrypt(
     fileContent,
     password,
@@ -118,7 +121,10 @@ export default function BackUp({ setIsLoading }) {
     try {
       fileContent = await decryptData(fileContent, password)
       await importCsv(fileContent, shouldDeleteExistingData)
-      Alert.alert(t('success.title'), t('success.message'))
+      Alert.alert(
+        t('hamburgerMenu.settings.data.import.success.title'),
+        t('hamburgerMenu.settings.data.import.success.message')
+      )
     } catch (err) {
       showImportErrorAlert(err.message)
     }
@@ -128,6 +134,9 @@ export default function BackUp({ setIsLoading }) {
     const errorMessage = t('error.noDataImported', { message })
     alertError(errorMessage)
   }
+
+  //TODO: Replace this with i18n
+  //TODO: Alert.Prompt is iOs only for now
   return (
     <Segment title="Backup">
       <AppText>Export backups</AppText>
