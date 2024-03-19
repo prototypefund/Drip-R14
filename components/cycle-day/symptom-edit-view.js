@@ -111,8 +111,8 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
   const noteText = symptom === 'note' ? data.value : data.note
   const inputProps = {
     multiline: true,
-    numberOfLines: 3,
-    scrollEnabled: false,
+    numberOfLines: 4,
+    scrollEnabled: true,
     style: styles.input,
     textAlignVertical: 'top',
   }
@@ -185,7 +185,7 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
           <Segment style={styles.segmentBorder}>
             <AppText>{symtomPage[symptom].note}</AppText>
             <AppTextInput
-              {...inputProps}
+              multiline={true}
               onChangeText={onEditNote}
               placeholder={sharedLabels.enter}
               testID="noteInput"

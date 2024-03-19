@@ -1,7 +1,9 @@
 import React from 'react'
 import {
   Dimensions,
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -12,6 +14,10 @@ import CloseIcon from './close-icon'
 
 import { Sizes, Spacing } from '../../styles'
 
+const keyboardVerticalOffsetPlatformDependent = Platform.OS === 'ios' ? 40 : 0
+const keyboardBehaviorPlatformDependent =
+  Platform.OS === 'ios' ? 'position' : 'padding'
+
 const AppModal = ({ children, onClose }) => (
   <Modal
     animationType="fade"
@@ -19,13 +25,19 @@ const AppModal = ({ children, onClose }) => (
     transparent={true}
     visible={true}
   >
-    <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
-    <View style={styles.modalWindow}>
-      <View style={styles.headerContainer}>
-        <CloseIcon onClose={onClose} />
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={keyboardVerticalOffsetPlatformDependent}
+      behavior={keyboardBehaviorPlatformDependent}
+      style={styles.safeAreaView}
+    >
+      <TouchableOpacity onPress={onClose} style={styles.blackBackground} />
+      <View style={styles.modalWindow}>
+        <View style={styles.headerContainer}>
+          <CloseIcon onClose={onClose} />
+        </View>
+        {children}
       </View>
-      {children}
-    </View>
+    </KeyboardAvoidingView>
   </Modal>
 )
 
@@ -61,6 +73,11 @@ const styles = StyleSheet.create({
     zIndex: 2, // works on ios
     elevation: 2, // works on android
     minWidth: '80%',
+  },
+  safeAreaView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 
