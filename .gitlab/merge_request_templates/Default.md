@@ -1,7 +1,5 @@
 ## Why this change?
 
-Closes ticket #
-
 ## Description
 
 I have tested this MR:

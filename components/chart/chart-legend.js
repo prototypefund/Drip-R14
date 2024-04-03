@@ -5,7 +5,7 @@ import moment from 'moment'
 
 import AppText from '../common/app-text'
 
-import { Typography } from '../../styles'
+import { Sizes, Typography } from '../../styles'
 import { CHART_YAXIS_WIDTH } from '../../config'
 
 const ChartLegend = ({ height, currentDate }) => {
@@ -13,8 +13,13 @@ const ChartLegend = ({ height, currentDate }) => {
 
   return (
     <View style={[styles.container, { height }]}>
-      <AppText style={styles.textBold}>#</AppText>
-      <AppText style={styles.text}>{displayedMonth}</AppText>
+      <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
+        <AppText style={styles.textBold}>#</AppText>
+
+      </View>
+      <View style={[styles.singleLabelContainer, { height: height / 2 }]}>
+        <AppText style={styles.text}>{displayedMonth}</AppText>
+      </View>
     </View>
   )
 }
@@ -30,8 +35,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     width: CHART_YAXIS_WIDTH,
   },
+  singleLabelContainer: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
   text: {
     ...Typography.label,
+    fontSize: Sizes.footnote,
   },
   textBold: {
     ...Typography.labelBold,

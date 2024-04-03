@@ -3,21 +3,24 @@
 A menstrual cycle tracking app that's open-source and leaves your data on your phone. Use it to track your menstrual cycle and/or for fertility awareness!
 Find more information on [our website](https://dripapp.org/).
 
-[<img src="https://dripapp.org/assets/get.png"
+ [<img src="https://dripapp.org/assets/get.png"
      alt="Get it here"
-     height="55">](https://dripapp.org/release/8.apk)
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/com.drip/)
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     height="55">](https://dripapp.org/release/v1.2311.14.apk)
+[<img src="https://dripapp.org/assets/badge_google-play.png"
      alt="Get it on Google Play"
-     height="80">](https://play.google.com/store/apps/details?id=com.drip)
+     height="55">](https://dripapp.org/android)
+[<img src="https://dripapp.org/assets/badge_app-store.png"
+    alt="Get drip on the App Store"
+    height="55">](https://dripapp.org/ios)
+[<img src="https://dripapp.org/assets/badge_f-droid.png"
+     alt="Get it on F-Droid"
+     height="55">](https://dripapp.org/fdroid)
 
-The app is built in React Native and currently developed for Android.
+The app is built in React Native and developed for Android and iOS.
 
-▶ [How to contribute to the project](https://gitlab.com/bloodyhealth/drip/blob/master/CONTRIBUTING.md)
+▶ [How to contribute to the project](https://gitlab.com/bloodyhealth/drip/blob/main/CONTRIBUTING.md)
 
-▶ [How to release a new version](https://gitlab.com/bloodyhealth/drip/blob/master/RELEASE.md)
+▶ [How to release a new version](https://gitlab.com/bloodyhealth/drip/blob/main/RELEASE.md)
 
 ## Development setup
 
@@ -33,14 +36,14 @@ or clone it with HTTPS
 
 ### 2. Node & yarn version
 
-Make sure you are running Node 14 and classic yarn (v.1). It's easiest to switch Node versions using `nvm`, here's how to install NVM: https://github.com/nvm-sh/nvm#installing-and-updating. Once you have nvm you can install node 14:
+Make sure you are running Node 14 and classic yarn (v.1). It's easiest to switch Node versions using `nvm`, here's how to install NVM: https://github.com/nvm-sh/nvm#installing-and-updating. After installing nvm close the terminal and open it again to be able to use nvm.
+Once you have nvm running you can install node 14:
 
     nvm install v14.19.3
 
-and then run
+use npm to install yarn:
 
-    cd drip
-    yarn install
+    npm install --global yarn
 
 ## for Android
 
@@ -50,21 +53,46 @@ Install [Android Studio](https://developer.android.com/studio/) - you'll need it
 
 ### 3.2 More requirements from Android Studio
 
-Open Android Studio and click on "Open an existing Android Studio project". Navigate to the drip repository you cloned and double click the android folder. It detects, downloads and cofigures requirements that might be missing, like the NDK and CMake to build the native code part of the project.
+Open Android Studio. If the message "SDK location not found" appears when you try to start it, edit `.bashrc` in your home directory by adding:
+
+    export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+
+Check by typing in your terminal:
+
+    echo $ANDROID_SDK_ROOT
+
+You should see the path of Sdk.
+If you haven't installed [adb tools](https://developer.android.com/tools/adb) before, you will also have to do so and add to the .bashrc
+
+    PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+
+In Android Studio click on "Open an existing Android Studio project". Navigate to the drip repository you cloned and double click the android folder. It detects, downloads and cofigures requirements that might be missing, like the NDK and CMake to build the native code part of the project.
 
 ### 3.3 Run the app on Android
 
-Either start a [virtual device in Android Studio](https://developer.android.com/studio/run/emulator) or [set your physical device like your Android phone up](https://developer.android.com/training/basics/firstapp/running-app) to run the app.
+Either create and start a [virtual device in Android Studio](https://developer.android.com/studio/run/emulator) or [set your physical device like your Android phone up](https://developer.android.com/training/basics/firstapp/running-app) to run the app.
 
-i. Open a terminal and run
+i. Open a terminal, navigate to the drip folder and run
 
+    yarn install
+
+In a separate tab, that needs to keep running as long as you want to keep the app connected, run
+   
+    yarn start
+
+Also run in a new tab
+    
     yarn android
 
 ii. To see logging output, run the following command in another tab:
 
     yarn log
 
-iii. Run the following command and select enable hot reloading (see https://facebook.github.io/react-native/docs/debugging.html):
+iii. If you had an older version of drip before and you are now trying to run a new drip version, clear cache by running
+
+    yarn clear
+
+iv. Run the following command and select enable hot reloading (see https://facebook.github.io/react-native/docs/debugging.html):
 
     adb shell input keyevent 82
 
@@ -147,7 +175,7 @@ You can run the tests with:
 
 ### End to end tests
 
-1. Check what testing device is specified in [package.json](https://gitlab.com/bloodyhealth/drip/blob/master/package.json) under:
+1. Check what testing device is specified in [package.json](https://gitlab.com/bloodyhealth/drip/blob/main/package.json) under:
    ```
    {"detox":
      {"configurations":
