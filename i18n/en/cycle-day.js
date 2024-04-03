@@ -33,7 +33,6 @@ export const cervix = {
   },
   excludeExplainer:
     "You can exclude this value if you don't want to use it for fertility detection.",
-  actionHint: 'Choose values for at least "Opening" and "Firmness" to save.',
 }
 
 export const mucus = {
@@ -52,7 +51,6 @@ export const mucus = {
   },
   excludeExplainer:
     "You can exclude this value if you don't want to use it for fertility detection",
-  actionHint: 'Choose values for both "Feeling" and "Texture" to save.',
 }
 
 export const desire = {
@@ -116,8 +114,10 @@ export const mood = {
 }
 
 export const temperature = {
-  outOfRangeWarning: 'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
-  outOfAbsoluteRangeWarning: 'This temperature value is too high or low to be shown on the temperature chart.',
+  outOfRangeWarning:
+    'This temperature value is out of the current range for the temperature chart. You can change the range in the settings.',
+  outOfAbsoluteRangeWarning:
+    'This temperature value is too high or low to be shown on the temperature chart.',
   temperature: {
     header: 'Temperature',
     explainer:
