@@ -12,13 +12,12 @@ import {
   todayToCalFormat,
 } from './helpers/calendar'
 
-const CalendarView = ({ setDate, navigate }) => {
+const CalendarView = ({ navigate }) => {
   const bleedingDays = getBleedingDaysSortedByDate()
   const predictedMenses = cycleModule().getPredictedMenses()
 
   const passDateToDayView = ({ dateString }) => {
-    setDate(dateString)
-    navigate('CycleDay')
+    navigate('CycleDay', dateString)
   }
 
   const markedDates = Object.assign(

@@ -141,6 +141,7 @@ export const noteExplainer = 'Anything you want to add for the day?'
 export const general = {
   cycleDayNumber: 'Cycle day ',
   today: 'Today',
+  chartView: 'View in Chart',
 }
 
 export const sharedDialogs = {

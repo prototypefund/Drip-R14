@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
@@ -10,18 +10,21 @@ import cycleModule from '../../lib/cycle'
 import { Spacing, Typography, Colors } from '../../styles'
 import { humanizeDate } from '../helpers/format-date'
 
-const Item = ({ data }) => {
+const Item = ({ data, navigate }) => {
   const { t } = useTranslation(null, { keyPrefix: 'plurals' })
 
   if (!data) return false
 
   const { date, cycleLength, bleedingLength } = data
 
+  const jumpToDate = () => {
+    navigate('Chart', date)
+  }
   return (
     <View style={styles.row}>
-      <View style={styles.accentCell}>
+      <TouchableOpacity style={styles.accentCell} onPress={jumpToDate}>
         <AppText>{humanizeDate(date)}</AppText>
-      </View>
+      </TouchableOpacity>
       <View style={styles.cell}>
         <AppText>{t('day', { count: cycleLength })}</AppText>
       </View>
@@ -34,10 +37,11 @@ const Item = ({ data }) => {
 
 Item.propTypes = {
   data: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired,
 }
 
-const PeriodDetailsModal = ({ onClose }) => {
-  const renderItem = ({ item }) => <Item data={item} />
+const PeriodDetailsModal = ({ onClose, navigate }) => {
+  const renderItem = ({ item }) => <Item data={item} navigate={navigate} />
   const data = cycleModule().getStats()
 
   if (!data || data.length === 0) return false
@@ -62,6 +66,7 @@ const PeriodDetailsModal = ({ onClose }) => {
 
 PeriodDetailsModal.propTypes = {
   onClose: PropTypes.func,
+  navigate: PropTypes.func.isRequired,
 }
 
 const ItemDivider = () => <View style={styles.divider} />

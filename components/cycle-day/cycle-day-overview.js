@@ -22,7 +22,12 @@ import {
 import { Spacing } from '../../styles'
 import { SYMPTOMS } from '../../config'
 
-const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
+const CycleDayOverView = ({
+  date,
+  setDate,
+  isTemperatureEditView,
+  navigate,
+}) => {
   const cycleDay = getCycleDay(date)
 
   const [editedSymptom, setEditedSymptom] = useState(
@@ -66,6 +71,7 @@ const CycleDayOverView = ({ date, setDate, isTemperatureEditView }) => {
         date={date}
         onNextCycleDay={showNextCycleDay}
         onPrevCycleDay={showPrevCycleDay}
+        navigate={navigate}
       />
       <View style={styles.container}>
         {cleanSymptoms.map((symptom) => {
@@ -94,6 +100,7 @@ CycleDayOverView.propTypes = {
   date: PropTypes.string,
   setDate: PropTypes.func,
   isTemperatureEditView: PropTypes.bool,
+  navigate: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({
