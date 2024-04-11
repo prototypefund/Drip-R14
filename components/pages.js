@@ -45,6 +45,10 @@ export const pages = [
     parent: 'SettingsMenu',
   },
   {
+    component: 'ImportMenu',
+    parent: 'DataManagement',
+  },
+  {
     component: 'Info',
     parent: 'SettingsMenu',
   },

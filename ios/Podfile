@@ -18,6 +18,9 @@ target 'drip' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
+end
 
   target 'dripTests' do
     inherit! :complete

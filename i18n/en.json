@@ -96,13 +96,19 @@
             "replace": "Import and replace",
             "title": "Keep existing data?"
           },
+          "dialogClue": {
+            "web": "Import using web app",
+            "message": "You have two options if you want to import your tracked Clue data into drip. \n\n1. You can request your data from Clue using a GDPR request. You can then import the measurements.json file here. Track your symptoms here in the meantime, we can merge them!\n\n 2. You can enter your Clue email and password here and send a request to the Clue API. This will automatically import your data without delay. This will create a one-time connection to the internet and we never save your data.",
+            "file": "Import from file",
+            "title": "Import from Clue"
+          },
           "error": {
             "couldNotOpenFile": "Could not open file",
             "futureEdit": "Future dates may only contain a note, no other symptoms",
             "incorrectColumns": "Expected CSV column titles to be {{incorrectColumns}}",
             "noDataImported": "{{message}}\n\nNo data was imported or changed"
           },
-          "segmentExplainer": "Import data in CSV format",
+          "segmentExplainer": "Import data in CSV format (drip export) or from Clue",
           "success": {
             "message": "Data successfully imported",
             "title": "Success"

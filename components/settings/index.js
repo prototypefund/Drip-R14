@@ -6,6 +6,7 @@ import Password from './password'
 import About from './About'
 import License from './License'
 import PrivacyPolicy from './privacy-policy'
+import ImportMenu from './data-management/ImportMenu'
 
 export default {
   Reminders,
@@ -16,4 +17,5 @@ export default {
   About,
   License,
   PrivacyPolicy,
+  ImportMenu,
 }
