@@ -6,8 +6,11 @@ import alertError from '../common/alert-error'
 import settings from '../../../i18n/en/settings'
 import { EXPORT_FILE_NAME } from './constants'
 import RNFS from 'react-native-fs'
-
-export default async function exportData() {
+import {
+  encryptData,
+  decryptData,
+} from '../../../lib/import-export/export-encrypted'
+async function exportData() {
   let data
   const labels = settings.export
   const cycleDaysByDate = mapRealmObjToJsObj(getCycleDaysSortedByDate())
@@ -23,7 +26,6 @@ export default async function exportData() {
     console.error(err)
     return alertError(labels.errors.couldNotConvert)
   }
-
   try {
     const path = `${RNFS.DocumentDirectoryPath}/${EXPORT_FILE_NAME}`
     await RNFS.writeFile(path, data)
@@ -41,3 +43,5 @@ export default async function exportData() {
     return alertError(labels.errors.problemSharing)
   }
 }
+
+export { exportData }

@@ -6,11 +6,12 @@ import AppText from '../../common/app-text'
 import Button from '../../common/button'
 import Segment from '../../common/segment'
 
-import openShareDialogAndExport from './export-dialog'
+import { exportData } from './export-dialog'
 import DeleteData from './delete-data'
 
 import labels from '../../../i18n/en/settings'
 import ImportData from './ImportData'
+import BackUp from './BackUp'
 
 const DataManagement = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +19,7 @@ const DataManagement = () => {
 
   const startExport = () => {
     setIsDeletingData(false)
-    openShareDialogAndExport()
+    exportData()
   }
 
   if (isLoading) return <AppLoadingView />
@@ -32,6 +33,10 @@ const DataManagement = () => {
         </Button>
       </Segment>
       <ImportData
+        resetIsDeletingData={() => setIsDeletingData(false)}
+        setIsLoading={setIsLoading}
+      />
+      <BackUp
         resetIsDeletingData={() => setIsDeletingData(false)}
         setIsLoading={setIsLoading}
       />
