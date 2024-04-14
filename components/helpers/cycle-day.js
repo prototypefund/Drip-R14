@@ -23,6 +23,7 @@ const noteDescription = labels.noteExplainer
 const painLabels = labels.pain.categories
 const sexLabels = labels.sex.categories
 const temperatureLabels = labels.temperature
+const productLabels = labels.products.categories
 
 const minutes = ChronoUnit.MINUTES
 
@@ -60,6 +61,15 @@ export const blank = {
   bleeding: {
     exclude: false,
     value: null,
+    pad: null,
+    tampon: null,
+    underwear: null,
+    cup: null,
+    softTampon: null,
+    disk: null,
+    none: null,
+    other: null,
+    note: null,
   },
   cervix: {
     exclude: false,
@@ -125,16 +135,22 @@ export const blank = {
   },
 }
 
-export const symtomPage = {
+export const symptomPage = {
   bleeding: {
     excludeText: labels.bleeding.exclude.explainer,
     note: null,
-    selectBoxGroups: null,
     selectTabGroups: [
       {
         key: 'value',
         options: getLabelsList(bleedingLabels),
         title: labels.bleeding.heaviness.explainer,
+      },
+    ],
+    selectBoxGroups: [
+      {
+        key: 'products',
+        options: productLabels,
+        title: labels.products.explainer,
       },
     ],
   },
@@ -246,12 +262,7 @@ export const symtomPage = {
 
 export const save = {
   bleeding: (data, date, shouldDeleteData) => {
-    const { exclude, value } = data
-    const isDataEntered = isNumber(value)
-    const valuesToSave =
-      shouldDeleteData || !isDataEntered ? null : { value, exclude }
-
-    saveSymptom('bleeding', date, valuesToSave)
+    saveBoxSymptom(data, date, shouldDeleteData, 'bleeding')
   },
   cervix: (data, date, shouldDeleteData) => {
     const { opening, firmness, position, exclude } = data
@@ -329,10 +340,36 @@ const saveBoxSymptom = (data, date, shouldDeleteData, symptom) => {
 }
 
 const label = {
-  bleeding: ({ value, exclude }) => {
-    if (isNumber(value)) {
-      const bleedingLabel = bleedingLabels[value]
-      return exclude ? `(${bleedingLabel})` : bleedingLabel
+  bleeding: (bleeding) => {
+    bleeding = mapRealmObjToJsObj(bleeding)
+    const bleedingLabel = []
+    if (bleeding && Object.values({ ...bleeding }).some((val) => val)) {
+      Object.keys(bleeding).forEach((key) => {
+        if (bleeding[key] != null && key === 'value') {
+          bleedingLabel.push(
+            bleeding.exclude
+              ? `(${bleedingLabels[bleeding[key]]})`
+              : bleedingLabels[bleeding[key]]
+          )
+        }
+        if (
+          bleeding[key] &&
+          key !== 'other' &&
+          key !== 'note' &&
+          key !== 'value' &&
+          key !== 'exclude'
+        ) {
+          bleedingLabel.push(bleedingLabels[key] || productLabels[key])
+        }
+        if (key === 'other' && bleeding.other) {
+          let label = productLabels[key]
+          if (bleeding.note) {
+            label = `${label} (${bleeding.note})`
+          }
+          bleedingLabel.push(label)
+        }
+      })
+      return bleedingLabel.join(', ')
     }
   },
   temperature: ({ value, time, exclude }) => {

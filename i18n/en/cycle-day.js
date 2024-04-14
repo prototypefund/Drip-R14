@@ -13,6 +13,21 @@ export const bleeding = {
   },
 }
 
+export const products = {
+  categories: {
+    pad: 'pad',
+    tampon: 'tampon',
+    underwear: 'underwear',
+    cup: 'cup',
+    softTampon: 'soft tampon',
+    disk: 'disk',
+    none: 'none',
+    other: 'other',
+  },
+  header: 'period products',
+  explainer: 'Did you use period products?',
+}
+
 export const cervix = {
   subcategories: {
     opening: 'opening',
@@ -32,7 +47,7 @@ export const cervix = {
     explainer: 'How high up in the vagina is the cervix?',
   },
   excludeExplainer:
-    "You can exclude this value if you don't want to use it for fertility detection.",
+    "You can exclude these values if you don't want to use them for fertility detection.",
 }
 
 export const mucus = {
@@ -50,7 +65,7 @@ export const mucus = {
       'Looking at and touching your cervical mucus, which describes it best?',
   },
   excludeExplainer:
-    "You can exclude this value if you don't want to use it for fertility detection",
+    "You can exclude these values if you don't want to use them for fertility detection",
 }
 
 export const desire = {

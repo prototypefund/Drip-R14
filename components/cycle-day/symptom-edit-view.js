@@ -12,7 +12,7 @@ import SelectBoxGroup from './select-box-group'
 import SelectTabGroup from './select-tab-group'
 import Temperature from './temperature'
 
-import { blank, save, shouldShow, symtomPage } from '../helpers/cycle-day'
+import { blank, save, shouldShow, symptomPage } from '../helpers/cycle-day'
 import { showToast } from '../helpers/general'
 
 import { fertilityTrackingObservable } from '../../local-storage'
@@ -21,9 +21,10 @@ import info from '../../i18n/en/symptom-info'
 import { Colors, Containers, Sizes, Spacing } from '../../styles'
 
 const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
-  const symptomConfig = symtomPage[symptom]
+  const symptomConfig = symptomPage[symptom]
   const [data, setData] = useState(symptomData ? symptomData : blank[symptom])
   const [shouldShowInfo, setShouldShowInfo] = useState(false)
+  const isBleeding = symptom === 'bleeding'
   const getParsedData = () => JSON.parse(JSON.stringify(data))
   const onPressLearnMore = () => setShouldShowInfo(!shouldShowInfo)
   const isFertilityTrackingEnabled = fertilityTrackingObservable.value
@@ -117,6 +118,23 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
     textAlignVertical: 'top',
   }
 
+  {
+    /* show exclude AppSwitch for bleeding, mucus, cervix, temperature */
+  }
+  {
+    /* but if fertility is off only for bleeding */
+  }
+  const excludeToggle = shouldShow(symptomConfig.excludeText) &&
+    (isBleeding || isFertilityTrackingEnabled) && (
+      <Segment style={styles.segmentBorder}>
+        <AppSwitch
+          onToggle={onExcludeToggle}
+          text={symptomPage[symptom].excludeText}
+          value={data.exclude}
+        />
+      </Segment>
+    )
+
   return (
     <AppModal onClose={onSave}>
       <ScrollView
@@ -130,10 +148,16 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
             save={(value, field) => onSaveTemperature(value, field)}
           />
         )}
+
+        {/* There should not be a line between the bleeding tab group and the exclude toggle */}
         {shouldShow(symptomConfig.selectTabGroups) &&
-          symtomPage[symptom].selectTabGroups.map((group) => {
+          symptomPage[symptom].selectTabGroups.map((group) => {
             return (
-              <Segment key={group.key} style={styles.segmentBorder}>
+              <Segment
+                key={group.key}
+                style={styles.segmentBorder}
+                last={isBleeding}
+              >
                 <AppText style={styles.title}>{group.title}</AppText>
                 <SelectTabGroup
                   activeButton={data[group.key]}
@@ -143,8 +167,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
+
+        {/*for bleeding, we want to move the "exclude" toggle up between the tab and box groups, all other symptoms should still have it at the bottom*/}
+        {isBleeding && excludeToggle}
+
         {shouldShow(symptomConfig.selectBoxGroups) &&
-          symtomPage[symptom].selectBoxGroups.map((group) => {
+          symptomPage[symptom].selectBoxGroups.map((group) => {
             const isOtherSelected =
               data['other'] !== null &&
               data['other'] !== false &&
@@ -169,21 +197,12 @@ const SymptomEditView = ({ date, onClose, symptom, symptomData }) => {
               </Segment>
             )
           })}
-        {/* show exclude AppSwitch for bleeding, mucus, cervix, temperature */}
-        {/* but if fertility is off only for bleeding */}
-        {shouldShow(symptomConfig.excludeText) &&
-          (symptom === 'bleeding' || isFertilityTrackingEnabled) && (
-            <Segment style={styles.segmentBorder}>
-              <AppSwitch
-                onToggle={onExcludeToggle}
-                text={symtomPage[symptom].excludeText}
-                value={data.exclude}
-              />
-            </Segment>
-          )}
+
+        {!isBleeding && excludeToggle}
+
         {shouldShow(symptomConfig.note) && (
           <Segment style={styles.segmentBorder}>
-            <AppText>{symtomPage[symptom].note}</AppText>
+            <AppText>{symptomPage[symptom].note}</AppText>
             <AppTextInput
               {...inputProps}
               onChangeText={onEditNote}
