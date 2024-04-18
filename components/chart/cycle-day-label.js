@@ -15,7 +15,6 @@ const CycleDayLabel = ({ height, date }) => {
 
   const momentDate = moment(date)
   const dayOfMonth = momentDate.date()
-  const isFirstDayOfMonth = dayOfMonth === 1
 
   return (
     <View style={[styles.container, { height }]}>
